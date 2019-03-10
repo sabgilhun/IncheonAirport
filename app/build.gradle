@@ -14,10 +14,10 @@ android {
 
     buildTypes {
         debug {
-            resValue "string", "OPEN_API_SERVICE_KEY", OPEN_API_SERVICE_KEY
+            buildConfigField("String", "OPEN_API_SERVICE_KEY", OPEN_API_SERVICE_KEY)
         }
         release {
-            resValue "string", "OPEN_API_SERVICE_KEY", OPEN_API_SERVICE_KEY
+            buildConfigField("String", "OPEN_API_SERVICE_KEY", OPEN_API_SERVICE_KEY)
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -41,4 +41,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.2-alpha02'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha02'
+
+    // networking lib
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-simplexml:2.5.0'
 }
