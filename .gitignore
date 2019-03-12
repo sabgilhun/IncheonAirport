@@ -1,5 +1,8 @@
 # https://github.com/github/gitignore/blob/master/Android.gitignore
 
+# Open API doc
+open api doc/
+
 # API Key
 app/gradle.properties
 
