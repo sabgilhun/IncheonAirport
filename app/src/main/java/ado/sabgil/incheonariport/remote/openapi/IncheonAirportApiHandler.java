@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import java.util.List;
 
 import ado.sabgil.incheonariport.BuildConfig;
+import ado.sabgil.incheonariport.model.DepartureCongestion;
 import ado.sabgil.incheonariport.remote.OnFailureListener;
 import ado.sabgil.incheonariport.remote.OnResponseListener;
 import ado.sabgil.incheonariport.remote.openapi.response.DeparturesCongestionItem;
@@ -44,9 +45,8 @@ public class IncheonAirportApiHandler {
     }
 
 
-    //TODO: 응답 string으로 받고 있는거 model 객체 만들고 변경해야함
     public void getDepartureCongestion(@NonNull String terminalNumber,
-                                       @NonNull OnResponseListener<String> onResponseListener,
+                                       @NonNull OnResponseListener<DepartureCongestion> onResponseListener,
                                        @NonNull OnFailureListener onFailureListener) {
 
         retrofit.getDeparturesCongestion(key, terminalNumber)
@@ -74,7 +74,9 @@ public class IncheonAirportApiHandler {
                                 .getItems()
                                 .getItems()
                                 .get(0);
-                        onResponseListener.onResponse(item.toString());
+
+                        DepartureCongestion data = DepartureCongestion.of(item);
+                        onResponseListener.onResponse(data);
 
                     }
 
@@ -87,6 +89,7 @@ public class IncheonAirportApiHandler {
 
     }
 
+    //TODO: 응답 string으로 받고 있는거 model 객체 만들고 변경해야함
     public void getDeparturesWeather(@NonNull String flightID,
                                      @NonNull OnResponseListener<String> onResponseListener,
                                      @NonNull OnFailureListener onFailureListener) {

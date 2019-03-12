@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         mBinding.btnCongestion.setOnClickListener(__ ->
                 handler.getDepartureCongestion("1",
-                        response -> mBinding.tvCongestion.setText(response),
+                        response -> mBinding.tvCongestion.setText(response.toString()),
                         error -> Log.e("Main", error.getMessage()))
         );
 
