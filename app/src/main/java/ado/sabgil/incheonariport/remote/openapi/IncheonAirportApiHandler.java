@@ -9,9 +9,9 @@ import ado.sabgil.incheonariport.remote.OnFailureListener;
 import ado.sabgil.incheonariport.remote.OnResponseListener;
 import ado.sabgil.incheonariport.remote.openapi.response.DeparturesCongestionItem;
 import ado.sabgil.incheonariport.remote.openapi.response.DeparturesCongestionResponse;
-import ado.sabgil.incheonariport.remote.openapi.response.DeparturesWeatherItem;
-import ado.sabgil.incheonariport.remote.openapi.response.DeparturesWeatherResponse;
 import ado.sabgil.incheonariport.remote.openapi.response.Header;
+import ado.sabgil.incheonariport.remote.openapi.response.PassengerDeparturesItem;
+import ado.sabgil.incheonariport.remote.openapi.response.PassengerDeparturesResponse;
 import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -96,38 +96,38 @@ public class IncheonAirportApiHandler {
             return;
         }
 
-        retrofit.getDeparturesWeather(key, flightID)
-                .enqueue(new Callback<DeparturesWeatherResponse>() {
+        retrofit.getPassengerDepartures(key, flightID)
+                .enqueue(new Callback<PassengerDeparturesResponse>() {
                     @Override
-                    public void onResponse(@NonNull Call<DeparturesWeatherResponse> call,
-                                           @NonNull Response<DeparturesWeatherResponse> response) {
+                    public void onResponse(@NonNull Call<PassengerDeparturesResponse> call,
+                                           @NonNull Response<PassengerDeparturesResponse> response) {
 
-                        DeparturesWeatherResponse weatherResponse = response.body();
-                        if (weatherResponse == null ) {
+                        PassengerDeparturesResponse departuresResponse = response.body();
+                        if (departuresResponse == null) {
                             onFailureListener.onFailure(new RuntimeException("No Response"));
                             return;
                         }
 
-                        Header header = weatherResponse.getHeader();
+                        Header header = departuresResponse.getHeader();
                         if (!TextUtils.equals(header.getResultCode(), NORMAL_SERVICE)) {
                             String error = header.getResultMsg();
                             onFailureListener.onFailure(new RuntimeException(error));
                             return;
                         }
 
-                        List<DeparturesWeatherItem> items;
-                        items = weatherResponse
+                        List<PassengerDeparturesItem> items;
+                        items = departuresResponse
                                 .getBody()
                                 .getItems()
                                 .getItems();
 
-                        if(items == null) {
+                        if (items == null) {
                             onFailureListener.onFailure(new RuntimeException("no data"));
                             return;
                         }
 
                         StringBuilder stringBuilder = new StringBuilder();
-                        for(DeparturesWeatherItem item : items) {
+                        for (PassengerDeparturesItem item : items) {
                             stringBuilder.append(item.toString());
                             stringBuilder.append("\n");
                         }
@@ -137,7 +137,7 @@ public class IncheonAirportApiHandler {
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<DeparturesWeatherResponse> call,
+                    public void onFailure(@NonNull Call<PassengerDeparturesResponse> call,
                                           @NonNull Throwable t) {
                         onFailureListener.onFailure(new RuntimeException((t.getMessage())));
                     }

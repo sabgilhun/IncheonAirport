@@ -6,12 +6,12 @@ import org.simpleframework.xml.Root;
 import java.util.ArrayList;
 
 @Root(name = "items")
-public class DeparturesWeatherItems {
+public class PassengerDeparturesItems {
 
     @ElementList(inline = true, required = false)
-    private ArrayList<DeparturesWeatherItem> items;
+    private ArrayList<PassengerDeparturesItem> items;
 
-    public ArrayList<DeparturesWeatherItem> getItems() {
+    public ArrayList<PassengerDeparturesItem> getItems() {
         return items;
     }
 }
