@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 
 public class DepartureCongestion {
 
-    enum State {
+    public enum State {
         LIGHT("원활"), NORMAL("보통"), BUSY("혼잡"), EMPTY1("오류"), EMPTY2("오류"),
         EMPTY3("오류"), EMPTY4("오류"), EMPTY5("오류"), EMPTY6("오류"), CLOSE("운영 종료");
 
@@ -27,24 +27,24 @@ public class DepartureCongestion {
     private final String updateTime;
 
     @NonNull
-    private final State gate2Congestion;
+    private final State congestion2;
 
     @NonNull
-    private final State gate3Congestion;
+    private final State congestion3;
 
     @NonNull
-    private final State gate4Congestion;
+    private final State congestion4;
 
     @NonNull
-    private final State gate5Congestion;
+    private final State congestion5;
 
-    private final int gate2NumberOfPassenger;
+    private final int passengers2;
 
-    private final int gate3NumberOfPassenger;
+    private final int passengers3;
 
-    private final int gate4NumberOfPassenger;
+    private final int passengers4;
 
-    private final int gate5NumberOfPassenger;
+    private final int passengers5;
 
     @NonNull
     public String getUpdateDate() {
@@ -57,42 +57,42 @@ public class DepartureCongestion {
     }
 
     @NonNull
-    public State getGate2Congestion() {
-        return gate2Congestion;
+    public State getCongestion2() {
+        return congestion2;
     }
 
     @NonNull
-    public State getGate3Congestion() {
-        return gate3Congestion;
+    public State getCongestion3() {
+        return congestion3;
     }
 
     @NonNull
-    public State getGate4Congestion() {
-        return gate4Congestion;
+    public State getCongestion4() {
+        return congestion4;
     }
 
     @NonNull
-    public State getGate5Congestion() {
-        return gate5Congestion;
+    public State getCongestion5() {
+        return congestion5;
     }
 
-    public int getGate2NumberOfPassenger() {
-        return gate2NumberOfPassenger;
+    public int getPassengers2() {
+        return passengers2;
     }
 
-    public int getGate3NumberOfPassenger() {
-        return gate3NumberOfPassenger;
+    public int getPassengers3() {
+        return passengers3;
     }
 
-    public int getGate4NumberOfPassenger() {
-        return gate4NumberOfPassenger;
+    public int getPassengers4() {
+        return passengers4;
     }
 
-    public int getGate5NumberOfPassenger() {
-        return gate5NumberOfPassenger;
+    public int getPassengers5() {
+        return passengers5;
     }
 
-    public DepartureCongestion(@NonNull String updateDate,
+    private DepartureCongestion(@NonNull String updateDate,
                                @NonNull String updateTime,
                                int gate2Congestion,
                                int gate3Congestion,
@@ -104,14 +104,14 @@ public class DepartureCongestion {
                                int gate5NumberOfPassenger) {
         this.updateDate = updateDate;
         this.updateTime = updateTime;
-        this.gate2Congestion = State.values()[gate2Congestion];
-        this.gate3Congestion = State.values()[gate3Congestion];
-        this.gate4Congestion = State.values()[gate4Congestion];
-        this.gate5Congestion = State.values()[gate5Congestion];
-        this.gate2NumberOfPassenger = gate2NumberOfPassenger;
-        this.gate3NumberOfPassenger = gate3NumberOfPassenger;
-        this.gate4NumberOfPassenger = gate4NumberOfPassenger;
-        this.gate5NumberOfPassenger = gate5NumberOfPassenger;
+        this.congestion2 = State.values()[gate2Congestion];
+        this.congestion3 = State.values()[gate3Congestion];
+        this.congestion4 = State.values()[gate4Congestion];
+        this.congestion5 = State.values()[gate5Congestion];
+        this.passengers2 = gate2NumberOfPassenger;
+        this.passengers3 = gate3NumberOfPassenger;
+        this.passengers4 = gate4NumberOfPassenger;
+        this.passengers5 = gate5NumberOfPassenger;
     }
 
     public static DepartureCongestion of(DeparturesCongestionItem item) {
@@ -133,14 +133,14 @@ public class DepartureCongestion {
         return "DepartureCongestion{" +
                 "updateDate='" + updateDate + '\'' +
                 ", updateTime='" + updateTime + '\'' +
-                ", gate2Congestion=" + gate2Congestion +
-                ", gate3Congestion=" + gate3Congestion +
-                ", gate4Congestion=" + gate4Congestion +
-                ", gate5Congestion=" + gate5Congestion +
-                ", gate2NumberOfPassenger=" + gate2NumberOfPassenger +
-                ", gate3NumberOfPassenger=" + gate3NumberOfPassenger +
-                ", gate4NumberOfPassenger=" + gate4NumberOfPassenger +
-                ", gate5NumberOfPassenger=" + gate5NumberOfPassenger +
+                ", congestion2=" + congestion2 +
+                ", congestion3=" + congestion3 +
+                ", congestion4=" + congestion4 +
+                ", congestion5=" + congestion5 +
+                ", passengers2=" + passengers2 +
+                ", passengers3=" + passengers3 +
+                ", passengers4=" + passengers4 +
+                ", passengers5=" + passengers5 +
                 '}';
     }
 }

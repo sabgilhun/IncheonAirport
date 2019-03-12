@@ -3,30 +3,120 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="cg"
+            type="ado.sabgil.incheonariport.model.DepartureCongestion" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
         <TextView
-            android:id="@+id/tv_congestion"
+            android:id="@+id/tv_gate5_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="congestion"
+            android:text="Gate5"
             android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_gate4_name"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_gate4_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Gate4"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_gate3_name"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_gate5_name"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_gate3_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Gate3"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_gate2_name"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_gate4_name"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_gate2_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Gate2"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_gate3_name"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_gate5_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{cg != null ? cg.congestion5.getName() + "\n" + cg.passengers5 : ""}'
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/tv_gate5_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_gate5_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_gate5_name"
+            tools:text="원활\n10" />
+
+        <TextView
+            android:id="@+id/tv_gate4_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text='@{cg != null ? cg.congestion4.getName() + "\n" + cg.passengers4 : ""}'
+            app:layout_constraintEnd_toEndOf="@+id/tv_gate4_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_gate4_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_gate5_name"
+            tools:text="원활\n10" />
+
+        <TextView
+            android:id="@+id/tv_gate3_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text='@{cg != null ? cg.congestion3.getName() + "\n" + cg.passengers3 : ""}'
+            app:layout_constraintEnd_toEndOf="@+id/tv_gate3_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_gate3_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_gate5_name"
+            tools:text="원활\n10" />
+
+        <TextView
+            android:id="@+id/tv_gate2_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text='@{cg != null ? cg.congestion2.getName() + "\n" + cg.passengers2 : ""}'
+            app:layout_constraintEnd_toEndOf="@+id/tv_gate2_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_gate2_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_gate5_name"
+            tools:text="원활\n10" />
 
         <Button
             android:id="@+id/btn_congestion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:onClick="onClickUpdateCongestion"
             android:text="혼잡도 값 갱신"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_congestion" />
+            app:layout_constraintTop_toBottomOf="@id/tv_gate2_info" />
 
         <EditText
             android:id="@+id/et_weather"
