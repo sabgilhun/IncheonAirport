@@ -15,6 +15,20 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_main"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light">
+
+        </androidx.appcompat.widget.Toolbar>
+
         <TextView
             android:id="@+id/tv_gate5_name"
             android:layout_width="wrap_content"
@@ -25,7 +39,7 @@
             app:layout_constraintEnd_toStartOf="@+id/tv_gate4_name"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/tb_main" />
 
         <TextView
             android:id="@+id/tv_gate4_name"
@@ -37,7 +51,7 @@
             app:layout_constraintEnd_toStartOf="@+id/tv_gate3_name"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tv_gate5_name"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/tb_main" />
 
         <TextView
             android:id="@+id/tv_gate3_name"
@@ -49,7 +63,7 @@
             app:layout_constraintEnd_toStartOf="@+id/tv_gate2_name"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tv_gate4_name"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/tb_main" />
 
         <TextView
             android:id="@+id/tv_gate2_name"
@@ -61,7 +75,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tv_gate3_name"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/tb_main" />
 
         <TextView
             android:id="@+id/tv_gate5_info"
@@ -78,8 +92,8 @@
             android:id="@+id/tv_gate4_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:text='@{cg != null ? cg.congestion4.getName() + "\n" + cg.passengers4 : ""}'
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="@+id/tv_gate4_name"
             app:layout_constraintStart_toStartOf="@+id/tv_gate4_name"
             app:layout_constraintTop_toBottomOf="@id/tv_gate5_name"
@@ -89,8 +103,8 @@
             android:id="@+id/tv_gate3_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:text='@{cg != null ? cg.congestion3.getName() + "\n" + cg.passengers3 : ""}'
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="@+id/tv_gate3_name"
             app:layout_constraintStart_toStartOf="@+id/tv_gate3_name"
             app:layout_constraintTop_toBottomOf="@id/tv_gate5_name"
@@ -100,8 +114,8 @@
             android:id="@+id/tv_gate2_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:text='@{cg != null ? cg.congestion2.getName() + "\n" + cg.passengers2 : ""}'
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="@+id/tv_gate2_name"
             app:layout_constraintStart_toStartOf="@+id/tv_gate2_name"
             app:layout_constraintTop_toBottomOf="@id/tv_gate5_name"
@@ -117,42 +131,6 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_gate2_info" />
-
-        <EditText
-            android:id="@+id/et_weather"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="12dp"
-            android:hint="항공편을 입력하세요."
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@id/btn_weather"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_congestion" />
-
-        <Button
-            android:id="@+id/btn_weather"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="8dp"
-            android:text="검색"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/et_weather"
-            app:layout_constraintTop_toBottomOf="@id/btn_congestion" />
-
-        <TextView
-            android:id="@+id/tv_weather"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="8dp"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_weather" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
