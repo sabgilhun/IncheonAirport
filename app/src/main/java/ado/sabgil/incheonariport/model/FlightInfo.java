@@ -2,7 +2,6 @@ package ado.sabgil.incheonariport.model;
 
 import ado.sabgil.incheonariport.remote.openapi.response.PassengerDeparturesWItem;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public class FlightInfo {
 
@@ -30,7 +29,7 @@ public class FlightInfo {
     @NonNull
     private final String checkInDesk;
 
-    @Nullable
+    @NonNull
     private final String state;
 
 

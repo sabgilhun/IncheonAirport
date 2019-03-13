@@ -5,11 +5,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import androidx.appcompat.widget.SearchView;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import ado.sabgil.incheonariport.databinding.ActivityMainBinding;
 import ado.sabgil.incheonariport.remote.openapi.IncheonAirportApiHandler;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,18 +37,30 @@ public class MainActivity extends AppCompatActivity {
         SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.onActionViewCollapsed();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            Timer timer;
+
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.d("timetest", "start");
-                handler.getPassengerDeparturesW(query.toUpperCase(),
-                        response -> Log.d("timetest", response),
-                        error -> Log.e("Main", error.getMessage()));
-
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                if (timer != null) {
+                    timer.cancel();
+                }
+
+                if (newText.length() > 1) {
+                    timer = new Timer();
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            handler.getPassengerDeparturesW(newText.toUpperCase(),
+                                    response -> Log.d("timetest", response.get(0).toString()),
+                                    error -> Log.e("Main", error.getMessage()));
+                        }
+                    }, 400);
+                }
                 return true;
             }
         });

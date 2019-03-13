@@ -2,12 +2,12 @@ package ado.sabgil.incheonariport.remote.openapi;
 
 import android.text.TextUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ado.sabgil.incheonariport.BuildConfig;
 import ado.sabgil.incheonariport.model.DepartureCongestion;
-import ado.sabgil.incheonariport.model.DepartureWeather;
-import ado.sabgil.incheonariport.model.FlightInfo;
+import ado.sabgil.incheonariport.model.SimpleFlightInfo;
 import ado.sabgil.incheonariport.remote.OnFailureListener;
 import ado.sabgil.incheonariport.remote.OnResponseListener;
 import ado.sabgil.incheonariport.remote.openapi.response.DeparturesCongestionItem;
@@ -91,9 +91,8 @@ public class IncheonAirportApiHandler {
 
     }
 
-    //TODO: 응답 string으로 받고 있는거 model 객체 만들고 변경해야함
     public void getPassengerDeparturesW(@NonNull String flightID,
-                                        @NonNull OnResponseListener<String> onResponseListener,
+                                        @NonNull OnResponseListener<List<SimpleFlightInfo>> onResponseListener,
                                         @NonNull OnFailureListener onFailureListener) {
 
         if (TextUtils.isEmpty(flightID)) {
@@ -131,18 +130,12 @@ public class IncheonAirportApiHandler {
                             return;
                         }
 
-                        StringBuilder stringBuilder = new StringBuilder();
+                        List<SimpleFlightInfo> result = new ArrayList<>();
                         for (PassengerDeparturesWItem item : items) {
-                            FlightInfo info = FlightInfo.from(item);
-                            DepartureWeather weather = DepartureWeather.from(item);
-                            stringBuilder.append(info.toString());
-                            stringBuilder.append("\n");
-                            stringBuilder.append(weather.toString());
-                            stringBuilder.append("\n");
+                            result.add(SimpleFlightInfo.from(item));
                         }
 
-                        onResponseListener.onResponse(stringBuilder.toString());
-
+                        onResponseListener.onResponse(result);
                     }
 
                     @Override
