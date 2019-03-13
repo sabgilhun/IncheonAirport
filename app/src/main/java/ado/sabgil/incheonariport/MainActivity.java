@@ -36,9 +36,10 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-//                handler.getDeparturesWeather(query.toUpperCase(),
-//                        response -> mBinding.tvWeather.setText(response),
-//                        error -> Log.e("Main", error.getMessage()));
+                Log.d("timetest", "start");
+                handler.getPassengerDeparturesW(query.toUpperCase(),
+                        response -> Log.d("timetest", response),
+                        error -> Log.e("Main", error.getMessage()));
 
                 return true;
             }

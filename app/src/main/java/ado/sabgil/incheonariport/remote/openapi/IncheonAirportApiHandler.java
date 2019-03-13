@@ -11,8 +11,8 @@ import ado.sabgil.incheonariport.remote.OnResponseListener;
 import ado.sabgil.incheonariport.remote.openapi.response.DeparturesCongestionItem;
 import ado.sabgil.incheonariport.remote.openapi.response.DeparturesCongestionResponse;
 import ado.sabgil.incheonariport.remote.openapi.response.Header;
-import ado.sabgil.incheonariport.remote.openapi.response.PassengerDeparturesItem;
-import ado.sabgil.incheonariport.remote.openapi.response.PassengerDeparturesResponse;
+import ado.sabgil.incheonariport.remote.openapi.response.PassengerDeparturesWItem;
+import ado.sabgil.incheonariport.remote.openapi.response.PassengerDeparturesWResponse;
 import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -90,7 +90,7 @@ public class IncheonAirportApiHandler {
     }
 
     //TODO: 응답 string으로 받고 있는거 model 객체 만들고 변경해야함
-    public void getDeparturesWeather(@NonNull String flightID,
+    public void getPassengerDeparturesW(@NonNull String flightID,
                                      @NonNull OnResponseListener<String> onResponseListener,
                                      @NonNull OnFailureListener onFailureListener) {
 
@@ -99,13 +99,13 @@ public class IncheonAirportApiHandler {
             return;
         }
 
-        retrofit.getPassengerDepartures(key, flightID)
-                .enqueue(new Callback<PassengerDeparturesResponse>() {
+        retrofit.getPassengerDeparturesW(key, flightID)
+                .enqueue(new Callback<PassengerDeparturesWResponse>() {
                     @Override
-                    public void onResponse(@NonNull Call<PassengerDeparturesResponse> call,
-                                           @NonNull Response<PassengerDeparturesResponse> response) {
+                    public void onResponse(@NonNull Call<PassengerDeparturesWResponse> call,
+                                           @NonNull Response<PassengerDeparturesWResponse> response) {
 
-                        PassengerDeparturesResponse departuresResponse = response.body();
+                        PassengerDeparturesWResponse departuresResponse = response.body();
                         if (departuresResponse == null) {
                             onFailureListener.onFailure(new RuntimeException("No Response"));
                             return;
@@ -118,7 +118,7 @@ public class IncheonAirportApiHandler {
                             return;
                         }
 
-                        List<PassengerDeparturesItem> items;
+                        List<PassengerDeparturesWItem> items;
                         items = departuresResponse
                                 .getBody()
                                 .getItems()
@@ -130,7 +130,7 @@ public class IncheonAirportApiHandler {
                         }
 
                         StringBuilder stringBuilder = new StringBuilder();
-                        for (PassengerDeparturesItem item : items) {
+                        for (PassengerDeparturesWItem item : items) {
                             stringBuilder.append(item.toString());
                             stringBuilder.append("\n");
                         }
@@ -140,7 +140,7 @@ public class IncheonAirportApiHandler {
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<PassengerDeparturesResponse> call,
+                    public void onFailure(@NonNull Call<PassengerDeparturesWResponse> call,
                                           @NonNull Throwable t) {
                         onFailureListener.onFailure(new RuntimeException((t.getMessage())));
                     }
