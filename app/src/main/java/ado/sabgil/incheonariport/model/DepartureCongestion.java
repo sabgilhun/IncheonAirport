@@ -93,15 +93,15 @@ public class DepartureCongestion {
     }
 
     private DepartureCongestion(@NonNull String updateDate,
-                               @NonNull String updateTime,
-                               int gate2Congestion,
-                               int gate3Congestion,
-                               int gate4Congestion,
-                               int gate5Congestion,
-                               int gate2NumberOfPassenger,
-                               int gate3NumberOfPassenger,
-                               int gate4NumberOfPassenger,
-                               int gate5NumberOfPassenger) {
+                                @NonNull String updateTime,
+                                int gate2Congestion,
+                                int gate3Congestion,
+                                int gate4Congestion,
+                                int gate5Congestion,
+                                int gate2NumberOfPassenger,
+                                int gate3NumberOfPassenger,
+                                int gate4NumberOfPassenger,
+                                int gate5NumberOfPassenger) {
         this.updateDate = updateDate;
         this.updateTime = updateTime;
         this.congestion2 = State.values()[gate2Congestion];
@@ -114,7 +114,7 @@ public class DepartureCongestion {
         this.passengers5 = gate5NumberOfPassenger;
     }
 
-    public static DepartureCongestion of(DeparturesCongestionItem item) {
+    public static DepartureCongestion from(DeparturesCongestionItem item) {
         return new DepartureCongestion(
                 item.getQueryDate(),
                 item.getQueryTime(),

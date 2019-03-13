@@ -6,6 +6,8 @@ import java.util.List;
 
 import ado.sabgil.incheonariport.BuildConfig;
 import ado.sabgil.incheonariport.model.DepartureCongestion;
+import ado.sabgil.incheonariport.model.DepartureWeather;
+import ado.sabgil.incheonariport.model.FlightInfo;
 import ado.sabgil.incheonariport.remote.OnFailureListener;
 import ado.sabgil.incheonariport.remote.OnResponseListener;
 import ado.sabgil.incheonariport.remote.openapi.response.DeparturesCongestionItem;
@@ -75,7 +77,7 @@ public class IncheonAirportApiHandler {
                                 .getItems()
                                 .get(0);
 
-                        DepartureCongestion data = DepartureCongestion.of(item);
+                        DepartureCongestion data = DepartureCongestion.from(item);
                         onResponseListener.onResponse(data);
 
                     }
@@ -91,8 +93,8 @@ public class IncheonAirportApiHandler {
 
     //TODO: 응답 string으로 받고 있는거 model 객체 만들고 변경해야함
     public void getPassengerDeparturesW(@NonNull String flightID,
-                                     @NonNull OnResponseListener<String> onResponseListener,
-                                     @NonNull OnFailureListener onFailureListener) {
+                                        @NonNull OnResponseListener<String> onResponseListener,
+                                        @NonNull OnFailureListener onFailureListener) {
 
         if (TextUtils.isEmpty(flightID)) {
             onFailureListener.onFailure(new RuntimeException("No Query"));
@@ -131,7 +133,11 @@ public class IncheonAirportApiHandler {
 
                         StringBuilder stringBuilder = new StringBuilder();
                         for (PassengerDeparturesWItem item : items) {
-                            stringBuilder.append(item.toString());
+                            FlightInfo info = FlightInfo.from(item);
+                            DepartureWeather weather = DepartureWeather.from(item);
+                            stringBuilder.append(info.toString());
+                            stringBuilder.append("\n");
+                            stringBuilder.append(weather.toString());
                             stringBuilder.append("\n");
                         }
 
