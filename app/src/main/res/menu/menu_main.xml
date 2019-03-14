@@ -6,6 +6,6 @@
         android:id="@+id/action_search"
         android:title="검색"
         android:icon="@drawable/ic_search"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:actionViewClass="ado.sabgil.incheonariport.custumview.MySearchView"
         app:showAsAction="collapseActionView|always" />
 </menu>
