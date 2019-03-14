@@ -36,7 +36,7 @@ public class MySearchView extends SearchView {
     public void addDebounceOnListener() {
         setOnQueryTextListener(new OnQueryTextListener() {
             Timer timer;
-            int interval = 200;
+            int interval = 300;
             int minLength = 2;
 
             @Override

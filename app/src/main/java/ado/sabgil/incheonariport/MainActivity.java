@@ -5,8 +5,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.List;
+
 import ado.sabgil.incheonariport.custumview.MySearchView;
 import ado.sabgil.incheonariport.databinding.ActivityMainBinding;
+import ado.sabgil.incheonariport.model.SimpleFlightInfo;
 import ado.sabgil.incheonariport.remote.openapi.IncheonAirportApiHandler;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private MapFragment mapFragment;
     private AlarmFragment alarmFragment;
     private SettingFragment settingFragment;
-    private SearchedItemListFragment searchedItemListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +58,17 @@ public class MainActivity extends AppCompatActivity {
         searchView.addDebounceOnListener();
         searchView.setOnDebouncedQueryTextListener(query ->
                 handler.getPassengerDeparturesW(query.toUpperCase(),
-                        response -> Log.d("timetest", response.get(0).toString()),
+                        this::onResponseSimpleFlightInfo,
                         error -> Log.e("Main", error.getMessage()))
         );
 
         searchView.setOnSearchViewChangedListener(isExpand -> {
             if (isExpand) {
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fl_container, new SearchedItemListFragment())
+                fragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fl_container,
+                                new SearchListFragment(),
+                                SearchListFragment.class.getSimpleName())
                         .addToBackStack(null)
                         .commit();
             } else {
@@ -103,4 +108,13 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    private void onResponseSimpleFlightInfo(List<SimpleFlightInfo> response) {
+        SearchListFragment fragment;
+        fragment = (SearchListFragment) fragmentManager.
+                findFragmentByTag(SearchListFragment.class.getSimpleName());
+
+        if (fragment != null) {
+            fragment.setListItem(response);
+        }
+    }
 }

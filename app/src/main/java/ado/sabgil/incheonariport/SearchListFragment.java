@@ -1,17 +1,21 @@
 package ado.sabgil.incheonariport;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import ado.sabgil.incheonariport.databinding.FragmentEmptyBinding;
+import ado.sabgil.incheonariport.model.SimpleFlightInfo;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
-public class SearchedItemListFragment extends Fragment {
+public class SearchListFragment extends Fragment {
     private FragmentEmptyBinding mBinding;
 
     @Nullable
@@ -27,5 +31,9 @@ public class SearchedItemListFragment extends Fragment {
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    public void setListItem(@NonNull List<SimpleFlightInfo> list) {
+        Log.d("테스트", list.get(0).toString());
     }
 }
