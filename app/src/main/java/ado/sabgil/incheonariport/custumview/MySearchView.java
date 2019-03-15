@@ -50,7 +50,10 @@ public class MySearchView extends SearchView {
                     timer.cancel();
                 }
 
-                if (newText.length() >= minLength) {
+
+                if (newText.length() < minLength) {
+                    onDebouncedTextListener.onTextChange(newText);
+                } else {
                     timer = new Timer();
                     timer.schedule(new TimerTask() {
                         @Override
@@ -61,6 +64,7 @@ public class MySearchView extends SearchView {
                         }
                     }, interval);
                 }
+
                 return true;
             }
         });
@@ -69,6 +73,7 @@ public class MySearchView extends SearchView {
     @Override
     public void onActionViewCollapsed() {
         super.onActionViewCollapsed();
+
         if (onSearchViewChangedListener != null) {
             onSearchViewChangedListener.onSearchViewChanged(false);
         }
@@ -77,6 +82,7 @@ public class MySearchView extends SearchView {
     @Override
     public void onActionViewExpanded() {
         super.onActionViewExpanded();
+
         if (onSearchViewChangedListener != null) {
             onSearchViewChangedListener.onSearchViewChanged(true);
         }
@@ -89,4 +95,5 @@ public class MySearchView extends SearchView {
     public interface OnDebouncedTextChangeListener {
         void onTextChange(String query);
     }
+
 }

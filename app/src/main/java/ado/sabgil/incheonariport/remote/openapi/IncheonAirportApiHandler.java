@@ -126,7 +126,7 @@ public class IncheonAirportApiHandler {
                                 .getItems();
 
                         if (items == null) {
-                            onFailureListener.onFailure(new RuntimeException("no data"));
+                            onResponseListener.onResponse(null);
                             return;
                         }
 

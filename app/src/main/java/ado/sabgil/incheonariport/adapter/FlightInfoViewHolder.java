@@ -14,7 +14,6 @@ public class FlightInfoViewHolder extends RecyclerView.ViewHolder {
     public FlightInfoViewHolder(@NonNull View itemView) {
         super(itemView);
         mBinding = DataBindingUtil.bind(itemView);
-        mBinding.tvFlightId.setText("임시");
     }
 
     public ItemFlightInfoBinding getBinding() {

@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class BindingAdapters {
 
-    @SuppressWarnings("unchecked")
     @BindingAdapter("adapter")
     public static void setImageItems(@NonNull RecyclerView recyclerView,
                                      @Nullable List<SimpleFlightInfo> items) {

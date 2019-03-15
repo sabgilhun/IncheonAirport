@@ -6,22 +6,25 @@ import android.view.MenuItem;
 
 import ado.sabgil.incheonariport.custumview.MySearchView;
 import ado.sabgil.incheonariport.databinding.ActivityMainBinding;
-import ado.sabgil.incheonariport.remote.openapi.IncheonAirportApiHandler;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding mBinding;
-    private IncheonAirportApiHandler handler;
 
     private FragmentManager fragmentManager;
     private HomeFragment homeFragment;
     private MapFragment mapFragment;
     private AlarmFragment alarmFragment;
     private SettingFragment settingFragment;
+
+    private MenuItem searchItem;
+    private int currentAction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mBinding.bottomNavigation.setOnNavigationItemSelectedListener(this::switchItem);
         setSupportActionBar(mBinding.tbMain);
-        handler = IncheonAirportApiHandler.getInstance();
 
         // 프레그먼트 초기화
         fragmentManager = getSupportFragmentManager();
@@ -41,47 +43,56 @@ public class MainActivity extends AppCompatActivity {
 
         // 첫 화면 프레그먼트 추가
         fragmentManager.beginTransaction()
-                .add(R.id.fl_container, homeFragment)
+                .add(R.id.fl_page_container, homeFragment)
                 .commit();
+        currentAction = R.id.action_home;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchItem = menu.findItem(R.id.action_search);
         MySearchView searchView = (MySearchView) searchItem.getActionView();
 
         searchView.addDebounceOnListener();
         searchView.setOnDebouncedQueryTextListener(this::passQueryToFragment);
         searchView.setOnSearchViewChangedListener(this::expandOrCollapseFragment);
-
         return true;
     }
 
     private boolean switchItem(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
+        if (searchItem.isActionViewExpanded()) {
+            searchItem.collapseActionView();
+        }
+
+        final int selectedAction = item.getItemId();
+        if (currentAction == selectedAction) {
+            return false;
+        }
+
+        currentAction = selectedAction;
+        switch (selectedAction) {
             case R.id.action_home:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fl_container, homeFragment)
-                        .commit();
+                searchItem.setVisible(true);
+                replaceFragment(homeFragment, false);
                 return true;
 
             case R.id.action_map:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fl_container, mapFragment)
-                        .commit();
+                searchItem.setVisible(true);
+                replaceFragment(mapFragment, false);
+
                 return true;
 
             case R.id.action_alarm:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fl_container, alarmFragment)
-                        .commit();
+                searchItem.setVisible(false);
+                replaceFragment(alarmFragment, false);
+
                 return true;
 
             case R.id.action_settings:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fl_container, settingFragment)
-                        .commit();
+                searchItem.setVisible(false);
+                replaceFragment(settingFragment, false);
+
                 return true;
         }
         return false;
@@ -100,13 +111,21 @@ public class MainActivity extends AppCompatActivity {
 
     private void expandOrCollapseFragment(boolean isExpanded) {
         if (isExpanded) {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.fl_container, new SearchListFragment(),
-                            SearchListFragment.class.getSimpleName())
-                    .addToBackStack(null)
-                    .commit();
+            replaceFragment(new SearchListFragment(), true);
         } else {
             onBackPressed();
         }
+    }
+
+    private void replaceFragment(Fragment fragment, boolean isAddToBackStack) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction
+                .replace(R.id.fl_page_container, fragment, fragment.getClass().getSimpleName());
+
+        if (isAddToBackStack) {
+            fragmentTransaction.addToBackStack(null);
+        }
+
+        fragmentTransaction.commit();
     }
 }
