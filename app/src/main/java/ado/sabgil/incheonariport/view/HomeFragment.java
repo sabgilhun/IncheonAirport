@@ -1,4 +1,4 @@
-package ado.sabgil.incheonariport;
+package ado.sabgil.incheonariport.view;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.databinding.FragmentHomeBinding;
 import ado.sabgil.incheonariport.remote.openapi.IncheonAirportApiHandler;
 import androidx.annotation.NonNull;

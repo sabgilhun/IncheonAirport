@@ -1,4 +1,4 @@
-package ado.sabgil.incheonariport.custumview;
+package ado.sabgil.incheonariport.view.custom;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -1,10 +1,11 @@
-package ado.sabgil.incheonariport;
+package ado.sabgil.incheonariport.view;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import ado.sabgil.incheonariport.custumview.MySearchView;
+import ado.sabgil.incheonariport.R;
+import ado.sabgil.incheonariport.view.custom.MySearchView;
 import ado.sabgil.incheonariport.databinding.ActivityMainBinding;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

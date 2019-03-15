@@ -1,4 +1,4 @@
-package ado.sabgil.incheonariport.extension.bindingadapter;
+package ado.sabgil.incheonariport;
 
 import java.util.List;
 

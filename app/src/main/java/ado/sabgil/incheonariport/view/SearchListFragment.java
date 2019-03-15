@@ -1,4 +1,4 @@
-package ado.sabgil.incheonariport;
+package ado.sabgil.incheonariport.view;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.adapter.FlightInfoAdapter;
 import ado.sabgil.incheonariport.databinding.FragmentSearchListBinding;
 import ado.sabgil.incheonariport.remote.openapi.IncheonAirportApiHandler;

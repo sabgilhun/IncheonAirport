@@ -1,10 +1,11 @@
-package ado.sabgil.incheonariport;
+package ado.sabgil.incheonariport.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.databinding.FragmentEmptyBinding;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
