@@ -30,12 +30,14 @@ public class FlightInfoAdapter extends ListAdapter<SimpleFlightInfo, FlightInfoV
     private static final DiffUtil.ItemCallback<SimpleFlightInfo> DIFF_CALLBACK =
             new DiffUtil.ItemCallback<SimpleFlightInfo>() {
                 @Override
-                public boolean areItemsTheSame(@NonNull SimpleFlightInfo oldItem, @NonNull SimpleFlightInfo newItem) {
-                    return oldItem.equals(newItem);
+                public boolean areItemsTheSame(@NonNull SimpleFlightInfo oldItem,
+                                               @NonNull SimpleFlightInfo newItem) {
+                    return oldItem.getFlightID().equals(newItem.getFlightID());
                 }
 
                 @Override
-                public boolean areContentsTheSame(@NonNull SimpleFlightInfo oldItem, @NonNull SimpleFlightInfo newItem) {
+                public boolean areContentsTheSame(@NonNull SimpleFlightInfo oldItem,
+                                                  @NonNull SimpleFlightInfo newItem) {
                     return oldItem.equals(newItem);
                 }
             };
