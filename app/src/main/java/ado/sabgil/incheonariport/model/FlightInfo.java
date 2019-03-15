@@ -1,5 +1,7 @@
 package ado.sabgil.incheonariport.model;
 
+import java.util.Objects;
+
 import ado.sabgil.incheonariport.remote.openapi.response.PassengerDeparturesWItem;
 import androidx.annotation.NonNull;
 
@@ -124,5 +126,28 @@ public class FlightInfo {
                 ", checkInDesk='" + checkInDesk + '\'' +
                 ", state='" + state + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FlightInfo that = (FlightInfo) o;
+        return Objects.equals(airline, that.airline) &&
+                Objects.equals(flightID, that.flightID) &&
+                Objects.equals(scheduledTime, that.scheduledTime) &&
+                Objects.equals(estimatedTime, that.estimatedTime) &&
+                Objects.equals(airport, that.airport) &&
+                Objects.equals(airportCode, that.airportCode) &&
+                Objects.equals(gateNumber, that.gateNumber) &&
+                Objects.equals(checkInDesk, that.checkInDesk) &&
+                Objects.equals(state, that.state);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(airline, flightID, scheduledTime,
+                estimatedTime, airport, airportCode,
+                gateNumber, checkInDesk, state);
     }
 }

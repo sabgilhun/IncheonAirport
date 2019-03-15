@@ -1,5 +1,7 @@
 package ado.sabgil.incheonariport.model;
 
+import java.util.Objects;
+
 import ado.sabgil.incheonariport.remote.openapi.response.DeparturesCongestionItem;
 import androidx.annotation.NonNull;
 
@@ -142,5 +144,29 @@ public class DepartureCongestion {
                 ", passengers4=" + passengers4 +
                 ", passengers5=" + passengers5 +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DepartureCongestion that = (DepartureCongestion) o;
+        return passengers2 == that.passengers2 &&
+                passengers3 == that.passengers3 &&
+                passengers4 == that.passengers4 &&
+                passengers5 == that.passengers5 &&
+                Objects.equals(updateDate, that.updateDate) &&
+                Objects.equals(updateTime, that.updateTime) &&
+                congestion2 == that.congestion2 &&
+                congestion3 == that.congestion3 &&
+                congestion4 == that.congestion4 &&
+                congestion5 == that.congestion5;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(updateDate, updateTime, congestion2, congestion3,
+                congestion4, congestion5, passengers2,
+                passengers3, passengers4, passengers5);
     }
 }

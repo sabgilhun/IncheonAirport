@@ -2,6 +2,8 @@ package ado.sabgil.incheonariport.model;
 
 import android.text.TextUtils;
 
+import java.util.Objects;
+
 import ado.sabgil.incheonariport.remote.openapi.response.PassengerDeparturesWItem;
 import androidx.annotation.NonNull;
 
@@ -56,11 +58,11 @@ public class DepartureWeather {
     }
 
     private DepartureWeather(@NonNull String dayOfWeek,
-                            @NonNull String weatherImageLink,
-                            @NonNull String humidity,
-                            @NonNull String wind,
-                            @NonNull String maxTemperature,
-                            @NonNull String minTemperature) {
+                             @NonNull String weatherImageLink,
+                             @NonNull String humidity,
+                             @NonNull String wind,
+                             @NonNull String maxTemperature,
+                             @NonNull String minTemperature) {
         this.dayOfWeek = dayOfWeek;
         this.weatherImageLink = weatherImageLink;
         this.humidity = humidity;
@@ -94,5 +96,24 @@ public class DepartureWeather {
                 ", maxTemperature='" + maxTemperature + '\'' +
                 ", minTemperature='" + minTemperature + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DepartureWeather weather = (DepartureWeather) o;
+        return Objects.equals(dayOfWeek, weather.dayOfWeek) &&
+                Objects.equals(weatherImageLink, weather.weatherImageLink) &&
+                Objects.equals(humidity, weather.humidity) &&
+                Objects.equals(wind, weather.wind) &&
+                Objects.equals(maxTemperature, weather.maxTemperature) &&
+                Objects.equals(minTemperature, weather.minTemperature);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dayOfWeek, weatherImageLink, humidity,
+                wind, maxTemperature, minTemperature);
     }
 }

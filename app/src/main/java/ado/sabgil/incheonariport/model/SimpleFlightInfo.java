@@ -2,6 +2,8 @@ package ado.sabgil.incheonariport.model;
 
 import android.text.TextUtils;
 
+import java.util.Objects;
+
 import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.remote.openapi.response.PassengerDeparturesWItem;
 import androidx.annotation.NonNull;
@@ -78,6 +80,7 @@ public class SimpleFlightInfo {
                 item);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "SimpleFlightInfo{" +
@@ -88,5 +91,24 @@ public class SimpleFlightInfo {
                 ", airlineIcon=" + airlineIcon +
                 ", remoteResponse=" + remoteResponse +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SimpleFlightInfo that = (SimpleFlightInfo) o;
+        return delayed == that.delayed &&
+                airlineIcon == that.airlineIcon &&
+                Objects.equals(airline, that.airline) &&
+                Objects.equals(flightID, that.flightID) &&
+                Objects.equals(time, that.time) &&
+                Objects.equals(remoteResponse, that.remoteResponse);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(airline, flightID, delayed,
+                time, airlineIcon, remoteResponse);
     }
 }

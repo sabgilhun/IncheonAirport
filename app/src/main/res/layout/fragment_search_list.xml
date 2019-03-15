@@ -5,11 +5,29 @@
 
     <data>
 
+        <import type="ado.sabgil.incheonariport.model.SimpleFlightInfo" />
+
+        <import type="java.util.List" />
+
+        <variable
+            name="items"
+            type="List&lt;SimpleFlightInfo&gt;" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_searched_item"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:adapter="@{items}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
