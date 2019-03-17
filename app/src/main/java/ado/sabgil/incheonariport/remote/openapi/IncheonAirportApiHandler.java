@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ado.sabgil.incheonariport.BuildConfig;
-import ado.sabgil.incheonariport.model.DepartureCongestion;
 import ado.sabgil.incheonariport.model.SimpleFlightInfo;
+import ado.sabgil.incheonariport.model.Terminal1Congestion;
 import ado.sabgil.incheonariport.remote.OnFailureListener;
 import ado.sabgil.incheonariport.remote.OnResponseListener;
 import ado.sabgil.incheonariport.remote.openapi.response.DeparturesCongestionItem;
@@ -48,7 +48,7 @@ public class IncheonAirportApiHandler {
 
 
     public void getDepartureCongestion(@NonNull String terminalNumber,
-                                       @NonNull OnResponseListener<DepartureCongestion> onResponseListener,
+                                       @NonNull OnResponseListener<Terminal1Congestion> onResponseListener,
                                        @NonNull OnFailureListener onFailureListener) {
 
         retrofit.getDeparturesCongestion(key, terminalNumber)
@@ -77,7 +77,7 @@ public class IncheonAirportApiHandler {
                                 .getItems()
                                 .get(0);
 
-                        DepartureCongestion data = DepartureCongestion.from(item);
+                        Terminal1Congestion data = Terminal1Congestion.from(item);
                         onResponseListener.onResponse(data);
 
                     }

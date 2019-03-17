@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="info"
+            type="ado.sabgil.incheonariport.model.GateCongestion" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_gate_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="16sp"
+            android:text="@{@string/gate_no(info.gateNo)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.txusballesteros.widgets.FitChart
+            android:id="@+id/chart"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            app:chart_data="@{info}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_gate_no"
+            app:strokeSize="10dp" />
+
+        <TextView
+            android:id="@+id/tv_gate_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{info != null ? info.congestion.getName() + "\n" + info.passengers : "\n"}'
+            android:textAlignment="center"
+            android:textSize="12sp"
+            app:text_color="@{info}"
+            app:layout_constraintBottom_toBottomOf="@id/chart"
+            app:layout_constraintEnd_toEndOf="@id/chart"
+            app:layout_constraintStart_toStartOf="@id/chart"
+            app:layout_constraintTop_toTopOf="@id/chart" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

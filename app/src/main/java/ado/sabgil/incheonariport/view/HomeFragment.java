@@ -6,6 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.txusballesteros.widgets.FitChartValue;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
 import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.databinding.FragmentHomeBinding;
 import ado.sabgil.incheonariport.remote.openapi.IncheonAirportApiHandler;
@@ -34,11 +39,13 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         handler = IncheonAirportApiHandler.getInstance();
         mBinding.btnCongestion.setOnClickListener(this::onClickUpdateCongestion);
+
     }
 
     private void onClickUpdateCongestion(View v) {
         handler.getDepartureCongestion("1",
-                response -> mBinding.setCg(response),
+                response -> mBinding.setTerminal(response),
                 error -> Log.e("Main", error.getMessage()));
     }
+
 }

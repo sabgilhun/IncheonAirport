@@ -4,12 +4,13 @@
 
     <string name="preparing">준비중</string>
 
-    <string name="gate_no2">Gate 2</string>
-    <string name="gate_no3">Gate 3</string>
-    <string name="gate_no4">Gate 4</string>
-    <string name="gate_no5">Gate 5</string>
+    <string name="update_time">업데이트 : %s</string>
+
+    <string name="gate_no">Gate %s</string>
 
     <string name="hint_search_airplane">항공편을 검색해 주세요. \n EX) "OZ6617"</string>
     <string name="hint_short_query">글자가 너무 짧습니다. \n (2글자 이상)</string>
     <string name="hint_no_response">XX의 검색 결과가 없습니다.</string>
+
+
 </resources>
