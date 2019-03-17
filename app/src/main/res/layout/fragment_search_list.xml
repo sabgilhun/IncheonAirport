@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:gravity="center"
-                android:text='항공편을 검색해 주세요. \n EX) "OZ6617"'
+                android:text="@string/hint_search_airplane"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:gravity="center"
-                android:text="글자가 너무 짧습니다. \n (2글자 이상)"
+                android:text="@string/hint_short_query"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -81,12 +81,13 @@
             android:layout_height="match_parent"
             android:background="@android:color/white">
 
+            <!-- TODO text에 검색어도 표현해주도록 변경하자.-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:gravity="center"
-                android:text="XX의 검색 결과가 없습니다."
+                android:text="@string/hint_no_response"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
