@@ -8,6 +8,8 @@
 
     <string name="gate_no">Gate %s</string>
 
+    <string name="hint_search_airplane_short">항공편을 입력하세요.</string>
+
     <string name="hint_search_airplane">항공편을 검색해 주세요. \n EX) "OZ6617"</string>
     <string name="hint_short_query">글자가 너무 짧습니다. \n (2글자 이상)</string>
     <string name="hint_no_response">XX의 검색 결과가 없습니다.</string>

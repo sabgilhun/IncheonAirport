@@ -139,4 +139,23 @@ public class PassengerDeparturesWItem {
                 ", terminalId='" + terminalId + '\'' +
                 '}';
     }
+
+    public PassengerDeparturesWItem(String airline, String flightId, String scheduleDateTime, String estimatedDateTime, String airport, String gateNumber, String airportCode, String remark, String dayOfWeek, String checkInRange, String humidity, String weatherImage, String wind, String maxTemperature, String minTemperature, String terminalId) {
+        this.airline = airline;
+        this.flightId = flightId;
+        this.scheduleDateTime = scheduleDateTime;
+        this.estimatedDateTime = estimatedDateTime;
+        this.airport = airport;
+        this.gateNumber = gateNumber;
+        this.airportCode = airportCode;
+        this.remark = remark;
+        this.dayOfWeek = dayOfWeek;
+        this.checkInRange = checkInRange;
+        this.humidity = humidity;
+        this.weatherImage = weatherImage;
+        this.wind = wind;
+        this.maxTemperature = maxTemperature;
+        this.minTemperature = minTemperature;
+        this.terminalId = terminalId;
+    }
 }

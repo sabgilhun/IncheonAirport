@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mBinding.bottomNavigation.setOnNavigationItemSelectedListener(this::switchItem);
-        setSupportActionBar(mBinding.tbMain);
+//        setSupportActionBar(mBinding.tbMain);
 
         // 프레그먼트 초기화
         fragmentManager = getSupportFragmentManager();
