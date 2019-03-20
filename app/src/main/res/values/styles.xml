@@ -1,25 +1,54 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Material design theme -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 
-    <style name="TextAppearance.HintAppearance" parent="@android:style/TextAppearance">
-        <item name="android:textColor">@color/colorPrimary</item>
-        <item name="android:textSize">12sp</item>
+    <style name="text_style">
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
-    <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-        <item name="android:layout_marginTop">4dp</item>
-        <item name="android:layout_marginBottom">4dp</item>
-        <item name="android:layout_marginEnd">16dp</item>
-    </style>
-
-    <style name="TextInputEditText" >
-        <item name="android:layout_marginTop">0dp</item>
-        <item name="android:layout_marginBottom">0dp</item>
-        <item name="android:textAlignment">textStart</item>
+    <style name="text_normal_14" parent="text_style">
         <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="text_bold_14" parent="text_style">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text_normal_16" parent="text_style">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="text_bold_16" parent="text_style">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text_normal_20" parent="text_style">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="text_bold_20" parent="text_style">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="tb">
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetLeft">0dp</item>
+        <item name="contentInsetRight">0dp</item>
+        <item name="contentInsetEnd">0dp</item>
+        <item name="android:elevation">12dp</item>
+    </style>
+
+    <style name="et" parent="text_normal_16">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColorHint">@color/colorPrimary</item>
     </style>
 </resources>

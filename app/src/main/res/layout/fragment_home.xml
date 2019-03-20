@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -13,13 +14,15 @@
         <variable
             name="items"
             type="List&lt;SimpleFlightInfo&gt;" />
-
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:background="@color/colorBackground"
+        android:fitsSystemWindows="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -41,26 +44,51 @@
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/tb_post"
+                    style="@style/tb"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:layout_gravity="bottom"
-                    android:elevation="12dp"
                     app:layout_collapseMode="pin">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginStart="4dp"
                         android:layout_marginTop="4dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginEnd="4dp"
                         android:layout_marginBottom="4dp"
-                        android:hint="@string/hint_search_airplane_short">
+                        android:background="@drawable/border"
+                        android:orientation="horizontal">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            style="@style/TextInputEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:paddingStart="4dp"
+                            android:paddingEnd="4dp"
+                            android:src="@drawable/ic_search"
+                            android:tint="@color/colorPrimary" />
+
+                        <EditText
+                            style="@style/et"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_weight="1"
+                            android:hint="@string/hint_search_airplane_short"
+                            android:importantForAutofill="no"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            tools:targetApi="o" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:paddingStart="4dp"
+                            android:paddingEnd="4dp"
+                            android:src="@drawable/ic_clear"
+                            android:tint="@color/colorPrimary" />
+                    </LinearLayout>
                 </androidx.appcompat.widget.Toolbar>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -76,9 +104,6 @@
                 android:id="@+id/ly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
                 android:background="@android:color/white"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -89,10 +114,14 @@
                     android:id="@+id/tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
                     android:gravity="center"
                     android:text="업데이트 시간: 19.03.20 18:20"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -102,7 +131,6 @@
                 android:elevation="12dp"
                 app:adapter="@{items}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
