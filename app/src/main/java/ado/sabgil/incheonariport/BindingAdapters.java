@@ -19,9 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class BindingAdapters {
 
-    private static int LIGHT_STATE_COLOR = 0xFF96EAC6;
-    private static int NORMAL_STATE_COLOR = 0xFF25B97A;
-    private static int BUSY_STATE_COLOR = 0xFFC5300D;
+    private static int LIGHT_STATE_COLOR = 0xFF42A5F5;
+    private static int NORMAL_STATE_COLOR = 0xFF1E88E5;
+    private static int BUSY_STATE_COLOR = 0xFF0D47A1;
+    private static int VERY_BUSY_STATE_COLOR = 0xFFE53935;
     private static int CLOSE_STATE_COLOR = 0xFFD0D0D0;
 
     @BindingAdapter("adapter")
@@ -56,7 +57,7 @@ public class BindingAdapters {
                     break;
 
                 case VERY_BUSY:
-                    color = BUSY_STATE_COLOR;
+                    color = VERY_BUSY_STATE_COLOR;
                     break;
 
                 case CLOSE:
@@ -88,7 +89,7 @@ public class BindingAdapters {
                     break;
 
                 case VERY_BUSY:
-                    color = BUSY_STATE_COLOR;
+                    color = VERY_BUSY_STATE_COLOR;
                     break;
 
                 case CLOSE:

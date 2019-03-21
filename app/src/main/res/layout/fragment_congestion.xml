@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="terminal"
+            type="ado.sabgil.incheonariport.model.Terminal1Congestion" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ly_update_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:gravity="center"
+                android:text="업데이트 시간: 19.03.20 18:20"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/iv_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:src="@drawable/ic_refresh"/>
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cd_gate2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/cd_gate3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ly_update_container">
+
+            <include
+                layout="@layout/layout_card_item"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:info="@{terminal.gate2}" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cd_gate3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/cd_gate4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cd_gate2"
+            app:layout_constraintTop_toBottomOf="@+id/ly_update_container">
+
+            <include
+                layout="@layout/layout_card_item"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:info="@{terminal.gate3}" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cd_gate4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/cd_gate5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cd_gate3"
+            app:layout_constraintTop_toBottomOf="@+id/ly_update_container">
+
+            <include
+                layout="@layout/layout_card_item"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:info="@{terminal.gate4}" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cd_gate5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cd_gate4"
+            app:layout_constraintTop_toBottomOf="@+id/ly_update_container">
+
+            <include
+                layout="@layout/layout_card_item"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:info="@{terminal.gate5}" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

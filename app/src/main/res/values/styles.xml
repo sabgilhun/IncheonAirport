@@ -44,7 +44,7 @@
         <item name="contentInsetLeft">0dp</item>
         <item name="contentInsetRight">0dp</item>
         <item name="contentInsetEnd">0dp</item>
-        <item name="android:elevation">12dp</item>
+        <item name="android:elevation">8dp</item>
     </style>
 
     <style name="et" parent="text_normal_16">

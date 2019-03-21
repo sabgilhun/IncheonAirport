@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FragmentManager fragmentManager;
     private HomeFragment homeFragment;
-    private MapFragment mapFragment;
+    private CongestionFragment congestionFragment;
     private AlarmFragment alarmFragment;
     private SettingFragment settingFragment;
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         // 프레그먼트 초기화
         fragmentManager = getSupportFragmentManager();
         homeFragment = new HomeFragment();
-        mapFragment = new MapFragment();
+        congestionFragment = new CongestionFragment();
         alarmFragment = new AlarmFragment();
         settingFragment = new SettingFragment();
 
@@ -49,22 +49,7 @@ public class MainActivity extends AppCompatActivity {
         currentAction = R.id.action_home;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        searchItem = menu.findItem(R.id.action_search);
-        MySearchView searchView = (MySearchView) searchItem.getActionView();
-
-        searchView.addDebounceOnListener();
-        searchView.setOnDebouncedQueryTextListener(this::passQueryToFragment);
-        searchView.setOnSearchViewChangedListener(this::expandOrCollapseFragment);
-        return true;
-    }
-
     private boolean switchItem(@NonNull MenuItem item) {
-        if (searchItem.isActionViewExpanded()) {
-            searchItem.collapseActionView();
-        }
 
         final int selectedAction = item.getItemId();
         if (currentAction == selectedAction) {
@@ -74,24 +59,20 @@ public class MainActivity extends AppCompatActivity {
         currentAction = selectedAction;
         switch (selectedAction) {
             case R.id.action_home:
-                searchItem.setVisible(true);
                 replaceFragment(homeFragment, false);
                 return true;
 
             case R.id.action_map:
-                searchItem.setVisible(true);
-                replaceFragment(mapFragment, false);
+                replaceFragment(congestionFragment, false);
 
                 return true;
 
             case R.id.action_alarm:
-                searchItem.setVisible(false);
                 replaceFragment(alarmFragment, false);
 
                 return true;
 
             case R.id.action_settings:
-                searchItem.setVisible(false);
                 replaceFragment(settingFragment, false);
 
                 return true;
