@@ -1,11 +1,9 @@
 package ado.sabgil.incheonariport.view;
 
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import ado.sabgil.incheonariport.R;
-import ado.sabgil.incheonariport.view.custom.MySearchView;
 import ado.sabgil.incheonariport.databinding.ActivityMainBinding;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private HomeFragment homeFragment;
     private CongestionFragment congestionFragment;
-    private AlarmFragment alarmFragment;
+    private MyPlaneFragment myPlaneFragment;
     private SettingFragment settingFragment;
 
     private MenuItem searchItem;
@@ -39,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
         homeFragment = new HomeFragment();
         congestionFragment = new CongestionFragment();
-        alarmFragment = new AlarmFragment();
+        myPlaneFragment = new MyPlaneFragment();
         settingFragment = new SettingFragment();
 
         // 첫 화면 프레그먼트 추가
@@ -68,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_alarm:
-                replaceFragment(alarmFragment, false);
+                replaceFragment(myPlaneFragment, false);
 
                 return true;
 
