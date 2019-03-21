@@ -1,12 +1,16 @@
 <resources>
-    
+
     <string name="app_name">IncheonAriport</string>
 
     <string name="preparing">준비중</string>
 
-    <string name="update_time">업데이트 : %s</string>
+    <string name="update_time">업데이트 시간: %s %s</string>
 
-    <string name="gate_no">Gate %s</string>
+    <string name="toolbar_congestion_title">출국장 혼잡도</string>
+
+    <string name="toolbar_my_plane_title">내 비행기 정보</string>
+
+    <string name="gate_no">%s 출국장</string>
 
     <string name="hint_search_airplane_short">항공편을 입력하세요.</string>
 
@@ -14,5 +18,8 @@
     <string name="hint_short_query">글자가 너무 짧습니다. \n (2글자 이상)</string>
     <string name="hint_no_response">XX의 검색 결과가 없습니다.</string>
 
-
+    <string name="menu_title_home">홈</string>
+    <string name="menu_title_congestion">혼잡도</string>
+    <string name="menu_title_myplane">내 비행기</string>
+    <string name="menu_title_settings">설정</string>
 </resources>

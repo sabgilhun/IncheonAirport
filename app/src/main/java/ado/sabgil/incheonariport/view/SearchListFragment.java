@@ -69,7 +69,7 @@ public class SearchListFragment extends Fragment {
 
 
     private void initRecyclerView() {
-        RecyclerView recyclerView = mBinding.rvSearchedItem;
+        RecyclerView recyclerView = mBinding.rvQueriedWithFlight;
         FlightInfoAdapter adapter = new FlightInfoAdapter();
         recyclerView.setAdapter(adapter);
     }

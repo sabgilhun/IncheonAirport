@@ -38,7 +38,7 @@ public class CongestionFragment extends Fragment {
 
     private void onClickUpdateCongestion(View v) {
         handler.getDepartureCongestion("1",
-                response -> mBinding.setTerminal(response),
+                response -> mBinding.setT1(response),
                 error -> Log.e("Main", error.getMessage()));
     }
 }

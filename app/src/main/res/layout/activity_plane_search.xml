@@ -45,6 +45,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/iv_back_button"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:paddingStart="4dp"
@@ -66,7 +67,7 @@
                         tools:targetApi="o" />
 
                     <ImageView
-                        android:id="@+id/test"
+                        android:id="@+id/iv_clear"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:paddingStart="4dp"
@@ -94,7 +95,7 @@
                         android:id="@+id/rv_searched_item"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@android:color/white"
+                        android:background="@color/colorWhite"
                         app:adapter="@{items}"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -107,17 +108,16 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ly_default_screen"
                     android:layout_width="match_parent"
-
                     android:layout_height="match_parent"
-                    android:background="@android:color/white">
+                    android:background="@color/colorWhite">
 
                     <TextView
+                        style="@style/text_bold_24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:gravity="center"
                         android:text="@string/hint_search_airplane"
-                        android:textSize="24sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -127,15 +127,15 @@
                     android:id="@+id/ly_short_text_screen"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/white">
+                    android:background="@color/colorWhite">
 
                     <TextView
+                        style="@style/text_bold_24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:gravity="center"
                         android:text="@string/hint_short_query"
-                        android:textSize="24sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -145,16 +145,16 @@
                     android:id="@+id/ly_no_data_screen"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/white">
+                    android:background="@color/colorWhite">
 
                     <!-- TODO text에 검색어도 표현해주도록 변경하자.-->
                     <TextView
+                        style="@style/text_bold_24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:gravity="center"
                         android:text="@string/hint_no_response"
-                        android:textSize="24sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

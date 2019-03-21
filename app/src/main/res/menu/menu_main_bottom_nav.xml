@@ -5,25 +5,25 @@
     <item
         android:id="@+id/action_home"
         android:icon="@drawable/ic_home"
-        android:title="홈"
-        app:showAsAction="always" />
+        android:title="@string/menu_title_home"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_map"
         android:icon="@drawable/ic_map"
-        android:title="추천경로"
-        app:showAsAction="always" />
+        android:title="@string/menu_title_congestion"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_alarm"
         android:icon="@drawable/ic_notifications"
-        android:title="알람"
-        app:showAsAction="always" />
+        android:title="@string/menu_title_myplane"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_settings"
-        android:title="설정"
-        app:showAsAction="always" />
+        android:title="@string/menu_title_settings"
+        app:showAsAction="ifRoom" />
 
 </menu>

@@ -6,7 +6,6 @@
     <color name="colorError">#E53935</color>
     <color name="colorBackground">#ECEFF1</color>
 
-    <color name="colorOnPrimary">#FFFFFF</color>
-    <color name="colorOnSecondary">#000000</color>
-    <color name="colorOnBackGround">#000000</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#FFFFFF</color>
 </resources>

@@ -25,10 +25,10 @@
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_searched_item"
+                android:id="@+id/rv_queried_with_flight"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/white"
+                android:background="@color/colorWhite"
                 app:adapter="@{items}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -41,9 +41,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ly_default_screen"
             android:layout_width="match_parent"
-
             android:layout_height="match_parent"
-            android:background="@android:color/white">
+            android:background="@color/colorWhite">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -61,7 +60,7 @@
             android:id="@+id/ly_short_text_screen"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white">
+            android:background="@color/colorWhite">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -79,7 +78,7 @@
             android:id="@+id/ly_no_data_screen"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white">
+            android:background="@color/colorWhite">
 
             <!-- TODO text에 검색어도 표현해주도록 변경하자.-->
             <TextView

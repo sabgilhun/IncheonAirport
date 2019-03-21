@@ -30,16 +30,16 @@
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:background="@android:color/transparent"
                 android:fitsSystemWindows="true"
-                app:contentScrim="@android:color/white"
+                app:contentScrim="@color/colorWhite"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="@color/colorSecondary" />
+                    android:layout_height="match_parent"
+                    android:background="@color/colorWhite" />
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/tb_home"
@@ -97,13 +97,14 @@
                 android:id="@+id/ly_update_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
+                android:background="@color/colorWhite"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
+                    style="@style/text_normal_20"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
@@ -111,13 +112,12 @@
                     android:layout_marginEnd="4dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="center"
-                    android:text="업데이트 시간: 19.03.20 18:20"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="20sp" />
+                    tools:text="업데이트 시간: 19.03.20 18:20" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_home"
+                android:id="@+id/rv_queried_with_time"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:elevation="12dp"

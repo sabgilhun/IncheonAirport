@@ -15,13 +15,6 @@ public class PlaneSearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_plane_search);
-        mBinding.test.setOnClickListener(__ -> {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fl_screen_container, new DetailInfoFragment())
-                    .addToBackStack("")
-                    .commit();
-        });
     }
 }
