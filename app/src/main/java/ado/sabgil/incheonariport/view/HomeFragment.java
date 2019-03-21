@@ -1,5 +1,6 @@
 package ado.sabgil.incheonariport.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,15 +41,14 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         handler = IncheonAirportApiHandler.getInstance();
 
-
-        RecyclerView recyclerView = mBinding.rvSearchedItem;
+        RecyclerView recyclerView = mBinding.rvHome;
         FlightInfoAdapter adapter = new FlightInfoAdapter();
         recyclerView.setAdapter(adapter);
 
         List<SimpleFlightInfo> items = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             SimpleFlightInfo item = SimpleFlightInfo.from(new PassengerDeparturesWItem(
-                    "1", ""+i, "3", "4", "5",
+                    "1", "" + i, "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16"));
@@ -57,6 +57,11 @@ public class HomeFragment extends Fragment {
 
         mBinding.setItems(items);
 
+        mBinding.lySearchContainer.setOnClickListener(__ -> {
+            Intent intent = new Intent(getActivity(), PlaneSearchActivity.class);
+            startActivity(intent);
+
+        });
 //        mBinding.btnCongestion.setOnClickListener(this::onClickUpdateCongestion);
 
     }

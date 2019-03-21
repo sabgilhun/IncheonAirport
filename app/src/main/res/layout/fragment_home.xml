@@ -20,7 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBackground"
-        android:fitsSystemWindows="true"
         android:focusable="true"
         android:focusableInTouchMode="true">
 
@@ -43,7 +42,7 @@
                     android:background="@color/colorSecondary" />
 
                 <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/tb_post"
+                    android:id="@+id/tb_home"
                     style="@style/tb"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
@@ -51,6 +50,7 @@
                     app:layout_collapseMode="pin">
 
                     <LinearLayout
+                        android:id="@+id/ly_search_container"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="4dp"
@@ -81,13 +81,6 @@
                             android:maxLines="1"
                             tools:targetApi="o" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:paddingStart="4dp"
-                            android:paddingEnd="4dp"
-                            android:src="@drawable/ic_clear"
-                            android:tint="@color/colorPrimary" />
                     </LinearLayout>
                 </androidx.appcompat.widget.Toolbar>
 
@@ -101,7 +94,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
-                android:id="@+id/ly"
+                android:id="@+id/ly_update_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
@@ -111,7 +104,6 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
@@ -125,7 +117,7 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_searched_item"
+                android:id="@+id/rv_home"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:elevation="12dp"
@@ -134,7 +126,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ly" />
+                app:layout_constraintTop_toBottomOf="@id/ly_update_container" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
