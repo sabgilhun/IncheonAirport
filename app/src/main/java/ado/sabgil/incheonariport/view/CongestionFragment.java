@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.databinding.FragmentCongestionBinding;
 import ado.sabgil.incheonariport.remote.openapi.IncheonAirportApiHandler;
+import ado.sabgil.incheonariport.remote.openapi.request.CongestionRequest;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -37,7 +38,12 @@ public class CongestionFragment extends Fragment {
     }
 
     private void onClickUpdateCongestion(View v) {
-        handler.getDepartureCongestion("1",
+        CongestionRequest request;
+        request = new CongestionRequest.Builder()
+                .terminalNo("1")
+                .build();
+
+        handler.getCongestion(request.getRequestMap(),
                 response -> mBinding.setT1(response),
                 error -> Log.e("Main", error.getMessage()));
     }

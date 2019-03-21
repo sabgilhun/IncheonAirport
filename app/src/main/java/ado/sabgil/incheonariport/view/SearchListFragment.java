@@ -44,27 +44,27 @@ public class SearchListFragment extends Fragment {
 
     public void requestQuery(@NonNull String query) {
 
-        if (TextUtils.isEmpty(query)) {
-            setVisibleView(mBinding.lyDefaultScreen);
-            mBinding.setItems(null);
-        } else if (query.length() < QUERY_MINIMUM_LENGTH) {
-            setVisibleView(mBinding.lyShortTextScreen);
-            mBinding.setItems(null);
-        } else {
-            if (getActivity() != null) {
-                getActivity().runOnUiThread(() -> setVisibleView(mBinding.lyListScreen));
-            }
-            handler.getPassengerDeparturesW(query.toUpperCase(),
-                    response -> {
-                        if (response == null) {
-                            setVisibleView(mBinding.lyNoDataScreen);
-                        }
-                        mBinding.setItems(response);
-
-                    },
-                    error -> Log.e("Main", error.getMessage())
-            );
-        }
+//        if (TextUtils.isEmpty(query)) {
+//            setVisibleView(mBinding.lyDefaultScreen);
+//            mBinding.setItems(null);
+//        } else if (query.length() < QUERY_MINIMUM_LENGTH) {
+//            setVisibleView(mBinding.lyShortTextScreen);
+//            mBinding.setItems(null);
+//        } else {
+//            if (getActivity() != null) {
+//                getActivity().runOnUiThread(() -> setVisibleView(mBinding.lyListScreen));
+//            }
+//            handler.getPassengerDeparturesW(query.toUpperCase(),
+//                    response -> {
+//                        if (response == null) {
+//                            setVisibleView(mBinding.lyNoDataScreen);
+//                        }
+//                        mBinding.setItems(response);
+//
+//                    },
+//                    error -> Log.e("Main", error.getMessage())
+//            );
+//        }
     }
 
 

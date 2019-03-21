@@ -1,6 +1,7 @@
 package ado.sabgil.incheonariport.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.adapter.FlightInfoAdapter;
 import ado.sabgil.incheonariport.databinding.FragmentHomeBinding;
 import ado.sabgil.incheonariport.remote.openapi.IncheonAirportApiHandler;
+import ado.sabgil.incheonariport.remote.openapi.request.FlightRequest;
+import ado.sabgil.incheonariport.util.TimeUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -38,5 +41,20 @@ public class HomeFragment extends Fragment {
         RecyclerView recyclerView = mBinding.rvQueriedWithTime;
         FlightInfoAdapter adapter = new FlightInfoAdapter();
         recyclerView.setAdapter(adapter);
+
+        updateFlightData();
+    }
+
+    private void updateFlightData() {
+        String fromTime = TimeUtils.getCurrentHour();
+
+        FlightRequest flightRequest;
+        flightRequest = new FlightRequest.Builder()
+                .from_time(fromTime)
+                .build();
+
+        handler.getFlight(flightRequest.getRequestMap(),
+                response -> mBinding.setItems(response),
+                error -> Log.e("networking", error.getMessage()));
     }
 }

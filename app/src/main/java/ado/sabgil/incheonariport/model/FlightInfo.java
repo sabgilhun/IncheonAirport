@@ -2,7 +2,6 @@ package ado.sabgil.incheonariport.model;
 
 import java.util.Objects;
 
-import ado.sabgil.incheonariport.remote.openapi.response.PassengerDeparturesWItem;
 import androidx.annotation.NonNull;
 
 public class FlightInfo {
@@ -100,18 +99,18 @@ public class FlightInfo {
         this.state = state;
     }
 
-    public static FlightInfo from(PassengerDeparturesWItem item) {
-        return new FlightInfo(
-                item.getAirline(),
-                item.getFlightId(),
-                item.getScheduleDateTime(),
-                item.getEstimatedDateTime(),
-                item.getAirport(),
-                item.getAirportCode(),
-                item.getGateNumber(),
-                item.getCheckInRange(),
-                item.getRemark() != null ? item.getRemark() : "");
-    }
+//    public static FlightInfo from(PassengerDeparturesWItem item) {
+//        return new FlightInfo(
+//                item.getAirline(),
+//                item.getFlightId(),
+//                item.getScheduleDateTime(),
+//                item.getEstimatedDateTime(),
+//                item.getAirport(),
+//                item.getAirportCode(),
+//                item.getGateNumber(),
+//                item.getCheckInRange(),
+//                item.getRemark() != null ? item.getRemark() : "");
+//    }
 
     @Override
     public String toString() {

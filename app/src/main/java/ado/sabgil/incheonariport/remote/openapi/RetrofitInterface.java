@@ -1,26 +1,23 @@
 package ado.sabgil.incheonariport.remote.openapi;
 
-import ado.sabgil.incheonariport.remote.openapi.response.DeparturesCongestionResponse;
-import ado.sabgil.incheonariport.remote.openapi.response.PassengerDeparturesResponse;
-import ado.sabgil.incheonariport.remote.openapi.response.PassengerDeparturesWResponse;
+import java.util.Map;
+
+import ado.sabgil.incheonariport.remote.openapi.response.CongestionResponse;
+import ado.sabgil.incheonariport.remote.openapi.response.FlightResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface RetrofitInterface {
 
     @GET(value = "StatusOfDepartures/getDeparturesCongestion")
-    Call<DeparturesCongestionResponse> getDeparturesCongestion(
+    Call<CongestionResponse> getCongestion(
             @Query(value = "ServiceKey", encoded = true) String key,
-            @Query(value = "terno") String terminalNumber);
-
-    @GET(value = "StatusOfPassengerFlights/getPassengerDepartures")
-    Call<PassengerDeparturesResponse> getPassengerDepartures(
-            @Query(value = "ServiceKey", encoded = true) String key,
-            @Query(value = "flight_id") String flightID);
+            @QueryMap Map<String, String> queries);
 
     @GET(value = "StatusOfPassengerWeahter/getPassengerDeparturesW")
-    Call<PassengerDeparturesWResponse> getPassengerDeparturesW(
+    Call<FlightResponse> getFlight(
             @Query(value = "ServiceKey", encoded = true) String key,
-            @Query(value = "flight_id") String flightID);
+            @QueryMap Map<String, String> queries);
 }

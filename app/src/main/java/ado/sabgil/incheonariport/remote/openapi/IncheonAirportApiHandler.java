@@ -4,17 +4,16 @@ import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import ado.sabgil.incheonariport.BuildConfig;
 import ado.sabgil.incheonariport.model.SimpleFlightInfo;
 import ado.sabgil.incheonariport.model.Terminal1Congestion;
 import ado.sabgil.incheonariport.remote.OnFailureListener;
 import ado.sabgil.incheonariport.remote.OnResponseListener;
-import ado.sabgil.incheonariport.remote.openapi.response.DeparturesCongestionItem;
-import ado.sabgil.incheonariport.remote.openapi.response.DeparturesCongestionResponse;
+import ado.sabgil.incheonariport.remote.openapi.response.CongestionResponse;
+import ado.sabgil.incheonariport.remote.openapi.response.FlightResponse;
 import ado.sabgil.incheonariport.remote.openapi.response.Header;
-import ado.sabgil.incheonariport.remote.openapi.response.PassengerDeparturesWItem;
-import ado.sabgil.incheonariport.remote.openapi.response.PassengerDeparturesWResponse;
 import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,17 +46,17 @@ public class IncheonAirportApiHandler {
     }
 
 
-    public void getDepartureCongestion(@NonNull String terminalNumber,
-                                       @NonNull OnResponseListener<Terminal1Congestion> onResponseListener,
-                                       @NonNull OnFailureListener onFailureListener) {
+    public void getCongestion(@NonNull Map<String, String> queries,
+                              @NonNull OnResponseListener<Terminal1Congestion> onResponseListener,
+                              @NonNull OnFailureListener onFailureListener) {
 
-        retrofit.getDeparturesCongestion(key, terminalNumber)
-                .enqueue(new Callback<DeparturesCongestionResponse>() {
+        retrofit.getCongestion(key, queries)
+                .enqueue(new Callback<CongestionResponse>() {
                     @Override
-                    public void onResponse(@NonNull Call<DeparturesCongestionResponse> call,
-                                           @NonNull Response<DeparturesCongestionResponse> response) {
+                    public void onResponse(@NonNull Call<CongestionResponse> call,
+                                           @NonNull Response<CongestionResponse> response) {
 
-                        DeparturesCongestionResponse congestionResponse = response.body();
+                        CongestionResponse congestionResponse = response.body();
                         if (congestionResponse == null) {
                             onFailureListener.onFailure(new RuntimeException("No Response"));
                             return;
@@ -70,7 +69,7 @@ public class IncheonAirportApiHandler {
                             return;
                         }
 
-                        DeparturesCongestionItem item;
+                        CongestionResponse.Item item;
                         item = congestionResponse
                                 .getBody()
                                 .getItems()
@@ -83,7 +82,7 @@ public class IncheonAirportApiHandler {
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<DeparturesCongestionResponse> call,
+                    public void onFailure(@NonNull Call<CongestionResponse> call,
                                           @NonNull Throwable t) {
                         onFailureListener.onFailure(new RuntimeException((t.getMessage())));
                     }
@@ -91,22 +90,22 @@ public class IncheonAirportApiHandler {
 
     }
 
-    public void getPassengerDeparturesW(@NonNull String flightID,
-                                        @NonNull OnResponseListener<List<SimpleFlightInfo>> onResponseListener,
-                                        @NonNull OnFailureListener onFailureListener) {
+    public void getFlight(@NonNull Map<String, String> queries,
+                          @NonNull OnResponseListener<List<SimpleFlightInfo>> onResponseListener,
+                          @NonNull OnFailureListener onFailureListener) {
 
-        if (TextUtils.isEmpty(flightID)) {
+        if (queries.size() == 0) {
             onFailureListener.onFailure(new RuntimeException("No Query"));
             return;
         }
 
-        retrofit.getPassengerDeparturesW(key, flightID)
-                .enqueue(new Callback<PassengerDeparturesWResponse>() {
+        retrofit.getFlight(key, queries)
+                .enqueue(new Callback<FlightResponse>() {
                     @Override
-                    public void onResponse(@NonNull Call<PassengerDeparturesWResponse> call,
-                                           @NonNull Response<PassengerDeparturesWResponse> response) {
+                    public void onResponse(@NonNull Call<FlightResponse> call,
+                                           @NonNull Response<FlightResponse> response) {
 
-                        PassengerDeparturesWResponse departuresResponse = response.body();
+                        FlightResponse departuresResponse = response.body();
                         if (departuresResponse == null) {
                             onFailureListener.onFailure(new RuntimeException("No Response"));
                             return;
@@ -119,7 +118,7 @@ public class IncheonAirportApiHandler {
                             return;
                         }
 
-                        List<PassengerDeparturesWItem> items;
+                        List<FlightResponse.Item> items;
                         items = departuresResponse
                                 .getBody()
                                 .getItems()
@@ -131,7 +130,7 @@ public class IncheonAirportApiHandler {
                         }
 
                         List<SimpleFlightInfo> result = new ArrayList<>();
-                        for (PassengerDeparturesWItem item : items) {
+                        for (FlightResponse.Item item : items) {
                             result.add(SimpleFlightInfo.from(item));
                         }
 
@@ -139,7 +138,7 @@ public class IncheonAirportApiHandler {
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<PassengerDeparturesWResponse> call,
+                    public void onFailure(@NonNull Call<FlightResponse> call,
                                           @NonNull Throwable t) {
                         onFailureListener.onFailure(new RuntimeException((t.getMessage())));
                     }

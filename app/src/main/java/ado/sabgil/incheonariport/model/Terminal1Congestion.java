@@ -3,7 +3,7 @@ package ado.sabgil.incheonariport.model;
 import java.util.Objects;
 
 import ado.sabgil.incheonariport.model.enums.State;
-import ado.sabgil.incheonariport.remote.openapi.response.DeparturesCongestionItem;
+import ado.sabgil.incheonariport.remote.openapi.response.CongestionResponse;
 import androidx.annotation.NonNull;
 
 public class Terminal1Congestion {
@@ -70,7 +70,7 @@ public class Terminal1Congestion {
         this.gate5 = gate5;
     }
 
-    public static Terminal1Congestion from(DeparturesCongestionItem item) {
+    public static Terminal1Congestion from(CongestionResponse.Item item) {
         String updateDate = new StringBuilder(item.getQueryDate())
                 .delete(0, 2)
                 .insert(6, "일")

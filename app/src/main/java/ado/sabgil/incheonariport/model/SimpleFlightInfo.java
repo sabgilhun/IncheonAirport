@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import java.util.Objects;
 
 import ado.sabgil.incheonariport.R;
-import ado.sabgil.incheonariport.remote.openapi.response.PassengerDeparturesWItem;
+import ado.sabgil.incheonariport.remote.openapi.response.FlightResponse;
 import androidx.annotation.NonNull;
 
 public class SimpleFlightInfo {
@@ -24,7 +24,7 @@ public class SimpleFlightInfo {
     private final int airlineIcon;
 
     @NonNull
-    private final PassengerDeparturesWItem remoteResponse;
+    private final FlightResponse.Item remoteResponse;
 
     @NonNull
     public String getAirline() {
@@ -50,7 +50,7 @@ public class SimpleFlightInfo {
     }
 
     @NonNull
-    public PassengerDeparturesWItem getRemoteResponse() {
+    public FlightResponse.Item getRemoteResponse() {
         return remoteResponse;
     }
 
@@ -59,7 +59,7 @@ public class SimpleFlightInfo {
                              boolean delayed,
                              @NonNull String time,
                              int airlineIcon,
-                             @NonNull PassengerDeparturesWItem remoteResponse) {
+                             @NonNull FlightResponse.Item remoteResponse) {
         this.airline = airline;
         this.flightID = flightID;
         this.delayed = delayed;
@@ -68,7 +68,7 @@ public class SimpleFlightInfo {
         this.remoteResponse = remoteResponse;
     }
 
-    public static SimpleFlightInfo from(PassengerDeparturesWItem item) {
+    public static SimpleFlightInfo from(FlightResponse.Item item) {
         boolean delayed = !TextUtils.equals(item.getScheduleDateTime(), item.getEstimatedDateTime());
 
         return new SimpleFlightInfo(

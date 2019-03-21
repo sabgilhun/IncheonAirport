@@ -2,9 +2,6 @@ package ado.sabgil.incheonariport.model;
 
 import android.text.TextUtils;
 
-import java.util.Objects;
-
-import ado.sabgil.incheonariport.remote.openapi.response.PassengerDeparturesWItem;
 import androidx.annotation.NonNull;
 
 public class DepartureWeather {
@@ -71,16 +68,16 @@ public class DepartureWeather {
         this.minTemperature = minTemperature;
     }
 
-    public static DepartureWeather from(PassengerDeparturesWItem item) {
-        return new DepartureWeather(
-                checkNull(item.getDayOfWeek(), ""),
-                checkNull(item.getWeatherImage(), ""),
-                checkNull(item.getHumidity(), "%"),
-                checkNull(item.getWind(), "m/s"),
-                checkNull(item.getMaxTemperature(), "℃"),
-                checkNull(item.getMinTemperature(), "℃")
-        );
-    }
+//    public static DepartureWeather from(PassengerDeparturesWItem item) {
+//        return new DepartureWeather(
+//                checkNull(item.getDayOfWeek(), ""),
+//                checkNull(item.getWeatherImage(), ""),
+//                checkNull(item.getHumidity(), "%"),
+//                checkNull(item.getWind(), "m/s"),
+//                checkNull(item.getMaxTemperature(), "℃"),
+//                checkNull(item.getMinTemperature(), "℃")
+//        );
+//    }
 
     private static String checkNull(String target, String suffix) {
         return TextUtils.isEmpty(target) ? "정보 없음" : target + suffix;
@@ -96,24 +93,5 @@ public class DepartureWeather {
                 ", maxTemperature='" + maxTemperature + '\'' +
                 ", minTemperature='" + minTemperature + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DepartureWeather weather = (DepartureWeather) o;
-        return Objects.equals(dayOfWeek, weather.dayOfWeek) &&
-                Objects.equals(weatherImageLink, weather.weatherImageLink) &&
-                Objects.equals(humidity, weather.humidity) &&
-                Objects.equals(wind, weather.wind) &&
-                Objects.equals(maxTemperature, weather.maxTemperature) &&
-                Objects.equals(minTemperature, weather.minTemperature);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(dayOfWeek, weatherImageLink, humidity,
-                wind, maxTemperature, minTemperature);
     }
 }
