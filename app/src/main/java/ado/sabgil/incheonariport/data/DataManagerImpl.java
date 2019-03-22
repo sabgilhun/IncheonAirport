@@ -19,7 +19,7 @@ import androidx.annotation.NonNull;
 
 public class DataManagerImpl implements DataManager {
 
-    IcnAirportApiHelper icnAirportApiHelper;
+    private IcnAirportApiHelper icnAirportApiHelper;
 
     private static class LazyHolder {
         private static final DataManagerImpl INSTANCE = new DataManagerImpl();
@@ -53,27 +53,24 @@ public class DataManagerImpl implements DataManager {
     @Override
     public void getSimpleFlightInfo(@NonNull OnResponseListener<List<SimpleFlightInfo>> onResponseListener,
                                     @NonNull OnFailureListener onFailureListener) {
-        try {
-            FlightRequest request;
-            String fromTime = TimeUtils.getCurrentHour();
-            String toTime = TimeUtils.getAfterHour(fromTime, 6);
-            request = new FlightRequest.Builder()
-                    .fromTime(fromTime)
-                    .toTime(toTime)
-                    .build();
 
-            getFlight(request.getRequestMap(),
-                    result -> {
-                        List<SimpleFlightInfo> simpleFlightInfos = new ArrayList<>();
-                        for (FlightResponse.Item item : result.getBody().getItems().getItems()) {
-                            simpleFlightInfos.add(SimpleFlightInfo.from(item));
-                        }
-                        onResponseListener.onResponse(simpleFlightInfos);
-                    },
-                    onFailureListener);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        FlightRequest request;
+        String fromTime = TimeUtils.getCurrentHour();
+        String toTime = TimeUtils.getAfterHour(fromTime, 6);
+        request = new FlightRequest.Builder()
+                .fromTime(fromTime)
+                .toTime(toTime)
+                .build();
+
+        getFlight(request.getRequestMap(),
+                result -> {
+                    List<SimpleFlightInfo> simpleFlightInfos = new ArrayList<>();
+                    for (FlightResponse.Item item : result.getBody().getItems().getItems()) {
+                        simpleFlightInfos.add(SimpleFlightInfo.from(item));
+                    }
+                    onResponseListener.onResponse(simpleFlightInfos);
+                },
+                onFailureListener);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package ado.sabgil.incheonariport.util;
 
+import java.security.InvalidParameterException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -17,8 +18,10 @@ public class TimeUtils {
         return simpleDateFormat.format(date);
     }
 
-    public static String getAfterHour(String currentHour, int intAfterHour) throws Exception {
-        if (intAfterHour < 24 && intAfterHour > 0) {
+    public static String getAfterHour(String currentHour, int intAfterHour) {
+        if (intAfterHour > 23 || intAfterHour < 0) {
+            throw new InvalidParameterException();
+        } else {
             int intCurrentHour = Integer.parseInt(currentHour);
             int sum = intCurrentHour + intAfterHour * 100;
 
@@ -27,9 +30,6 @@ public class TimeUtils {
             } else {
                 return "2400";
             }
-
-        } else {
-            throw new Exception("invalid parameter");
         }
     }
 
