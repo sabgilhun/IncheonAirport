@@ -9,13 +9,23 @@ public class TimeUtils {
     private TimeUtils() {
     }
 
-    public static String getCurrentHour() {
+    public static String getCurrentHourString() {
         long now = System.currentTimeMillis();
         Date date = new Date(now);
 
         SimpleDateFormat simpleDateFormat =
                 new SimpleDateFormat("kk00", java.util.Locale.getDefault());
         return simpleDateFormat.format(date);
+    }
+
+    public static int getCurrentHourInteger() {
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+
+        SimpleDateFormat simpleDateFormat =
+                new SimpleDateFormat("kk", java.util.Locale.getDefault());
+
+        return Integer.parseInt(simpleDateFormat.format(date));
     }
 
     public static String getAfterHour(String currentHour, int intAfterHour) {

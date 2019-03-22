@@ -1,10 +1,12 @@
 package ado.sabgil.incheonariport.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.databinding.ActivityMainBinding;
+import ado.sabgil.incheonariport.util.TimeUtils;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;

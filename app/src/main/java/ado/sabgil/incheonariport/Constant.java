@@ -13,7 +13,8 @@ import static ado.sabgil.incheonariport.Constant.OpenApiResponseCode.NO_DATA_ERR
 import static ado.sabgil.incheonariport.Constant.OpenApiResponseCode.SERVICE_TIME_OUT_ERROR;
 
 public class Constant {
-
+    public static final int NOTICE_DURATION = 6;
+    
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({NORMAL_SERVICE, APPLICATION_ERROR, DB_ERROR,
             NO_DATA_ERROR, HTTP_ERROR, SERVICE_TIME_OUT_ERROR})
