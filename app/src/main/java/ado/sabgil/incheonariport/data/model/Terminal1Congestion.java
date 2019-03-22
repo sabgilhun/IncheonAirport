@@ -1,9 +1,9 @@
-package ado.sabgil.incheonariport.model;
+package ado.sabgil.incheonariport.data.model;
 
 import java.util.Objects;
 
-import ado.sabgil.incheonariport.model.enums.State;
-import ado.sabgil.incheonariport.remote.openapi.response.CongestionResponse;
+import ado.sabgil.incheonariport.data.model.enums.State;
+import ado.sabgil.incheonariport.data.remote.openapi.response.CongestionResponse;
 import androidx.annotation.NonNull;
 
 public class Terminal1Congestion {

@@ -1,4 +1,4 @@
-package ado.sabgil.incheonariport.remote.openapi.response;
+package ado.sabgil.incheonariport.data.remote.openapi.response;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 
 @Root(name = "response")
-public class CongestionResponse {
+public class CongestionResponse implements RemoteResponse {
 
     @Element(name = "header")
     private Header header;

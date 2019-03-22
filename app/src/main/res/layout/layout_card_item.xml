@@ -6,7 +6,7 @@
 
         <variable
             name="info"
-            type="ado.sabgil.incheonariport.model.GateCongestion" />
+            type="ado.sabgil.incheonariport.data.model.GateCongestion" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

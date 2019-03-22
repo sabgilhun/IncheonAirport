@@ -7,9 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import ado.sabgil.incheonariport.R;
+import ado.sabgil.incheonariport.data.DataManager;
+import ado.sabgil.incheonariport.data.DataManagerImpl;
+import ado.sabgil.incheonariport.data.remote.openapi.IcnAirportApiHelperImpl;
 import ado.sabgil.incheonariport.databinding.FragmentCongestionBinding;
-import ado.sabgil.incheonariport.remote.openapi.IncheonAirportApiHandler;
-import ado.sabgil.incheonariport.remote.openapi.request.CongestionRequest;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -18,7 +19,8 @@ import androidx.fragment.app.Fragment;
 public class CongestionFragment extends Fragment {
 
     private FragmentCongestionBinding mBinding;
-    private IncheonAirportApiHandler handler;
+    private IcnAirportApiHelperImpl handler;
+    private DataManager dataManager;
 
     @Nullable
     @Override
@@ -33,17 +35,12 @@ public class CongestionFragment extends Fragment {
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        handler = IncheonAirportApiHandler.getInstance();
+        dataManager = DataManagerImpl.getInstance();
         mBinding.ivRefresh.setOnClickListener(this::onClickUpdateCongestion);
     }
 
     private void onClickUpdateCongestion(View v) {
-        CongestionRequest request;
-        request = new CongestionRequest.Builder()
-                .terminalNo("1")
-                .build();
-
-        handler.getCongestion(request.getRequestMap(),
+        dataManager.getT1Congestion(
                 response -> mBinding.setT1(response),
                 error -> Log.e("Main", error.getMessage()));
     }

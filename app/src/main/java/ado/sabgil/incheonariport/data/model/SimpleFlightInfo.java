@@ -1,11 +1,11 @@
-package ado.sabgil.incheonariport.model;
+package ado.sabgil.incheonariport.data.model;
 
 import android.text.TextUtils;
 
 import java.util.Objects;
 
 import ado.sabgil.incheonariport.R;
-import ado.sabgil.incheonariport.remote.openapi.response.FlightResponse;
+import ado.sabgil.incheonariport.data.remote.openapi.response.FlightResponse;
 import androidx.annotation.NonNull;
 
 public class SimpleFlightInfo {

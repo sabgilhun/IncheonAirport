@@ -1,4 +1,4 @@
-package ado.sabgil.incheonariport.remote.openapi.response;
+package ado.sabgil.incheonariport.data.remote.openapi.response;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
@@ -7,7 +7,7 @@ import org.simpleframework.xml.Root;
 import java.util.ArrayList;
 
 @Root(name = "response")
-public class FlightResponse {
+public class FlightResponse implements RemoteResponse {
 
     @Element(name = "header")
     private Header header;

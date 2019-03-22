@@ -7,7 +7,7 @@
 
         <variable
             name="t1"
-            type="ado.sabgil.incheonariport.model.Terminal1Congestion" />
+            type="ado.sabgil.incheonariport.data.model.Terminal1Congestion" />
 
     </data>
 
@@ -86,10 +86,10 @@
             android:id="@+id/cd_gate2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
             android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
             app:cardCornerRadius="4dp"
             app:cardElevation="4dp"
             app:layout_constraintEnd_toStartOf="@+id/cd_gate3"
@@ -109,10 +109,10 @@
             android:id="@+id/cd_gate3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
             android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
             app:cardCornerRadius="4dp"
             app:cardElevation="4dp"
             app:layout_constraintEnd_toStartOf="@+id/cd_gate4"
@@ -132,10 +132,10 @@
             android:id="@+id/cd_gate4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
             android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
             app:cardCornerRadius="4dp"
             app:cardElevation="4dp"
             app:layout_constraintEnd_toStartOf="@+id/cd_gate5"
@@ -155,10 +155,10 @@
             android:id="@+id/cd_gate5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
             android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
             app:cardCornerRadius="4dp"
             app:cardElevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"

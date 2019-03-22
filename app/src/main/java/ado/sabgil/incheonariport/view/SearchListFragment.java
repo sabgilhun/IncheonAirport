@@ -1,8 +1,6 @@
 package ado.sabgil.incheonariport.view;
 
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +8,7 @@ import android.view.ViewGroup;
 import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.adapter.FlightInfoAdapter;
 import ado.sabgil.incheonariport.databinding.FragmentSearchListBinding;
-import ado.sabgil.incheonariport.remote.openapi.IncheonAirportApiHandler;
+import ado.sabgil.incheonariport.data.remote.openapi.IcnAirportApiHelperImpl;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -21,7 +19,7 @@ public class SearchListFragment extends Fragment {
     private static final int QUERY_MINIMUM_LENGTH = 2;
 
     private FragmentSearchListBinding mBinding;
-    private IncheonAirportApiHandler handler;
+    private IcnAirportApiHelperImpl handler;
 
     @Nullable
     @Override
@@ -37,7 +35,7 @@ public class SearchListFragment extends Fragment {
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        handler = IncheonAirportApiHandler.getInstance();
+        handler = IcnAirportApiHelperImpl.getInstance();
         initRecyclerView();
         setVisibleView(mBinding.lyDefaultScreen);
     }

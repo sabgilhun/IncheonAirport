@@ -1,4 +1,4 @@
-package ado.sabgil.incheonariport.remote.openapi.request;
+package ado.sabgil.incheonariport.data.remote.openapi.request;
 
 import java.util.Collections;
 import java.util.HashMap;

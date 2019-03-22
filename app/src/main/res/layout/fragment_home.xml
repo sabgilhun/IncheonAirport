@@ -7,7 +7,7 @@
     <data>
 
 
-        <import type="ado.sabgil.incheonariport.model.SimpleFlightInfo" />
+        <import type="ado.sabgil.incheonariport.data.model.SimpleFlightInfo" />
 
         <import type="java.util.List" />
 

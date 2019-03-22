@@ -1,4 +1,4 @@
-package ado.sabgil.incheonariport.model.enums;
+package ado.sabgil.incheonariport.data.model.enums;
 
 public enum State {
 

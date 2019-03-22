@@ -1,4 +1,4 @@
-package ado.sabgil.incheonariport.model;
+package ado.sabgil.incheonariport.data.model;
 
 import java.util.Objects;
 

@@ -10,8 +10,8 @@ import java.util.Collection;
 import java.util.List;
 
 import ado.sabgil.incheonariport.adapter.FlightInfoAdapter;
-import ado.sabgil.incheonariport.model.GateCongestion;
-import ado.sabgil.incheonariport.model.SimpleFlightInfo;
+import ado.sabgil.incheonariport.data.model.GateCongestion;
+import ado.sabgil.incheonariport.data.model.SimpleFlightInfo;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.BindingAdapter;

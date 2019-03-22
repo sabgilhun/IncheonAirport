@@ -1,6 +1,6 @@
-package ado.sabgil.incheonariport.model;
+package ado.sabgil.incheonariport.data.model;
 
-import ado.sabgil.incheonariport.model.enums.State;
+import ado.sabgil.incheonariport.data.model.enums.State;
 import androidx.annotation.NonNull;
 
 public class GateCongestion {

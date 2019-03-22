@@ -1,5 +1,6 @@
-package ado.sabgil.incheonariport.remote;
+package ado.sabgil.incheonariport.data;
 
+@FunctionalInterface
 public interface OnFailureListener {
     void onFailure(Exception error);
 }

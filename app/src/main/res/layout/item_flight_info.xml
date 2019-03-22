@@ -9,7 +9,7 @@
 
         <variable
             name="info"
-            type="ado.sabgil.incheonariport.model.SimpleFlightInfo" />
+            type="ado.sabgil.incheonariport.data.model.SimpleFlightInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

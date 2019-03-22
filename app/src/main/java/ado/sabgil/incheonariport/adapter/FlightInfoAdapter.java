@@ -4,7 +4,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import ado.sabgil.incheonariport.R;
-import ado.sabgil.incheonariport.model.SimpleFlightInfo;
+import ado.sabgil.incheonariport.data.model.SimpleFlightInfo;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;

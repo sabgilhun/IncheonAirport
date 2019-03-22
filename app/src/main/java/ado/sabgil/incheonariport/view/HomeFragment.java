@@ -8,10 +8,9 @@ import android.view.ViewGroup;
 
 import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.adapter.FlightInfoAdapter;
+import ado.sabgil.incheonariport.data.DataManager;
+import ado.sabgil.incheonariport.data.DataManagerImpl;
 import ado.sabgil.incheonariport.databinding.FragmentHomeBinding;
-import ado.sabgil.incheonariport.remote.openapi.IncheonAirportApiHandler;
-import ado.sabgil.incheonariport.remote.openapi.request.FlightRequest;
-import ado.sabgil.incheonariport.util.TimeUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -20,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding mBinding;
-    private IncheonAirportApiHandler handler;
+    private DataManager dataManager;
 
     @Nullable
     @Override
@@ -36,7 +35,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        handler = IncheonAirportApiHandler.getInstance();
+        dataManager = DataManagerImpl.getInstance();
 
         RecyclerView recyclerView = mBinding.rvQueriedWithTime;
         FlightInfoAdapter adapter = new FlightInfoAdapter();
@@ -46,14 +45,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void updateFlightData() {
-        String fromTime = TimeUtils.getCurrentHour();
-
-        FlightRequest flightRequest;
-        flightRequest = new FlightRequest.Builder()
-                .from_time(fromTime)
-                .build();
-
-        handler.getFlight(flightRequest.getRequestMap(),
+        dataManager.getSimpleFlightInfo(
                 response -> mBinding.setItems(response),
                 error -> Log.e("networking", error.getMessage()));
     }

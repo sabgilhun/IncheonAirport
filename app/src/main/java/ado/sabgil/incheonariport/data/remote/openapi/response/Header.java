@@ -1,4 +1,4 @@
-package ado.sabgil.incheonariport.remote.openapi.response;
+package ado.sabgil.incheonariport.data.remote.openapi.response;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;

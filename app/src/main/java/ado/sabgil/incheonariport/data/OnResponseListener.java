@@ -1,4 +1,4 @@
-package ado.sabgil.incheonariport.remote;
+package ado.sabgil.incheonariport.data;
 
 @FunctionalInterface
 public interface OnResponseListener<T> {

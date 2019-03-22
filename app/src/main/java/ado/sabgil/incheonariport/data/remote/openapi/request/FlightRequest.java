@@ -1,4 +1,4 @@
-package ado.sabgil.incheonariport.remote.openapi.request;
+package ado.sabgil.incheonariport.data.remote.openapi.request;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -20,13 +20,13 @@ public class FlightRequest {
             return this;
         }
 
-        public Builder from_time(String from_time) {
-            requestMap.put("from_time", from_time);
+        public Builder fromTime(String fromTime) {
+            requestMap.put("from_time", fromTime);
             return this;
         }
 
-        public Builder to_time(String to_time) {
-            requestMap.put("to_time", to_time);
+        public Builder toTime(String toTime) {
+            requestMap.put("to_time", toTime);
             return this;
         }
 
@@ -35,8 +35,8 @@ public class FlightRequest {
             return this;
         }
 
-        public Builder flight_id(String flight_id) {
-            requestMap.put("flight_id", flight_id);
+        public Builder flightId(String flightId) {
+            requestMap.put("flight_id", flightId);
             return this;
         }
 
