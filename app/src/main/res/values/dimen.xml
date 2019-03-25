@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_line_stroke_width">4dp</dimen>
+    <dimen name="default_background_stroke_width">2dp</dimen>
+    <dimen name="default_text_label_size">12sp</dimen>
+</resources>

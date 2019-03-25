@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LineChart">
+        <attr name="backgroundColor" format="reference|color" />
+        <attr name="backgroundStrokeWidth" format="reference|dimension" />
+        <attr name="labelSize" format="reference|dimension" />
+        <attr name="yLabelNum" format="reference|integer" />
+        <attr name="valuesStrokeWidth" format="reference|dimension" />
+        <attr name="valuesColor" format="reference|color" />
+        <attr name="maxValue" format="reference|integer" />
+        <attr name="minValue" format="reference|integer" />
+    </declare-styleable>
+</resources>
