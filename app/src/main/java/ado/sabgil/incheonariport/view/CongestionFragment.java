@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.data.DataManager;
 import ado.sabgil.incheonariport.data.DataManagerImpl;
-import ado.sabgil.incheonariport.data.remote.openapi.IcnAirportApiHelperImpl;
 import ado.sabgil.incheonariport.databinding.FragmentCongestionBinding;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +18,6 @@ import androidx.fragment.app.Fragment;
 public class CongestionFragment extends Fragment {
 
     private FragmentCongestionBinding mBinding;
-    private IcnAirportApiHelperImpl handler;
     private DataManager dataManager;
 
     @Nullable
@@ -40,8 +38,21 @@ public class CongestionFragment extends Fragment {
     }
 
     private void onClickUpdateCongestion(View v) {
+        dataManager.getT1PassengerNotice(
+                result -> {
+                    int startTime = result.getUpdateTime();
+                    String[] xLabels = new String[6];
+                    for (int i = 0; i < 6; i++) {
+                        xLabels[i] = (startTime + i) + "-" + (startTime + i + 1) + "시";
+                    }
+                    mBinding.lineChart.setData(result.getGate4(), xLabels);
+                },
+                error -> Log.e("Main", error.getMessage())
+        );
+
         dataManager.getT1Congestion(
                 response -> mBinding.setT1(response),
                 error -> Log.e("Main", error.getMessage()));
+
     }
 }

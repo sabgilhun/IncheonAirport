@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
+import java.security.InvalidParameterException;
 import java.util.List;
 
 import ado.sabgil.incheonariport.R;
@@ -46,7 +47,7 @@ public class LineChart extends View {
 
     private String[] yLabels;
     private float[] yLabelsPosition;
-
+    private String[] xLabels;
 
     // Animator
     private int lineAnimationValue = 0;
@@ -183,6 +184,12 @@ public class LineChart extends View {
 
     private void renderChart(Canvas canvas) {
         if (chartValues != null) {
+            if (xLabels.length != 0) {
+                for (int i = 0; i < xLabels.length; i++) {
+                    canvas.drawText(xLabels[i], xLabelsPosition[i], endY + startY / 2, backgroundPaint);
+                }
+            }
+
             final int index = (lineAnimationValue / 100) + 1;
             for (int i = 0; i < index; i++) {
                 if (i == index - 1) {
@@ -232,9 +239,14 @@ public class LineChart extends View {
         animator.start();
     }
 
-    public void setData(@NonNull List<Integer> values) {
+    public void setData(@NonNull List<Integer> values, @NonNull String[] xLabels) {
+        if (values.size() != xLabels.length) {
+            throw new InvalidParameterException();
+        }
+
         chartValues = values;
         final int size = chartValues.size();
+        this.xLabels = xLabels;
         xLabelsPosition = new float[size];
         valuesYPosition = new float[size];
 
@@ -246,5 +258,14 @@ public class LineChart extends View {
         }
 
         play();
+    }
+
+    public void setData(@NonNull List<Integer> values) {
+        String[] xLabels = new String[values.size()];
+
+        for (int i = 0; i < values.size(); i++) {
+            xLabels[i] = i + "";
+        }
+        setData(values, xLabels);
     }
 }

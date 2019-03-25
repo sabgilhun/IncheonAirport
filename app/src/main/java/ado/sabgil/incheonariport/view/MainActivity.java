@@ -1,8 +1,10 @@
 package ado.sabgil.incheonariport.view;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.databinding.ActivityMainBinding;
@@ -24,16 +26,19 @@ public class MainActivity extends AppCompatActivity {
     private MyPlaneFragment myPlaneFragment;
     private SettingFragment settingFragment;
 
-    private MenuItem searchItem;
     private int currentAction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        getWindow().setStatusBarColor(Color.WHITE);
+
+
+        출처: https://liveonthekeyboard.tistory.com/entry/안드로이드-status-bar-색상-변경하기-아이콘-색상-변경하기 [키위남]
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mBinding.bottomNavigation.setOnNavigationItemSelectedListener(this::switchItem);
-//        setSupportActionBar(mBinding.tbMain);
 
         // 프레그먼트 초기화
         fragmentManager = getSupportFragmentManager();
