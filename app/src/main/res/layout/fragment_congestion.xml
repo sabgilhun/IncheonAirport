@@ -183,7 +183,6 @@
             android:layout_marginTop="100dp"
             android:layout_marginBottom="16dp"
             app:backgroundColor="@android:color/darker_gray"
-            app:backgroundStrokeWidth="2dp"
             app:labelSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

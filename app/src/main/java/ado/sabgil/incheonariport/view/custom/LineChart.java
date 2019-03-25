@@ -166,20 +166,15 @@ public class LineChart extends View {
     }
 
     private void renderBackground(Canvas canvas) {
+        canvas.drawRect(startX, endY, endX + (endX - startX) * 0.05f, endY + 4, backgroundPaint);
 
-        backgroundPaint.setStrokeWidth(backgroundStrokeWidth);
-        canvas.drawLine(startX, startY + (startY - endY) * 0.05f, startX, endY, backgroundPaint);
-        canvas.drawLine(startX, endY, endX + (endX - startX) * 0.05f, endY, backgroundPaint);
-
-        backgroundPaint.setStrokeWidth(backgroundStrokeWidth / 3);
-        for (int i = 0; i < yLabelNum; i++) {
-            canvas.drawLine(startX, yLabelsPosition[i], endX, yLabelsPosition[i], backgroundPaint);
+        for (int i = 1; i < yLabelNum; i++) {
+            canvas.drawRect(startX, yLabelsPosition[i], endX, yLabelsPosition[i] + 2, backgroundPaint);
         }
 
         for (int i = 0; i < yLabelNum; i++) {
             canvas.drawText(yLabels[i], startX / 2, yLabelsPosition[i], backgroundPaint);
         }
-
     }
 
     private void renderChart(Canvas canvas) {
@@ -205,7 +200,6 @@ public class LineChart extends View {
                             xLabelsPosition[i + 1], valuesYPosition[i + 1],
                             valuesPaint);
                 }
-
             }
 
             for (int i = 0; i < chartValues.size(); i++) {
