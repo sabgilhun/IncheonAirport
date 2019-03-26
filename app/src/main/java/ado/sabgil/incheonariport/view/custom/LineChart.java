@@ -1,7 +1,7 @@
 package ado.sabgil.incheonariport.view.custom;
 
-import android.animation.PropertyValuesHolder;
-import android.animation.ValueAnimator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -9,8 +9,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.List;
 
 import ado.sabgil.incheonariport.R;
@@ -47,7 +49,7 @@ public class LineChart extends View {
 
     private String[] yLabels;
     private float[] yLabelsPosition;
-    private String[] xLabels;
+    private List<String> xLabels;
 
     // Animator
     private int lineAnimationValue = 0;
@@ -76,6 +78,18 @@ public class LineChart extends View {
     private void initView(AttributeSet attrs) {
         readAttributes(attrs);
         initPaints();
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        initInternalValues(getWidth(), getHeight());
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        renderBackground(canvas);
+        renderChart(canvas);
     }
 
     private void readAttributes(AttributeSet attrs) {
@@ -153,18 +167,6 @@ public class LineChart extends View {
         }
     }
 
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
-        initInternalValues(getWidth(), getHeight());
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        renderBackground(canvas);
-        renderChart(canvas);
-    }
-
     private void renderBackground(Canvas canvas) {
         canvas.drawRect(startX, endY, endX + (endX - startX) * 0.05f, endY + 4, backgroundPaint);
 
@@ -179,9 +181,9 @@ public class LineChart extends View {
 
     private void renderChart(Canvas canvas) {
         if (chartValues != null) {
-            if (xLabels.length != 0) {
-                for (int i = 0; i < xLabels.length; i++) {
-                    canvas.drawText(xLabels[i], xLabelsPosition[i], endY + startY / 2, backgroundPaint);
+            if (xLabels.size() != 0) {
+                for (int i = 0; i < xLabels.size(); i++) {
+                    canvas.drawText(xLabels.get(i), xLabelsPosition[i], endY + startY / 2, backgroundPaint);
                 }
             }
 
@@ -213,28 +215,35 @@ public class LineChart extends View {
         }
     }
 
-    private void play() {
-        ValueAnimator animator;
-
-        PropertyValuesHolder propertyRadius = PropertyValuesHolder.ofInt("line",
+    public void animationPlay() {
+        ObjectAnimator lineAnimator;
+        lineAnimator = ObjectAnimator.ofInt(this, "line",
                 0, (chartValues.size() - 1) * 100 - 1);
-        PropertyValuesHolder propertyAlpha = PropertyValuesHolder.ofInt("alpha",
+
+        ObjectAnimator alphaAnimator;
+        alphaAnimator = ObjectAnimator.ofInt(this, "alpha",
                 0, 255);
 
-        animator = new ValueAnimator();
-        animator.setValues(propertyRadius, propertyAlpha);
-        animator.setDuration(ANIMATION_DEFAULT_DURATION);
-        animator.addUpdateListener(animation -> {
-            lineAnimationValue = (int) animation.getAnimatedValue("line");
-            alphaAnimationValue = (int) animation.getAnimatedValue("alpha");
-            invalidate();
-        });
-
-        animator.start();
+        AnimatorSet animationSet = new AnimatorSet();  //여러개의 애니메이션을 묶어서 동시에 시작
+        animationSet.playTogether(lineAnimator, alphaAnimator);
+        animationSet.setDuration(ANIMATION_DEFAULT_DURATION);
+        animationSet.setInterpolator(new DecelerateInterpolator());
+        animationSet.setTarget(this);
+        animationSet.start();
     }
 
-    public void setData(@NonNull List<Integer> values, @NonNull String[] xLabels) {
-        if (values.size() != xLabels.length) {
+    void setLine(int value) {
+        lineAnimationValue = value;
+        invalidate();
+    }
+
+    void setAlpha(int value) {
+        alphaAnimationValue = value;
+        invalidate();
+    }
+
+    public void setData(@NonNull List<Integer> values, @NonNull List<String> xLabels) {
+        if (values.size() != xLabels.size()) {
             throw new InvalidParameterException();
         }
 
@@ -250,15 +259,14 @@ public class LineChart extends View {
             xLabelsPosition[i] = startX + (interval * i);
             valuesYPosition[i] = endY - atomicValue * chartValues.get(i);
         }
-
-        play();
+        animationPlay();
     }
 
     public void setData(@NonNull List<Integer> values) {
-        String[] xLabels = new String[values.size()];
+        List<String> xLabels = new ArrayList<>();
 
         for (int i = 0; i < values.size(); i++) {
-            xLabels[i] = i + "";
+            xLabels.add(i + "");
         }
         setData(values, xLabels);
     }

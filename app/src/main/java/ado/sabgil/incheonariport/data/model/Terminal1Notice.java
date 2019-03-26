@@ -14,32 +14,13 @@ public class Terminal1Notice {
     @NonNull
     private final String updateDate;
 
-    private final int updateTime;
-
     @NonNull
-    private final List<Integer> gate2;
-
-    @NonNull
-    private final List<Integer> gate3;
-
-    @NonNull
-    private final List<Integer> gate4;
-
-    @NonNull
-    private final List<Integer> gate5;
+    private final List<GateNotice> notices;
 
     private Terminal1Notice(@NonNull String updateDate,
-                            int updateTime,
-                            @NonNull List<Integer> gate2,
-                            @NonNull List<Integer> gate3,
-                            @NonNull List<Integer> gate4,
-                            @NonNull List<Integer> gate5) {
+                            @NonNull List<GateNotice> notices) {
         this.updateDate = updateDate;
-        this.updateTime = updateTime;
-        this.gate2 = gate2;
-        this.gate3 = gate3;
-        this.gate4 = gate4;
-        this.gate5 = gate5;
+        this.notices = notices;
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -52,6 +33,7 @@ public class Terminal1Notice {
                 (tomorrow == null && (time + range) > 23)) {
             throw new InvalidParameterException();
         } else {
+            List<String> timeList = new ArrayList<>();
             List<Integer> gate2 = new ArrayList<>();
             List<Integer> gate3 = new ArrayList<>();
             List<Integer> gate4 = new ArrayList<>();
@@ -64,20 +46,30 @@ public class Terminal1Notice {
                 } else {
                     item = tomorrow.get(i - 24);
                 }
+                StringBuilder sb = new StringBuilder(item.getTime());
+                sb.append("시").setCharAt(2, '-');
 
+                timeList.add(sb.toString());
                 gate2.add(item.getT1sum5());
                 gate3.add(item.getT1sum6());
                 gate4.add(item.getT1sum7());
                 gate5.add(item.getT1sum8());
             }
 
+            List<GateNotice> notices = new ArrayList<>();
+            List<String> unmodifiableTimeList = Collections.unmodifiableList(timeList);
+            notices.add(new GateNotice(2, unmodifiableTimeList,
+                    Collections.unmodifiableList(gate2)));
+            notices.add(new GateNotice(3, unmodifiableTimeList,
+                    Collections.unmodifiableList(gate3)));
+            notices.add(new GateNotice(4, unmodifiableTimeList,
+                    Collections.unmodifiableList(gate4)));
+            notices.add(new GateNotice(5, unmodifiableTimeList,
+                    Collections.unmodifiableList(gate5)));
+
             return new Terminal1Notice(
                     today.get(0).getDate(),
-                    time,
-                    Collections.unmodifiableList(gate2),
-                    Collections.unmodifiableList(gate3),
-                    Collections.unmodifiableList(gate4),
-                    Collections.unmodifiableList(gate5));
+                    Collections.unmodifiableList(notices));
         }
     }
 
@@ -92,39 +84,16 @@ public class Terminal1Notice {
         return updateDate;
     }
 
-    public int getUpdateTime() {
-        return updateTime;
-    }
-
     @NonNull
-    public List<Integer> getGate2() {
-        return gate2;
-    }
-
-    @NonNull
-    public List<Integer> getGate3() {
-        return gate3;
-    }
-
-    @NonNull
-    public List<Integer> getGate4() {
-        return gate4;
-    }
-
-    @NonNull
-    public List<Integer> getGate5() {
-        return gate5;
+    public List<GateNotice> getNotices() {
+        return notices;
     }
 
     @Override
     public String toString() {
         return "Terminal1Notice{" +
                 "updateDate='" + updateDate + '\'' +
-                ", updateTime=" + updateTime +
-                ", gate2=" + gate2 +
-                ", gate3=" + gate3 +
-                ", gate4=" + gate4 +
-                ", gate5=" + gate5 +
+                ", notices=" + notices +
                 '}';
     }
 }

@@ -20,7 +20,8 @@ public class DetailInfoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail_info, container, false);
+        mBinding = DataBindingUtil
+                .inflate(inflater, R.layout.fragment_detail_info, container, false);
         return mBinding.getRoot();
     }
 

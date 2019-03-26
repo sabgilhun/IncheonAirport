@@ -26,8 +26,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home,
-                container, false);
+        mBinding = DataBindingUtil
+                .inflate(inflater, R.layout.fragment_home, container, false);
         return mBinding.getRoot();
     }
 

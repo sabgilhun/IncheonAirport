@@ -20,7 +20,8 @@ public class SettingFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_empty, container, false);
+        mBinding = DataBindingUtil
+                .inflate(inflater, R.layout.fragment_empty, container, false);
         return mBinding.getRoot();
     }
 

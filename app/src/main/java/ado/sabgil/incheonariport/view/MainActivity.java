@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         getWindow().setStatusBarColor(Color.WHITE);
 
-
-        출처: https://liveonthekeyboard.tistory.com/entry/안드로이드-status-bar-색상-변경하기-아이콘-색상-변경하기 [키위남]
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mBinding.bottomNavigation.setOnNavigationItemSelectedListener(this::switchItem);
 

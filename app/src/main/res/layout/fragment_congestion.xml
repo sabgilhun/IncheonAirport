@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-            name="t1"
+            name="cg"
             type="ado.sabgil.incheonariport.data.model.Terminal1Congestion" />
+
+        <variable
+            name="nt"
+            type="ado.sabgil.incheonariport.data.model.Terminal1Notice" />
 
     </data>
 
@@ -54,7 +59,7 @@
             android:id="@+id/ly_update_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
+            android:background="@android:color/transparent"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +75,7 @@
                 android:layout_marginBottom="4dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text='@{t1 != null ? @string/update_time(t1.updateDate, t1.updateTime) : ""}'
+                android:text='@{cg != null ? @string/update_time(cg.updateDate, cg.updateTime) : ""}'
                 android:textColor="@color/colorPrimaryDark" />
 
             <ImageView
@@ -84,9 +89,9 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cd_gate2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
@@ -101,13 +106,13 @@
                 layout="@layout/layout_card_item"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:info="@{t1.gate2}" />
+                app:info="@{cg.gate2}" />
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cd_gate3"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
@@ -124,13 +129,13 @@
                 layout="@layout/layout_card_item"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:info="@{t1.gate3}" />
+                app:info="@{cg.gate3}" />
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cd_gate4"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
@@ -147,17 +152,17 @@
                 layout="@layout/layout_card_item"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:info="@{t1.gate4}" />
+                app:info="@{cg.gate4}" />
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cd_gate5"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="4dp"
             app:cardCornerRadius="4dp"
             app:cardElevation="4dp"
@@ -170,28 +175,47 @@
                 layout="@layout/layout_card_item"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:info="@{t1.gate5}" />
+                app:info="@{cg.gate5}" />
 
         </androidx.cardview.widget.CardView>
 
-        <ado.sabgil.incheonariport.view.custom.LineChart
-            android:id="@+id/line_chart"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginBottom="16dp"
-            app:backgroundColor="@android:color/darker_gray"
-            app:labelSize="12sp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorWhite"
+            android:elevation="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cd_gate2"
-            app:maxValue="2000"
-            app:minValue="0"
-            app:valuesColor="@color/colorPrimary"
-            app:valuesStrokeWidth="4dp"
-            app:yLabelNum="5" />
+            app:layout_constraintEnd_toEndOf="@+id/cd_gate5"
+            app:layout_constraintStart_toStartOf="@+id/cd_gate2"
+            app:layout_constraintTop_toBottomOf="@id/cd_gate2">
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="테스트 입니다." />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vp_chart"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:adapter="@{nt}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv"
+                app:layout_constraintVertical_bias="1.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

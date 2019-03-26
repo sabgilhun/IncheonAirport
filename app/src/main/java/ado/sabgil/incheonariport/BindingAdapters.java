@@ -1,5 +1,6 @@
 package ado.sabgil.incheonariport;
 
+import android.view.View;
 import android.widget.TextView;
 
 import com.txusballesteros.widgets.FitChart;
@@ -9,13 +10,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import ado.sabgil.incheonariport.adapter.ChartViewAdapter;
 import ado.sabgil.incheonariport.adapter.FlightInfoAdapter;
 import ado.sabgil.incheonariport.data.model.GateCongestion;
 import ado.sabgil.incheonariport.data.model.SimpleFlightInfo;
+import ado.sabgil.incheonariport.data.model.Terminal1Notice;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 public class BindingAdapters {
 
@@ -26,12 +30,24 @@ public class BindingAdapters {
     private static int CLOSE_STATE_COLOR = 0xFFD0D0D0;
 
     @BindingAdapter("adapter")
-    public static void setImageItems(@NonNull RecyclerView recyclerView,
-                                     @Nullable List<SimpleFlightInfo> items) {
+    public static void setFlightInfoItems(@NonNull RecyclerView recyclerView,
+                                          @Nullable List<SimpleFlightInfo> items) {
         FlightInfoAdapter adapter
                 = (FlightInfoAdapter) recyclerView.getAdapter();
         if (adapter != null) {
             adapter.submitList(items);
+        }
+    }
+
+    @BindingAdapter("adapter")
+    public static void setNoticeViews(@NonNull ViewPager viewPager,
+                                      @Nullable Terminal1Notice terminal1Notice) {
+        ChartViewAdapter adapter
+                = (ChartViewAdapter) viewPager.getAdapter();
+        if (adapter != null && terminal1Notice != null) {
+            View currentPage = viewPager.getChildAt(viewPager.getCurrentItem());
+            adapter.setData(terminal1Notice);
+            adapter.updatePage(viewPager.getCurrentItem(), currentPage);
         }
     }
 
