@@ -1,14 +1,11 @@
 package ado.sabgil.incheonariport.adapter;
 
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ado.sabgil.incheonariport.R;
-import ado.sabgil.incheonariport.data.model.GateNotice;
 import ado.sabgil.incheonariport.data.model.Terminal1Notice;
 import ado.sabgil.incheonariport.databinding.PagerChartViewBinding;
 import androidx.annotation.NonNull;
@@ -16,20 +13,24 @@ import androidx.databinding.DataBindingUtil;
 import androidx.viewpager.widget.PagerAdapter;
 
 public class ChartViewAdapter extends PagerAdapter {
+    private SparseArray<PagerChartViewBinding> bindingList;
 
-    private Terminal1Notice terminal1Notice;
-
-    public void setData(@NonNull Terminal1Notice terminal1Notice) {
-        this.terminal1Notice = terminal1Notice;
+    public ChartViewAdapter() {
+        bindingList = new SparseArray<>();
     }
 
-    public void updatePage(int position, @NonNull View view) {
-        PagerChartViewBinding binding = DataBindingUtil.findBinding(view);
+    public void setData(@NonNull Terminal1Notice terminal1Notice) {
+        for (int i = 0; i < getCount(); i++) {
+            PagerChartViewBinding binding = bindingList.get(i);
+            if (binding != null) {
+                binding.setNt(terminal1Notice.getNotices().get(i));
+            }
+        }
+    }
 
-        if (binding != null && position > -1) {
-            GateNotice notice = terminal1Notice.getNotices().get(position);
-            binding.lineChart.setData(notice.getNotice(), notice.getTimeList());
-            binding.tvGateNo.getText();
+    public void updatePage(int position) {
+        if (position > -1) {
+            bindingList.get(position).lineChart.animationPlay();
         }
     }
 
@@ -54,7 +55,7 @@ public class ChartViewAdapter extends PagerAdapter {
             return container;
         }
 
-        binding.tvGateNo.setText(position + "");
+        bindingList.append(position, binding);
         container.addView(binding.getRoot());
         return binding.getRoot();
     }

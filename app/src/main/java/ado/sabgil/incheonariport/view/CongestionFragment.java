@@ -47,17 +47,13 @@ public class CongestionFragment extends Fragment {
         dataManager = DataManagerImpl.getInstance();
 
         // View 초기화
-        mBinding.ivRefresh.setOnClickListener(this::onClickUpdateCongestion);
+        mBinding.ivRefresh.setOnClickListener(this::onClickRefresh);
         initChartViewPager();
 
-        // Data 로드 및 설정
-        if (lineChartData == null || pieChartData == null) {
-            loadNoticeData();
-            loadCongestionData();
-        } else {
-            setLineChartData();
-            setPieChartData();
-        }
+        // 초기 Data 로드
+        loadNoticeData();
+        loadCongestionData();
+
     }
 
     private void initChartViewPager() {
@@ -75,11 +71,10 @@ public class CongestionFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
-                View page = chartViewPager.getChildAt(position);
                 ChartViewAdapter adapter = (ChartViewAdapter) chartViewPager.getAdapter();
 
-                if (adapter != null && page != null) {
-                    adapter.updatePage(position, page);
+                if (adapter != null) {
+                    adapter.updatePage(position);
                 }
             }
 
@@ -90,7 +85,7 @@ public class CongestionFragment extends Fragment {
 
     }
 
-    private void onClickUpdateCongestion(View v) {
+    private void onClickRefresh(View v) {
         loadNoticeData();
         loadCongestionData();
     }
@@ -99,7 +94,7 @@ public class CongestionFragment extends Fragment {
         dataManager.getT1PassengerNotice(
                 result -> {
                     this.lineChartData = result;
-                    setLineChartData();
+                    mBinding.setNt(lineChartData);
                 },
                 error -> Log.e("Main", error.getMessage())
         );
@@ -109,24 +104,8 @@ public class CongestionFragment extends Fragment {
         dataManager.getT1Congestion(
                 result -> {
                     this.pieChartData = result;
-                    setPieChartData();
+                    mBinding.setCg(pieChartData);
                 },
                 error -> Log.e("Main", error.getMessage()));
-    }
-
-    private void setLineChartData() {
-        new Thread(() -> {
-            if (getActivity() != null) {
-                getActivity().runOnUiThread(() -> mBinding.setNt(lineChartData));
-            }
-        }).start();
-    }
-
-    private void setPieChartData() {
-        new Thread(() -> {
-            if (getActivity() != null) {
-                getActivity().runOnUiThread(() -> mBinding.setCg(pieChartData));
-            }
-        }).start();
     }
 }

@@ -134,8 +134,7 @@ public class IcnAirportApiHelperImpl implements IcnAirportApiHelper {
 
         Header header = response.getHeader();
         if (!TextUtils.equals(header.getResultCode(), NORMAL_SERVICE)) {
-            String error = header.getResultMsg();
-            return error;
+            return header.getResultMsg();
         }
 
         return "";

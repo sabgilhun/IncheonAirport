@@ -14,7 +14,7 @@ public class TimeUtils {
         Date date = new Date(now);
 
         SimpleDateFormat simpleDateFormat =
-                new SimpleDateFormat("kk00", java.util.Locale.getDefault());
+                new SimpleDateFormat("HH00", java.util.Locale.getDefault());
         return simpleDateFormat.format(date);
     }
 
@@ -23,7 +23,7 @@ public class TimeUtils {
         Date date = new Date(now);
 
         SimpleDateFormat simpleDateFormat =
-                new SimpleDateFormat("kk", java.util.Locale.getDefault());
+                new SimpleDateFormat("HH", java.util.Locale.getDefault());
 
         return Integer.parseInt(simpleDateFormat.format(date));
     }

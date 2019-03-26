@@ -2,13 +2,11 @@ package ado.sabgil.incheonariport.view;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.databinding.ActivityMainBinding;
-import ado.sabgil.incheonariport.util.TimeUtils;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -26,91 +24,84 @@ public class MainActivity extends AppCompatActivity {
     private MyPlaneFragment myPlaneFragment;
     private SettingFragment settingFragment;
 
-    private int currentAction;
+    private Fragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 뷰 바인딩
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+        // 프레그먼트 매니저 초기화
+        fragmentManager = getSupportFragmentManager();
+
+        // 상태바 색 설정
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         getWindow().setStatusBarColor(Color.WHITE);
 
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        // 바텀 네비게이션 초기화
         mBinding.bottomNavigation.setOnNavigationItemSelectedListener(this::switchItem);
+        mBinding.bottomNavigation.setSelectedItemId(R.id.action_home);
 
-        // 프레그먼트 초기화
-        fragmentManager = getSupportFragmentManager();
-        homeFragment = new HomeFragment();
-        congestionFragment = new CongestionFragment();
-        myPlaneFragment = new MyPlaneFragment();
-        settingFragment = new SettingFragment();
-
-        // 첫 화면 프레그먼트 추가
-        fragmentManager.beginTransaction()
-                .add(R.id.fl_page_container, homeFragment)
-                .commit();
-        currentAction = R.id.action_home;
     }
 
     private boolean switchItem(@NonNull MenuItem item) {
 
         final int selectedAction = item.getItemId();
-        if (currentAction == selectedAction) {
-            return false;
-        }
 
-        currentAction = selectedAction;
         switch (selectedAction) {
             case R.id.action_home:
-                replaceFragment(homeFragment, false);
+                if (homeFragment == null) {
+                    homeFragment = new HomeFragment();
+                    replaceFragment(homeFragment, true);
+                } else {
+                    replaceFragment(homeFragment, false);
+                }
                 return true;
 
             case R.id.action_map:
-                replaceFragment(congestionFragment, false);
-
+                if (congestionFragment == null) {
+                    congestionFragment = new CongestionFragment();
+                    replaceFragment(congestionFragment, true);
+                } else {
+                    replaceFragment(congestionFragment, false);
+                }
                 return true;
 
             case R.id.action_alarm:
-                replaceFragment(myPlaneFragment, false);
-
+                if (myPlaneFragment == null) {
+                    myPlaneFragment = new MyPlaneFragment();
+                    replaceFragment(myPlaneFragment, true);
+                } else {
+                    replaceFragment(myPlaneFragment, false);
+                }
                 return true;
 
             case R.id.action_settings:
-                replaceFragment(settingFragment, false);
-
+                if (settingFragment == null) {
+                    settingFragment = new SettingFragment();
+                    replaceFragment(settingFragment, true);
+                } else {
+                    replaceFragment(settingFragment, false);
+                }
                 return true;
         }
         return false;
     }
 
-    private void passQueryToFragment(String query) {
-        SearchListFragment fragment;
-        fragment = (SearchListFragment) fragmentManager.
-                findFragmentByTag(SearchListFragment.class.getSimpleName());
-
-        if (fragment != null) {
-            fragment.requestQuery(query);
-        }
-
-    }
-
-    private void expandOrCollapseFragment(boolean isExpanded) {
-        if (isExpanded) {
-            replaceFragment(new SearchListFragment(), true);
-        } else {
-            onBackPressed();
-        }
-    }
-
-    private void replaceFragment(Fragment fragment, boolean isAddToBackStack) {
+    private void replaceFragment(Fragment fragment, boolean isAddFragment) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction
-                .replace(R.id.fl_page_container, fragment, fragment.getClass().getSimpleName());
+        if (isAddFragment) {
+            fragmentTransaction
+                    .add(R.id.fl_page_container, fragment, fragment.getClass().getSimpleName());
+        }
 
-        if (isAddToBackStack) {
-            fragmentTransaction.addToBackStack(null);
+        if (currentFragment != null) {
+            fragmentTransaction
+                    .hide(currentFragment).show(fragment);
         }
 
         fragmentTransaction.commit();
+        currentFragment = fragment;
     }
 }

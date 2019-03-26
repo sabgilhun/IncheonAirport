@@ -12,6 +12,8 @@
 
     <string name="gate_no">%s 출국장</string>
 
+    <string name="gate_notice">%s 출국장 예상 혼잡도</string>
+
     <string name="hint_search_airplane_short">항공편을 입력하세요.</string>
 
     <string name="hint_search_airplane">항공편을 검색해 주세요. \n EX) "OZ6617"</string>

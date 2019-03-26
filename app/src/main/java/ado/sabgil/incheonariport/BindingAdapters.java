@@ -1,6 +1,5 @@
 package ado.sabgil.incheonariport;
 
-import android.view.View;
 import android.widget.TextView;
 
 import com.txusballesteros.widgets.FitChart;
@@ -13,8 +12,10 @@ import java.util.List;
 import ado.sabgil.incheonariport.adapter.ChartViewAdapter;
 import ado.sabgil.incheonariport.adapter.FlightInfoAdapter;
 import ado.sabgil.incheonariport.data.model.GateCongestion;
+import ado.sabgil.incheonariport.data.model.GateNotice;
 import ado.sabgil.incheonariport.data.model.SimpleFlightInfo;
 import ado.sabgil.incheonariport.data.model.Terminal1Notice;
+import ado.sabgil.incheonariport.view.custom.LineChart;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.BindingAdapter;
@@ -45,21 +46,27 @@ public class BindingAdapters {
         ChartViewAdapter adapter
                 = (ChartViewAdapter) viewPager.getAdapter();
         if (adapter != null && terminal1Notice != null) {
-            View currentPage = viewPager.getChildAt(viewPager.getCurrentItem());
             adapter.setData(terminal1Notice);
-            adapter.updatePage(viewPager.getCurrentItem(), currentPage);
         }
     }
 
     @BindingAdapter("chart_data")
-    public static void setChartData(@NonNull FitChart chartView,
-                                    @Nullable GateCongestion info) {
-        if (info != null) {
+    public static void setLineChartData(@NonNull LineChart lineChartView,
+                                        @Nullable GateNotice data) {
+        if (data != null) {
+            lineChartView.setData(data.getNotice(), data.getTimeList());
+        }
+    }
+
+    @BindingAdapter("chart_data")
+    public static void setPieChartData(@NonNull FitChart fieChartView,
+                                       @Nullable GateCongestion data) {
+        if (data != null) {
             Collection<FitChartValue> chartValues = new ArrayList<>();
-            float value = info.getPassengers() / 2f;
+            float value = data.getPassengers() / 2f;
             int color = CLOSE_STATE_COLOR;
 
-            switch (info.getCongestion()) {
+            switch (data.getCongestion()) {
                 case LIGHT:
                     color = LIGHT_STATE_COLOR;
                     break;
@@ -81,17 +88,17 @@ public class BindingAdapters {
                     break;
             }
             chartValues.add(new FitChartValue(value, color));
-            chartView.setValues(chartValues);
+            fieChartView.setValues(chartValues);
         }
     }
 
     @BindingAdapter("text_color")
     public static void setTextColor(@NonNull TextView textView,
-                                    @Nullable GateCongestion info) {
-        if (info != null) {
+                                    @Nullable GateCongestion data) {
+        if (data != null) {
             int color = CLOSE_STATE_COLOR;
 
-            switch (info.getCongestion()) {
+            switch (data.getCongestion()) {
                 case LIGHT:
                     color = LIGHT_STATE_COLOR;
                     break;

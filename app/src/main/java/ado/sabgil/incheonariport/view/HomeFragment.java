@@ -35,13 +35,21 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        // 데이터 매니저 초기화
         dataManager = DataManagerImpl.getInstance();
 
+        // 리사이클러 뷰 초기화
+        initRecyclerView();
+
+        // 초기 데이터 로드
+        updateFlightData();
+    }
+
+    private void initRecyclerView() {
         RecyclerView recyclerView = mBinding.rvQueriedWithTime;
         FlightInfoAdapter adapter = new FlightInfoAdapter();
         recyclerView.setAdapter(adapter);
 
-        updateFlightData();
     }
 
     private void updateFlightData() {

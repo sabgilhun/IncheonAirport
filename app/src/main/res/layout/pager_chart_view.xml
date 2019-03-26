@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="nt"
+            type="ado.sabgil.incheonariport.data.model.GateNotice" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,22 +20,24 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            tools:text="123456789"
+            android:text="@{@string/gate_notice(nt.getGateNo)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="123456789" />
 
         <ado.sabgil.incheonariport.view.custom.LineChart
             android:id="@+id/line_chart"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:backgroundColor="@android:color/darker_gray"
+            app:chart_data="@{nt}"
             app:labelSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:maxValue="2000"
             app:layout_constraintTop_toBottomOf="@id/tv_gate_no"
+            app:maxValue="2000"
             app:minValue="0"
             app:valuesColor="@color/colorPrimary"
             app:valuesStrokeWidth="4dp"
