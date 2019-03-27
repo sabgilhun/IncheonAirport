@@ -1,5 +1,6 @@
 package ado.sabgil.incheonariport.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
         dataManager = DataManagerImpl.getInstance();
 
         // view 초기화
+        getBinding().etSearch.setOnClickListener(this::onClickSearch);
         initRecyclerView();
 
         // 초기 data 로드
@@ -39,7 +41,11 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
         RecyclerView recyclerView = getBinding().rvQueriedWithTime;
         FlightInfoAdapter adapter = new FlightInfoAdapter();
         recyclerView.setAdapter(adapter);
+    }
 
+    private void onClickSearch(View v) {
+        Intent intent = new Intent(getContext(), PlaneSearchActivity.class);
+        startActivity(intent);
     }
 
     private void updateFlightData() {
