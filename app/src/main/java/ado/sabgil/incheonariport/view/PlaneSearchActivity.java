@@ -2,6 +2,7 @@ package ado.sabgil.incheonariport.view;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -61,7 +62,15 @@ public class PlaneSearchActivity extends BaseActivity<ActivityPlaneSearchBinding
                     getBinding().setItems(result);
                     getBinding().flListContainer.bringChildToFront(getBinding().lyListScreen);
                 },
-                error -> Log.e("networking", error.getMessage())
+                error -> {
+                    if (TextUtils.equals(error.getMessage(), "No Response")) {
+                        getBinding().tvNoData.setText(
+                                String.format(getText(R.string.hint_no_response).toString(), query));
+                        getBinding().flListContainer.bringChildToFront(getBinding().lyNoDataScreen);
+                    } else {
+                        Log.e("networking", error.getMessage());
+                    }
+                }
         );
     }
 
@@ -84,6 +93,7 @@ public class PlaneSearchActivity extends BaseActivity<ActivityPlaneSearchBinding
             } else {
                 getBinding().ivClear.setVisibility(View.INVISIBLE);
                 getBinding().flListContainer.bringChildToFront(getBinding().lyDefaultScreen);
+                return;
             }
 
             debounceTimer = new Timer();

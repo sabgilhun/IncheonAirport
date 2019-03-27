@@ -57,8 +57,9 @@ public class IcnAirportApiHelperImpl implements IcnAirportApiHelper {
 
                         CongestionResponse congestionResponse = response.body();
                         String errorMessage = checkResponseException(congestionResponse);
-                        if (TextUtils.isEmpty(errorMessage)) {
+                        if (!TextUtils.isEmpty(errorMessage)) {
                             onFailureListener.onFailure(new RuntimeException(errorMessage));
+                            return;
                         }
                         onResponseListener.onResponse(congestionResponse);
 
@@ -85,8 +86,9 @@ public class IcnAirportApiHelperImpl implements IcnAirportApiHelper {
 
                         FlightResponse flightResponse = response.body();
                         String errorMessage = checkResponseException(flightResponse);
-                        if (TextUtils.isEmpty(errorMessage)) {
+                        if (!TextUtils.isEmpty(errorMessage)) {
                             onFailureListener.onFailure(new RuntimeException(errorMessage));
+                            return;
                         }
                         onResponseListener.onResponse(flightResponse);
                     }
@@ -111,8 +113,9 @@ public class IcnAirportApiHelperImpl implements IcnAirportApiHelper {
 
                         NoticeResponse noticeResponse = response.body();
                         String errorMessage = checkResponseException(noticeResponse);
-                        if (TextUtils.isEmpty(errorMessage)) {
+                        if (!TextUtils.isEmpty(errorMessage)) {
                             onFailureListener.onFailure(new RuntimeException(errorMessage));
+                            return;
                         }
                         onResponseListener.onResponse(noticeResponse);
                     }
@@ -128,7 +131,7 @@ public class IcnAirportApiHelperImpl implements IcnAirportApiHelper {
 
     private String checkResponseException(@Nullable RemoteResponse response) {
 
-        if (response == null) {
+        if (response == null || response.isEmptyResponse()) {
             return "No Response";
         }
 

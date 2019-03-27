@@ -23,6 +23,10 @@ public class NoticeResponse implements RemoteResponse {
         return body;
     }
 
+    public boolean isEmptyResponse() {
+        return getBody().items.getItems() == null;
+    }
+
     public static class Body {
         @Element(name = "items")
         private Items items;

@@ -23,6 +23,10 @@ public class FlightResponse implements RemoteResponse {
         return body;
     }
 
+    public boolean isEmptyResponse() {
+        return getBody().items.getItems() == null;
+    }
+
     @Root(name = "body")
     public static class Body {
 
