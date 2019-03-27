@@ -25,13 +25,13 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // 데이터 매니저 초기화
+        // DataManager 초기화
         dataManager = DataManagerImpl.getInstance();
 
-        // 리사이클러 뷰 초기화
+        // view 초기화
         initRecyclerView();
 
-        // 초기 데이터 로드
+        // 초기 data 로드
         updateFlightData();
     }
 

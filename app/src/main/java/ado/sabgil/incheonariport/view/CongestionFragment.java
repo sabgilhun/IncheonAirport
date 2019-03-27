@@ -32,14 +32,14 @@ public class CongestionFragment extends BaseFragment<FragmentCongestionBinding> 
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // DataManager 객체 가져오기
+        // DataManager 초기화
         dataManager = DataManagerImpl.getInstance();
 
-        // View 초기화
+        // view 초기화
         getBinding().ivRefresh.setOnClickListener(this::onClickRefresh);
         initChartViewPager();
 
-        // 초기 Data 로드
+        // 초기 data 로드
         loadNoticeData();
         loadCongestionData();
 
