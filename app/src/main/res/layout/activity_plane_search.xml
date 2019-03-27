@@ -54,6 +54,7 @@
                         android:tint="@color/colorPrimary" />
 
                     <EditText
+                        android:id="@+id/et_search"
                         style="@style/et"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -73,7 +74,8 @@
                         android:paddingStart="4dp"
                         android:paddingEnd="4dp"
                         android:src="@drawable/ic_clear"
-                        android:tint="@color/colorPrimary" />
+                        android:tint="@color/colorPrimary"
+                        android:visibility="invisible" />
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
 
@@ -99,25 +101,6 @@
                         app:adapter="@{items}"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/ly_default_screen"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorWhite">
-
-                    <TextView
-                        style="@style/text_bold_24"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:gravity="center"
-                        android:text="@string/hint_search_airplane"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -155,6 +138,24 @@
                         android:layout_marginTop="24dp"
                         android:gravity="center"
                         android:text="@string/hint_no_response"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ly_default_screen"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorWhite">
+
+                    <TextView
+                        style="@style/text_bold_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:gravity="center"
+                        android:text="@string/hint_search_airplane"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
