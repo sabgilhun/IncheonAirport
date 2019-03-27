@@ -1,48 +1,38 @@
 package ado.sabgil.incheonariport.view;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.databinding.ActivityMainBinding;
+import ado.sabgil.incheonariport.view.base.BaseActivity;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class MainActivity extends AppCompatActivity {
-
-    private ActivityMainBinding mBinding;
+public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     private FragmentManager fragmentManager;
     private HomeFragment homeFragment;
     private CongestionFragment congestionFragment;
     private MyPlaneFragment myPlaneFragment;
     private SettingFragment settingFragment;
-
     private Fragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // 뷰 바인딩
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-
         // 프레그먼트 매니저 초기화
         fragmentManager = getSupportFragmentManager();
 
-        // 상태바 색 설정
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        getWindow().setStatusBarColor(Color.WHITE);
-
         // 바텀 네비게이션 초기화
-        mBinding.bottomNavigation.setOnNavigationItemSelectedListener(this::switchItem);
-        mBinding.bottomNavigation.setSelectedItemId(R.id.action_home);
+        getBinding().bottomNavigation.setOnNavigationItemSelectedListener(this::switchItem);
+        getBinding().bottomNavigation.setSelectedItemId(R.id.action_home);
+    }
 
+    protected int getLayout() {
+        return R.layout.activity_main;
     }
 
     private boolean switchItem(@NonNull MenuItem item) {

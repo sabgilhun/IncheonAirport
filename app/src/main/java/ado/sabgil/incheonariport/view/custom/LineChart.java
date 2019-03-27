@@ -224,7 +224,7 @@ public class LineChart extends View {
         alphaAnimator = ObjectAnimator.ofInt(this, "alpha",
                 0, 255);
 
-        AnimatorSet animationSet = new AnimatorSet();  //여러개의 애니메이션을 묶어서 동시에 시작
+        AnimatorSet animationSet = new AnimatorSet();
         animationSet.playTogether(lineAnimator, alphaAnimator);
         animationSet.setDuration(ANIMATION_DEFAULT_DURATION);
         animationSet.setInterpolator(new DecelerateInterpolator());
