@@ -20,6 +20,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private SettingFragment settingFragment;
     private Fragment currentFragment;
 
+    protected int getLayout() {
+        return R.layout.activity_main;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +33,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         // 바텀 네비게이션 초기화
         getBinding().bottomNavigation.setOnNavigationItemSelectedListener(this::switchItem);
         getBinding().bottomNavigation.setSelectedItemId(R.id.action_home);
-    }
-
-    protected int getLayout() {
-        return R.layout.activity_main;
     }
 
     private boolean switchItem(@NonNull MenuItem item) {

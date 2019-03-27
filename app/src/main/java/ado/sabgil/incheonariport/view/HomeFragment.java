@@ -2,33 +2,23 @@ package ado.sabgil.incheonariport.view;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.adapter.FlightInfoAdapter;
 import ado.sabgil.incheonariport.data.DataManager;
 import ado.sabgil.incheonariport.data.DataManagerImpl;
 import ado.sabgil.incheonariport.databinding.FragmentHomeBinding;
+import ado.sabgil.incheonariport.view.base.BaseFragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class HomeFragment extends Fragment {
-    private FragmentHomeBinding mBinding;
+public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     private DataManager dataManager;
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil
-                .inflate(inflater, R.layout.fragment_home, container, false);
-        return mBinding.getRoot();
+    protected int getLayout() {
+        return R.layout.fragment_home;
     }
 
     @Override
@@ -46,7 +36,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initRecyclerView() {
-        RecyclerView recyclerView = mBinding.rvQueriedWithTime;
+        RecyclerView recyclerView = getBinding().rvQueriedWithTime;
         FlightInfoAdapter adapter = new FlightInfoAdapter();
         recyclerView.setAdapter(adapter);
 
@@ -54,7 +44,7 @@ public class HomeFragment extends Fragment {
 
     private void updateFlightData() {
         dataManager.getSimpleFlightInfo(
-                response -> mBinding.setItems(response),
+                response -> getBinding().setItems(response),
                 error -> Log.e("networking", error.getMessage()));
     }
 }
