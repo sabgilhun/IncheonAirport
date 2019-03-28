@@ -40,6 +40,8 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     private void initRecyclerView() {
         RecyclerView recyclerView = getBinding().rvQueriedWithTime;
         FlightInfoAdapter adapter = new FlightInfoAdapter();
+        adapter.setOnItemClickListener((v, position) -> {
+        });
         recyclerView.setAdapter(adapter);
     }
 

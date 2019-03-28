@@ -81,7 +81,11 @@ public class DataManagerImpl implements DataManager {
                                           @NonNull OnResponseListener<List<SimpleFlightInfo>> onResponseListener,
                                           @NonNull OnFailureListener onFailureListener) {
         FlightRequest request;
+        String fromTime = TimeUtils.getCurrentHourString();
+        String toTime = TimeUtils.getAfterHour(fromTime, 6);
         request = new FlightRequest.Builder()
+                .fromTime(fromTime)
+                .toTime(toTime)
                 .flightId(flightId)
                 .build();
 

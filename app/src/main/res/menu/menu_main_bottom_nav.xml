@@ -4,25 +4,25 @@
 
     <item
         android:id="@+id/action_home"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/vector_home"
         android:title="@string/menu_title_home"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_map"
-        android:icon="@drawable/ic_map"
+        android:icon="@drawable/vector_map"
         android:title="@string/menu_title_congestion"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_alarm"
-        android:icon="@drawable/ic_notifications"
+        android:icon="@drawable/vector_notifications"
         android:title="@string/menu_title_myplane"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_settings"
-        android:icon="@drawable/ic_settings"
+        android:icon="@drawable/vector_settings"
         android:title="@string/menu_title_settings"
         app:showAsAction="ifRoom" />
 

@@ -1,5 +1,7 @@
 package ado.sabgil.incheonariport;
 
+import android.text.TextUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.txusballesteros.widgets.FitChart;
@@ -15,6 +17,7 @@ import ado.sabgil.incheonariport.data.model.GateCongestion;
 import ado.sabgil.incheonariport.data.model.GateNotice;
 import ado.sabgil.incheonariport.data.model.SimpleFlightInfo;
 import ado.sabgil.incheonariport.data.model.Terminal1Notice;
+import ado.sabgil.incheonariport.util.LogoFinder;
 import ado.sabgil.incheonariport.view.custom.LineChart;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -121,6 +124,20 @@ public class BindingAdapters {
             }
 
             textView.setTextColor(color);
+        }
+    }
+
+    @BindingAdapter("src")
+    public static void setLogoImage(@NonNull ImageView imageView,
+                                    @Nullable String flightId) {
+
+        if (!TextUtils.isEmpty(flightId)) {
+            int id = LogoFinder.getLogoFromFlightId(imageView.getContext(), flightId);
+            if (id == 0) {
+                imageView.setImageResource(R.drawable.vector_default_logo);
+            } else {
+                imageView.setImageResource(id);
+            }
         }
     }
 }

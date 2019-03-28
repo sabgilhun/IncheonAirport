@@ -84,7 +84,7 @@
                 android:layout_height="match_parent"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:src="@drawable/ic_refresh" />
+                android:src="@drawable/vector_refresh" />
         </LinearLayout>
 
         <androidx.cardview.widget.CardView

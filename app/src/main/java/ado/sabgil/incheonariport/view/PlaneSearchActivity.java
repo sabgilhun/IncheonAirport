@@ -14,6 +14,7 @@ import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.adapter.FlightInfoAdapter;
 import ado.sabgil.incheonariport.data.DataManager;
 import ado.sabgil.incheonariport.data.DataManagerImpl;
+import ado.sabgil.incheonariport.data.model.SimpleFlightInfo;
 import ado.sabgil.incheonariport.databinding.ActivityPlaneSearchBinding;
 import ado.sabgil.incheonariport.view.base.BaseActivity;
 import androidx.annotation.Nullable;
@@ -47,7 +48,15 @@ public class PlaneSearchActivity extends BaseActivity<ActivityPlaneSearchBinding
     private void initRecyclerView() {
         RecyclerView recyclerView = getBinding().rvSearchedItem;
         FlightInfoAdapter adapter = new FlightInfoAdapter();
+        adapter.setOnItemClickListener((v, position) -> {
+            SimpleFlightInfo info = adapter.getItem(position);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fl_screen_container, new DetailInfoFragment())
+                    .addToBackStack("")
+                    .commit();
+        });
         recyclerView.setAdapter(adapter);
+
     }
 
     private void loadFlightData(String query) {

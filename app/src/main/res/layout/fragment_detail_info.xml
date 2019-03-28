@@ -11,7 +11,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackground">
+        android:background="@color/colorBackground"
+        android:clickable="true"
+        android:focusable="true">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb_detail_info"
@@ -37,7 +39,7 @@
                     android:layout_height="match_parent"
                     android:paddingStart="4dp"
                     android:paddingEnd="4dp"
-                    android:src="@drawable/ic_arrow_back" />
+                    android:src="@drawable/vector_arrow_back" />
 
                 <TextView
                     style="@style/text_normal_20"

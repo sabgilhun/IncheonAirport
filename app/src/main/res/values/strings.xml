@@ -20,6 +20,11 @@
     <string name="hint_short_query">글자가 너무 짧습니다. \n (2글자 이상)</string>
     <string name="hint_no_response">%s의 검색 결과가 없습니다.</string>
 
+    <string name="airline_title">항공사 / 항공편명</string>
+    <string name="flight_id_title">항공편명</string>
+    <string name="schedule_title">출발시간</string>
+    <string name="destination_title">도착지</string>
+
     <string name="menu_title_home">홈</string>
     <string name="menu_title_congestion">혼잡도</string>
     <string name="menu_title_myplane">내 비행기</string>

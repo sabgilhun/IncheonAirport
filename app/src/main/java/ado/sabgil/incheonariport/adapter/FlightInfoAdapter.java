@@ -8,8 +8,11 @@ import ado.sabgil.incheonariport.data.model.SimpleFlightInfo;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class FlightInfoAdapter extends ListAdapter<SimpleFlightInfo, FlightInfoViewHolder> {
+
+    private OnItemClickListener itemClickListener;
 
     public FlightInfoAdapter() {
         super(DIFF_CALLBACK);
@@ -25,6 +28,13 @@ public class FlightInfoAdapter extends ListAdapter<SimpleFlightInfo, FlightInfoV
     @Override
     public void onBindViewHolder(@NonNull FlightInfoViewHolder holder, int position) {
         holder.getBinding().setInfo(getItem(position));
+        holder.getBinding().lyItem.setOnClickListener(v ->
+                itemClickListener.onItemClick(holder, position));
+    }
+
+    @Override
+    public SimpleFlightInfo getItem(int position) {
+        return super.getItem(position);
     }
 
     private static final DiffUtil.ItemCallback<SimpleFlightInfo> DIFF_CALLBACK =
@@ -41,4 +51,12 @@ public class FlightInfoAdapter extends ListAdapter<SimpleFlightInfo, FlightInfoV
                     return oldItem.equals(newItem);
                 }
             };
+
+    public interface OnItemClickListener {
+        void onItemClick(RecyclerView.ViewHolder viewHolder, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
 }

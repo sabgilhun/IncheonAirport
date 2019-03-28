@@ -13,73 +13,156 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ly_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
-        android:background="@color/colorWhite">
+        android:background="@drawable/shape_border2">
 
         <ImageView
             android:id="@+id/iv_airline_icon"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/div_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:src="@{info.flightID}" />
+
+        <View
+            android:id="@+id/div_1"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <View
+            android:id="@+id/div_2"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <View
+            android:id="@+id/div_3"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/colorBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/div_2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_airline_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_photo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/airline_title"
+            android:textColor="@color/colorGray"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/div_2"
+            app:layout_constraintHorizontal_bias="0.35"
+            app:layout_constraintStart_toEndOf="@+id/div_1"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_airline"
+            style="@style/text_normal_14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
+            android:layout_marginTop="8dp"
             android:text="@{info.airline}"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_flight_id"
-            app:layout_constraintStart_toEndOf="@id/iv_airline_icon"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_airline_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_airline_title"
             tool:text="실험" />
 
         <TextView
             android:id="@+id/tv_flight_id"
+            style="@style/text_normal_20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
+            android:layout_marginBottom="16dp"
             android:text="@{info.flightID}"
-            android:textSize="12sp"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_airline_icon"
+            app:layout_constraintStart_toStartOf="@+id/tv_airline"
             app:layout_constraintTop_toBottomOf="@+id/tv_airline"
             tool:text="실험" />
 
-        <!-- TODO 변경된 시간인것 표현하는 로직 구현하자 -->
         <TextView
             android:id="@+id/tv_schedule"
+            style="@style/text_normal_14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
+            android:layout_marginBottom="4dp"
             android:text="@{info.time}"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@id/iv_airline_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/iv_airline_icon"
+            app:layout_constraintBottom_toTopOf="@+id/div_3"
+            app:layout_constraintEnd_toEndOf="@+id/div_3"
+            app:layout_constraintStart_toStartOf="@+id/div_3"
             tool:text="실험" />
 
         <TextView
-            android:id="@+id/tv_delayed"
+            android:id="@+id/tv_schedule_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
-            android:text="시간 변경"
+            android:text="@string/schedule_title"
+            android:textColor="@color/colorGray"
             android:textSize="12sp"
-            android:visibility="@{info.delayed ? View.VISIBLE : View.INVISIBLE}"
-            app:layout_constraintBottom_toBottomOf="@id/iv_airline_icon"
-            app:layout_constraintEnd_toStartOf="@id/tv_schedule"
-            app:layout_constraintTop_toTopOf="@id/iv_airline_icon" />
+            app:layout_constraintBottom_toTopOf="@+id/tv_schedule"
+            app:layout_constraintEnd_toEndOf="@+id/div_3"
+            app:layout_constraintStart_toStartOf="@+id/div_3"
+            tool:text="실험" />
+
+        <TextView
+            android:id="@+id/tv_destination_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/destination_title"
+            android:textColor="@color/colorGray"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/div_3"
+            app:layout_constraintStart_toStartOf="@+id/div_3"
+            app:layout_constraintTop_toBottomOf="@+id/div_3"
+            tool:text="실험" />
+
+        <TextView
+            android:id="@+id/tv_destination"
+            style="@style/text_normal_14"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxEms="4"
+            android:maxLines="1"
+            android:text="@{info.airport}"
+            app:layout_constraintEnd_toEndOf="@+id/div_3"
+            app:layout_constraintStart_toStartOf="@+id/div_3"
+            app:layout_constraintTop_toBottomOf="@+id/tv_destination_title"
+            tool:text="실험" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
