@@ -16,6 +16,7 @@ import ado.sabgil.incheonariport.data.DataManager;
 import ado.sabgil.incheonariport.data.DataManagerImpl;
 import ado.sabgil.incheonariport.data.model.SimpleFlightInfo;
 import ado.sabgil.incheonariport.databinding.ActivityPlaneSearchBinding;
+import ado.sabgil.incheonariport.util.SoftKeyboardUtils;
 import ado.sabgil.incheonariport.view.base.BaseActivity;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,6 +51,7 @@ public class PlaneSearchActivity extends BaseActivity<ActivityPlaneSearchBinding
         FlightInfoAdapter adapter = new FlightInfoAdapter();
         adapter.setOnItemClickListener((v, position) -> {
             SimpleFlightInfo info = adapter.getItem(position);
+            SoftKeyboardUtils.hideKeyboard(this, getBinding().etSearch);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fl_screen_container, new DetailInfoFragment())
                     .addToBackStack("")
