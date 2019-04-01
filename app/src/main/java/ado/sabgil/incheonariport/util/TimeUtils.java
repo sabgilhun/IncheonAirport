@@ -43,4 +43,14 @@ public class TimeUtils {
         }
     }
 
+    public static String getCurrentDate() {
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+
+        SimpleDateFormat simpleDateFormat =
+                new SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());
+
+        return simpleDateFormat.format(date);
+    }
+
 }

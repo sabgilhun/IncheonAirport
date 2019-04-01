@@ -7,7 +7,7 @@
 
         <variable
             name="info"
-            type="ado.sabgil.incheonariport.data.model.FlightInfo" />
+            type="ado.sabgil.incheonariport.data.model.FlightInformation" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,7 +79,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"
-                app:src="@{info.flightID}" />
+                app:src="@{info.flightId}" />
 
             <TextView
                 android:id="@+id/tv_airline"
@@ -119,7 +119,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="@{info.flightID}"
+                android:text="@{info.flightId}"
                 android:textColor="@color/colorPrimary"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -138,7 +138,7 @@
                 android:layout_marginBottom="8dp"
                 android:background="@color/colorPrimary"
                 android:padding="4dp"
-                android:text="탑승중"
+                android:text="@{info.state}"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@id/div_2"
@@ -224,7 +224,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@{info.gateNumber}"
+                android:text="@{info.boardingGate}"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -265,9 +265,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:text="@{info.takeOffDate}"
                 android:textColor="@color/colorBlack"
                 android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/tv_take_off_time_title"
                 app:layout_constraintStart_toEndOf="@id/tv_take_off_time_title"
                 app:layout_constraintTop_toTopOf="@id/tv_take_off_time_title" />
@@ -277,10 +277,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="@{info.scheduledTime}"
+                android:text="@{info.takeOffTime}"
                 android:textColor="@color/colorBlack"
                 android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/tv_take_off_time_title"
                 app:layout_constraintStart_toEndOf="@id/tv_take_off_date"
                 app:layout_constraintTop_toTopOf="@id/tv_take_off_time_title" />
@@ -338,7 +337,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="@string/departure_terminal"
+                android:text="@{info.terminal}"
                 android:textColor="@color/colorPrimary"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@id/tv_departure_airport_code"
@@ -373,7 +372,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="@{info.airport}"
+                android:text="@{info.destinationAirport}"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/iv_land_icon"
@@ -385,7 +384,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="@{info.airportCode}"
+                android:text="@{info.destinationAirportCode}"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/tv_destination_airport"

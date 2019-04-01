@@ -14,7 +14,6 @@ import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.adapter.FlightInfoAdapter;
 import ado.sabgil.incheonariport.data.DataManager;
 import ado.sabgil.incheonariport.data.DataManagerImpl;
-import ado.sabgil.incheonariport.data.model.FlightInfo;
 import ado.sabgil.incheonariport.databinding.ActivityPlaneSearchBinding;
 import ado.sabgil.incheonariport.util.SoftKeyboardUtils;
 import ado.sabgil.incheonariport.view.base.BaseActivity;
@@ -53,9 +52,8 @@ public class PlaneSearchActivity extends BaseActivity<ActivityPlaneSearchBinding
         adapter.setOnItemClickListener((v, position) -> {
             SoftKeyboardUtils.hideKeyboard(this, getBinding().etSearch);
 
-            FlightInfo info = FlightInfo.from(adapter.getItem(position).getRemoteResponse());
             Bundle bundle = new Bundle();
-            bundle.putParcelable("flight_info", info);
+            bundle.putParcelable("flight_info", adapter.getItem(position));
             Fragment fragment = new DetailInfoFragment();
             fragment.setArguments(bundle);
 
@@ -74,7 +72,7 @@ public class PlaneSearchActivity extends BaseActivity<ActivityPlaneSearchBinding
             return;
         }
 
-        dataManager.getSimpleFlightInfoWithId(query.toUpperCase(),
+        dataManager.getFlightInfoWithId(query.toUpperCase(),
                 result -> {
                     getBinding().setItems(result);
                     getBinding().flListContainer.bringChildToFront(getBinding().lyListScreen);

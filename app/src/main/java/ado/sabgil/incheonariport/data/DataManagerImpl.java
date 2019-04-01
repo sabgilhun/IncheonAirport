@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import ado.sabgil.incheonariport.data.model.SimpleFlightInfo;
+import ado.sabgil.incheonariport.data.model.FlightInformation;
 import ado.sabgil.incheonariport.data.model.Terminal1Congestion;
 import ado.sabgil.incheonariport.data.model.Terminal1Notice;
 import ado.sabgil.incheonariport.data.remote.openapi.IcnAirportApiHelper;
@@ -54,12 +54,13 @@ public class DataManagerImpl implements DataManager {
     }
 
     @Override
-    public void getSimpleFlightInfo(@NonNull OnResponseListener<List<SimpleFlightInfo>> onResponseListener,
-                                    @NonNull OnFailureListener onFailureListener) {
+    public void getFlightInfo(@NonNull OnResponseListener<List<FlightInformation>> onResponseListener,
+                              @NonNull OnFailureListener onFailureListener) {
+        final int noticeDuration = 6;
 
         FlightRequest request;
         String fromTime = TimeUtils.getCurrentHourString();
-        String toTime = TimeUtils.getAfterHour(fromTime, 6);
+        String toTime = TimeUtils.getAfterHour(fromTime, noticeDuration);
         request = new FlightRequest.Builder()
                 .fromTime(fromTime)
                 .toTime(toTime)
@@ -67,19 +68,19 @@ public class DataManagerImpl implements DataManager {
 
         getFlight(request.getRequestMap(),
                 result -> {
-                    List<SimpleFlightInfo> simpleFlightInfos = new ArrayList<>();
+                    List<FlightInformation> flightInformations = new ArrayList<>();
                     for (FlightResponse.Item item : result.getBody().getItems().getItems()) {
-                        simpleFlightInfos.add(SimpleFlightInfo.from(item));
+                        flightInformations.add(FlightInformation.from(item));
                     }
-                    onResponseListener.onResponse(simpleFlightInfos);
+                    onResponseListener.onResponse(flightInformations);
                 },
                 onFailureListener);
     }
 
     @Override
-    public void getSimpleFlightInfoWithId(@NonNull String flightId,
-                                          @NonNull OnResponseListener<List<SimpleFlightInfo>> onResponseListener,
-                                          @NonNull OnFailureListener onFailureListener) {
+    public void getFlightInfoWithId(@NonNull String flightId,
+                                    @NonNull OnResponseListener<List<FlightInformation>> onResponseListener,
+                                    @NonNull OnFailureListener onFailureListener) {
         FlightRequest request;
         String fromTime = TimeUtils.getCurrentHourString();
         String toTime = TimeUtils.getAfterHour(fromTime, 6);
@@ -91,11 +92,11 @@ public class DataManagerImpl implements DataManager {
 
         getFlight(request.getRequestMap(),
                 result -> {
-                    List<SimpleFlightInfo> simpleFlightInfos = new ArrayList<>();
+                    List<FlightInformation> flightInformations = new ArrayList<>();
                     for (FlightResponse.Item item : result.getBody().getItems().getItems()) {
-                        simpleFlightInfos.add(SimpleFlightInfo.from(item));
+                        flightInformations.add(FlightInformation.from(item));
                     }
-                    onResponseListener.onResponse(simpleFlightInfos);
+                    onResponseListener.onResponse(flightInformations);
                 },
                 onFailureListener);
     }

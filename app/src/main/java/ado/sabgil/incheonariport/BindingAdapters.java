@@ -13,9 +13,9 @@ import java.util.List;
 
 import ado.sabgil.incheonariport.adapter.ChartViewAdapter;
 import ado.sabgil.incheonariport.adapter.FlightInfoAdapter;
+import ado.sabgil.incheonariport.data.model.FlightInformation;
 import ado.sabgil.incheonariport.data.model.GateCongestion;
 import ado.sabgil.incheonariport.data.model.GateNotice;
-import ado.sabgil.incheonariport.data.model.SimpleFlightInfo;
 import ado.sabgil.incheonariport.data.model.Terminal1Notice;
 import ado.sabgil.incheonariport.util.LogoFinder;
 import ado.sabgil.incheonariport.view.custom.LineChart;
@@ -35,7 +35,7 @@ public class BindingAdapters {
 
     @BindingAdapter("adapter")
     public static void setFlightInfoItems(@NonNull RecyclerView recyclerView,
-                                          @Nullable List<SimpleFlightInfo> items) {
+                                          @Nullable List<FlightInformation> items) {
         FlightInfoAdapter adapter
                 = (FlightInfoAdapter) recyclerView.getAdapter();
         if (adapter != null) {

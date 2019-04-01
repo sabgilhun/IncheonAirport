@@ -51,7 +51,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     }
 
     private void updateFlightData() {
-        dataManager.getSimpleFlightInfo(
+        dataManager.getFlightInfo(
                 response -> getBinding().setItems(response),
                 error -> Log.e("networking", error.getMessage()));
     }

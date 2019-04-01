@@ -9,7 +9,7 @@
 
         <variable
             name="info"
-            type="ado.sabgil.incheonariport.data.model.SimpleFlightInfo" />
+            type="ado.sabgil.incheonariport.data.model.FlightInformation" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,7 +31,7 @@
             app:layout_constraintEnd_toStartOf="@+id/div_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:src="@{info.flightID}" />
+            app:src="@{info.flightId}" />
 
         <View
             android:id="@+id/div_1"
@@ -104,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="@{info.flightID}"
+            android:text="@{info.flightId}"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -118,7 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="@{info.time}"
+            android:text="@{info.takeOffTime}"
             app:layout_constraintBottom_toTopOf="@+id/div_3"
             app:layout_constraintEnd_toEndOf="@+id/div_3"
             app:layout_constraintStart_toStartOf="@+id/div_3"
@@ -158,7 +158,7 @@
             android:ellipsize="end"
             android:maxEms="4"
             android:maxLines="1"
-            android:text="@{info.airport}"
+            android:text="@{info.destinationAirport}"
             app:layout_constraintEnd_toEndOf="@+id/div_3"
             app:layout_constraintStart_toStartOf="@+id/div_3"
             app:layout_constraintTop_toBottomOf="@+id/tv_destination_title"

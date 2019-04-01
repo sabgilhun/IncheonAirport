@@ -6,13 +6,13 @@
 
     <data>
 
-        <import type="ado.sabgil.incheonariport.data.model.SimpleFlightInfo" />
+        <import type="ado.sabgil.incheonariport.data.model.FlightInformation" />
 
         <import type="java.util.List" />
 
         <variable
             name="items"
-            type="List&lt;SimpleFlightInfo&gt;" />
+            type="List&lt;FlightInformation&gt;" />
     </data>
 
     <FrameLayout
