@@ -2,7 +2,6 @@ package ado.sabgil.incheonariport.data.model;
 
 import java.util.Objects;
 
-import ado.sabgil.incheonariport.data.model.enums.State;
 import ado.sabgil.incheonariport.data.remote.openapi.response.CongestionResponse;
 import androidx.annotation.NonNull;
 
@@ -85,10 +84,14 @@ public class Terminal1Congestion {
         return new Terminal1Congestion(
                 updateDate,
                 updateTime,
-                new GateCongestion(2, State.values()[item.getGate1()], item.getGateInfo1()),
-                new GateCongestion(3, State.values()[item.getGate2()], item.getGateInfo2()),
-                new GateCongestion(4, State.values()[item.getGate3()], item.getGateInfo3()),
-                new GateCongestion(5, State.values()[item.getGate4()], item.getGateInfo4())
+                new GateCongestion(2, GateCongestion.State.values()[item.getGate1()],
+                        item.getGateInfo1()),
+                new GateCongestion(3, GateCongestion.State.values()[item.getGate2()],
+                        item.getGateInfo2()),
+                new GateCongestion(4, GateCongestion.State.values()[item.getGate3()],
+                        item.getGateInfo3()),
+                new GateCongestion(5, GateCongestion.State.values()[item.getGate4()],
+                        item.getGateInfo4())
         );
     }
 
