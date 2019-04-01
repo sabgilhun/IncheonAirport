@@ -14,11 +14,12 @@ import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.adapter.FlightInfoAdapter;
 import ado.sabgil.incheonariport.data.DataManager;
 import ado.sabgil.incheonariport.data.DataManagerImpl;
-import ado.sabgil.incheonariport.data.model.SimpleFlightInfo;
+import ado.sabgil.incheonariport.data.model.FlightInfo;
 import ado.sabgil.incheonariport.databinding.ActivityPlaneSearchBinding;
 import ado.sabgil.incheonariport.util.SoftKeyboardUtils;
 import ado.sabgil.incheonariport.view.base.BaseActivity;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class PlaneSearchActivity extends BaseActivity<ActivityPlaneSearchBinding> {
@@ -50,15 +51,20 @@ public class PlaneSearchActivity extends BaseActivity<ActivityPlaneSearchBinding
         RecyclerView recyclerView = getBinding().rvSearchedItem;
         FlightInfoAdapter adapter = new FlightInfoAdapter();
         adapter.setOnItemClickListener((v, position) -> {
-            SimpleFlightInfo info = adapter.getItem(position);
             SoftKeyboardUtils.hideKeyboard(this, getBinding().etSearch);
+
+            FlightInfo info = FlightInfo.from(adapter.getItem(position).getRemoteResponse());
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("flight_info", info);
+            Fragment fragment = new DetailInfoFragment();
+            fragment.setArguments(bundle);
+
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fl_screen_container, new DetailInfoFragment())
+                    .replace(R.id.fl_screen_container, fragment)
                     .addToBackStack("")
                     .commit();
         });
         recyclerView.setAdapter(adapter);
-
     }
 
     private void loadFlightData(String query) {

@@ -10,6 +10,8 @@
 
     <string name="toolbar_my_plane_title">내 비행기 정보</string>
 
+    <string name="toolbar_detail_info_title">비행기 정보</string>
+
     <string name="gate_no">%s 출국장</string>
 
     <string name="gate_notice">%s 출국장 예상 혼잡도</string>
@@ -29,4 +31,14 @@
     <string name="menu_title_congestion">혼잡도</string>
     <string name="menu_title_myplane">내 비행기</string>
     <string name="menu_title_settings">설정</string>
+
+    <string name="flight_register_info">현재 비행기를 내 비행기로 등록하시면, 경로 추천 및 알람 기능을 이용하실 수 있습니다.</string>
+    <string name="flight_register">내 비행기로 등록</string>
+    <string name="check_in_title">체크인카운터</string>
+    <string name="boarding_gate_title">탑승구</string>
+    <string name="take_off_time_title">출발시간</string>
+
+    <string name="departure_airport">인천</string>
+    <string name="departure_airport_code">ICN</string>
+    <string name="departure_terminal">(제 1여객터미널)</string>
 </resources>

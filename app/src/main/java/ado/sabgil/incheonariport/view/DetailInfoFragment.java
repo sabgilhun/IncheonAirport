@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import ado.sabgil.incheonariport.R;
+import ado.sabgil.incheonariport.data.model.FlightInfo;
 import ado.sabgil.incheonariport.databinding.FragmentDetailInfoBinding;
 import ado.sabgil.incheonariport.view.base.BaseFragment;
 import androidx.annotation.NonNull;
@@ -19,5 +20,10 @@ public class DetailInfoFragment extends BaseFragment<FragmentDetailInfoBinding> 
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        if (getArguments() != null) {
+            FlightInfo info = getArguments().getParcelable("flight_info");
+            getBinding().setInfo(info);
+        }
     }
 }
