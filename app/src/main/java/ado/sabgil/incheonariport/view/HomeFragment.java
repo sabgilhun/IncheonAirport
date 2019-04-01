@@ -10,6 +10,7 @@ import ado.sabgil.incheonariport.adapter.FlightInfoAdapter;
 import ado.sabgil.incheonariport.data.DataManager;
 import ado.sabgil.incheonariport.data.DataManagerImpl;
 import ado.sabgil.incheonariport.databinding.FragmentHomeBinding;
+import ado.sabgil.incheonariport.util.TimeUtils;
 import ado.sabgil.incheonariport.view.base.BaseFragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +32,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
 
         // view 초기화
         getBinding().etSearch.setOnClickListener(this::onClickSearch);
+        getBinding().ivRefresh.setOnClickListener(__ -> updateFlightData());
         initRecyclerView();
 
         // 초기 data 로드
@@ -51,6 +53,9 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     }
 
     private void updateFlightData() {
+        String updateTime = getString(R.string.update_time, TimeUtils.getCurrentDateFullFormat());
+        getBinding().tvUpdateTime.setText(updateTime);
+
         dataManager.getFlightInfo(
                 response -> getBinding().setItems(response),
                 error -> Log.e("networking", error.getMessage()));

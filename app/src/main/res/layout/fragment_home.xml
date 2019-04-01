@@ -57,7 +57,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginEnd="4dp"
                         android:layout_marginBottom="4dp"
-                        android:background="@drawable/shape_border"
+                        android:background="@drawable/shape_round_box_border_primary"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -71,12 +71,12 @@
                         <EditText
                             android:id="@+id/et_search"
                             style="@style/et"
-                            android:focusable="false"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_marginStart="4dp"
                             android:layout_marginEnd="4dp"
                             android:layout_weight="1"
+                            android:focusable="false"
                             android:hint="@string/hint_search_airplane_short"
                             android:importantForAutofill="no"
                             android:inputType="text"
@@ -99,23 +99,32 @@
                 android:id="@+id/ly_update_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
+                android:background="@android:color/transparent"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/tb_congestion">
 
                 <TextView
+                    android:id="@+id/tv_update_time"
                     style="@style/text_normal_20"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="4dp"
                     android:layout_marginBottom="4dp"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="@color/colorPrimaryDark"
-                    tools:text="업데이트 시간: 19.03.20 18:20" />
+                    android:textColor="@color/colorGray" />
+
+                <ImageView
+                    android:id="@+id/iv_refresh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:src="@drawable/vector_refresh" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

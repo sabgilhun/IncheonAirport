@@ -19,7 +19,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
-        android:background="@drawable/shape_border2">
+        android:background="@drawable/shape_round_border_white_">
 
         <ImageView
             android:id="@+id/iv_airline_icon"

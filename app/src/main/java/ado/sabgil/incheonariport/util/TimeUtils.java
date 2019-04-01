@@ -53,4 +53,13 @@ public class TimeUtils {
         return simpleDateFormat.format(date);
     }
 
+    public static String getCurrentDateFullFormat() {
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+
+        SimpleDateFormat simpleDateFormat =
+                new SimpleDateFormat("yyyy-MM-dd HH:mm", java.util.Locale.getDefault());
+
+        return simpleDateFormat.format(date);
+    }
 }
