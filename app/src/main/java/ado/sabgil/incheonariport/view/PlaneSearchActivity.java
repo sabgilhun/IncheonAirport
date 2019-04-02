@@ -1,5 +1,6 @@
 package ado.sabgil.incheonariport.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -19,6 +20,8 @@ import ado.sabgil.incheonariport.util.SoftKeyboardUtils;
 import ado.sabgil.incheonariport.view.base.BaseActivity;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static ado.sabgil.incheonariport.Constant.FLIGHT_INFO_ARGUMENT_KEY;
 
 public class PlaneSearchActivity extends BaseActivity<ActivityPlaneSearchBinding> {
 
@@ -53,8 +56,14 @@ public class PlaneSearchActivity extends BaseActivity<ActivityPlaneSearchBinding
             /* 아이템 선택 시 키보드 숨김 */
             SoftKeyboardUtils.hideKeyboard(this, getBinding().etSearch);
 
-            /* 상세 정보 다이얼로그 표시 */
+            /* 상세 정보 다이얼로그 표시 및 버튼 리스너 설정 */
             DetailFragment detailFragment = DetailFragment.newInstance(adapter.getItem(position));
+            detailFragment.setOnSelectFlightListener(information -> {
+                Intent intent = new Intent();
+                intent.putExtra(FLIGHT_INFO_ARGUMENT_KEY, information);
+                setResult(RESULT_OK, intent);
+                finish();
+            });
             detailFragment.ifNotAddedShow(getSupportFragmentManager());
         });
 

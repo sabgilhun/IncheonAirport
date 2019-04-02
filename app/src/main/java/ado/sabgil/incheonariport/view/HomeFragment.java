@@ -17,12 +17,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static ado.sabgil.incheonariport.Constant.SEARCH_REQUEST_CODE;
+
 public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     private DataManager dataManager;
     private FragmentManager fragmentManager;
+    private OnRegisterFlightListener onRegisterFlightListener;
 
     protected int getLayout() {
         return R.layout.fragment_home;
+    }
+
+    /* 리스너 설정 */
+    @SuppressWarnings("WeakerAccess")
+    public void setRegisterListener(OnRegisterFlightListener onRegisterFlightListener) {
+        this.onRegisterFlightListener = onRegisterFlightListener;
     }
 
     @Override
@@ -49,7 +58,11 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
         FlightInfoAdapter adapter = new FlightInfoAdapter();
 
         adapter.setOnItemClickListener((v, position) -> {
+            /* 상세 정보 다이얼로그 표시 및 버튼 리스너 설정 */
             DetailFragment fragment = DetailFragment.newInstance(adapter.getItem(position));
+            fragment.setOnSelectFlightListener(information -> {
+                onRegisterFlightListener.onRegisterFlight(information);
+            });
             fragment.ifNotAddedShow(fragmentManager);
         });
 
@@ -58,7 +71,9 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
 
     private void onClickSearch(View v) {
         Intent intent = new Intent(getContext(), PlaneSearchActivity.class);
-        startActivity(intent);
+        if (getActivity() != null) {
+            getActivity().startActivityForResult(intent, SEARCH_REQUEST_CODE);
+        }
     }
 
     private void updateFlightData() {

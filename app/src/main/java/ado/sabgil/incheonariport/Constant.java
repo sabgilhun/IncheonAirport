@@ -14,7 +14,10 @@ import static ado.sabgil.incheonariport.Constant.OpenApiResponseCode.SERVICE_TIM
 
 public class Constant {
     public static final int NOTICE_DURATION = 6;
-    
+    public static final int SEARCH_REQUEST_CODE = 1000;
+
+    public static final String FLIGHT_INFO_ARGUMENT_KEY = "flight_info";
+
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({NORMAL_SERVICE, APPLICATION_ERROR, DB_ERROR,
             NO_DATA_ERROR, HTTP_ERROR, SERVICE_TIME_OUT_ERROR})

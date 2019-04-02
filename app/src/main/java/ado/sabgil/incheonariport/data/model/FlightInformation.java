@@ -198,4 +198,20 @@ public class FlightInformation implements Parcelable {
                 destinationAirport, destinationAirportCode, boardingGate,
                 checkInDesk, state, terminal);
     }
+
+    @Override
+    public String toString() {
+        return "FlightInformation{" +
+                "airline='" + airline + '\'' +
+                ", flightId='" + flightId + '\'' +
+                ", takeOffTime='" + takeOffTime + '\'' +
+                ", takeOffDate='" + takeOffDate + '\'' +
+                ", destinationAirport='" + destinationAirport + '\'' +
+                ", destinationAirportCode='" + destinationAirportCode + '\'' +
+                ", boardingGate='" + boardingGate + '\'' +
+                ", checkInDesk='" + checkInDesk + '\'' +
+                ", state='" + state + '\'' +
+                ", terminal='" + terminal + '\'' +
+                '}';
+    }
 }
