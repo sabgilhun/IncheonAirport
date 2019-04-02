@@ -2,12 +2,14 @@ package ado.sabgil.incheonariport.util;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 public class LogoFinder {
 
     private LogoFinder() {
     }
 
-    public static int getLogoFromFlightId(Context context, String flightId) {
+    public static int getLogoFromFlightId(@NonNull Context context, @NonNull String flightId) {
         StringBuilder stringBuilder = new StringBuilder(flightId.substring(0, 2).toLowerCase());
 
         stringBuilder

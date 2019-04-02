@@ -126,12 +126,12 @@ public class BindingAdapters {
             textView.setTextColor(color);
         }
     }
-
+    
     @BindingAdapter("src")
     public static void setLogoImage(@NonNull ImageView imageView,
                                     @Nullable String flightId) {
-
         if (!TextUtils.isEmpty(flightId)) {
+            @SuppressWarnings("ConstantConditions")
             int id = LogoFinder.getLogoFromFlightId(imageView.getContext(), flightId);
             if (id == 0) {
                 imageView.setImageResource(R.drawable.vector_default_logo);

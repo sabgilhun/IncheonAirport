@@ -38,6 +38,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/iv_back_button"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingStart="4dp"
@@ -395,7 +396,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/iv_hint_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -422,7 +423,7 @@
             app:layout_constraintBottom_toTopOf="@id/tv_flight_register"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@id/imageView4" />
+            app:layout_constraintStart_toEndOf="@id/iv_hint_icon" />
 
         <TextView
             android:id="@+id/tv_flight_register"

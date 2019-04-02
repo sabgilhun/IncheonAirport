@@ -14,10 +14,12 @@ import ado.sabgil.incheonariport.util.TimeUtils;
 import ado.sabgil.incheonariport.view.base.BaseFragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     private DataManager dataManager;
+    private FragmentManager fragmentManager;
 
     protected int getLayout() {
         return R.layout.fragment_home;
@@ -27,23 +29,30 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // DataManager 초기화
+        /* FragmentManager 초기화 */
+        fragmentManager = getFragmentManager();
+
+        /* DataManager 초기화 */
         dataManager = DataManagerImpl.getInstance();
 
-        // view 초기화
+        /* view 초기화 */
         getBinding().etSearch.setOnClickListener(this::onClickSearch);
         getBinding().ivRefresh.setOnClickListener(__ -> updateFlightData());
         initRecyclerView();
 
-        // 초기 data 로드
+        /* 초기 data 로드 */
         updateFlightData();
     }
 
     private void initRecyclerView() {
         RecyclerView recyclerView = getBinding().rvQueriedWithTime;
         FlightInfoAdapter adapter = new FlightInfoAdapter();
+
         adapter.setOnItemClickListener((v, position) -> {
+            DetailFragment fragment = DetailFragment.newInstance(adapter.getItem(position));
+            fragment.ifNotAddedShow(fragmentManager);
         });
+
         recyclerView.setAdapter(adapter);
     }
 

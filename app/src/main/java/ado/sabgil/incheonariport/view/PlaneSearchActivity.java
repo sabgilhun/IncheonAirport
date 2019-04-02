@@ -18,7 +18,6 @@ import ado.sabgil.incheonariport.databinding.ActivityPlaneSearchBinding;
 import ado.sabgil.incheonariport.util.SoftKeyboardUtils;
 import ado.sabgil.incheonariport.view.base.BaseActivity;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class PlaneSearchActivity extends BaseActivity<ActivityPlaneSearchBinding> {
@@ -36,10 +35,10 @@ public class PlaneSearchActivity extends BaseActivity<ActivityPlaneSearchBinding
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // DataManager 초기화
+        /* DataManager 초기화 */
         dataManager = DataManagerImpl.getInstance();
 
-        // view 초기화
+        /* view 초기화 */
         getBinding().ivBackButton.setOnClickListener(__ -> finish());
         getBinding().ivClear.setOnClickListener(__ -> getBinding().etSearch.setText(null));
         getBinding().etSearch.addTextChangedListener(textWatcher);
@@ -49,19 +48,16 @@ public class PlaneSearchActivity extends BaseActivity<ActivityPlaneSearchBinding
     private void initRecyclerView() {
         RecyclerView recyclerView = getBinding().rvSearchedItem;
         FlightInfoAdapter adapter = new FlightInfoAdapter();
+
         adapter.setOnItemClickListener((v, position) -> {
+            /* 아이템 선택 시 키보드 숨김 */
             SoftKeyboardUtils.hideKeyboard(this, getBinding().etSearch);
 
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("flight_info", adapter.getItem(position));
-            Fragment fragment = new DetailInfoFragment();
-            fragment.setArguments(bundle);
-
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fl_screen_container, fragment)
-                    .addToBackStack("")
-                    .commit();
+            /* 상세 정보 다이얼로그 표시 */
+            DetailFragment detailFragment = DetailFragment.newInstance(adapter.getItem(position));
+            detailFragment.ifNotAddedShow(getSupportFragmentManager());
         });
+
         recyclerView.setAdapter(adapter);
     }
 

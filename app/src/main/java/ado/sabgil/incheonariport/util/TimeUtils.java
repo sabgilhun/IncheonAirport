@@ -4,6 +4,8 @@ import java.security.InvalidParameterException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import androidx.annotation.NonNull;
+
 public class TimeUtils {
 
     private TimeUtils() {
@@ -28,7 +30,7 @@ public class TimeUtils {
         return Integer.parseInt(simpleDateFormat.format(date));
     }
 
-    public static String getAfterHour(String currentHour, int intAfterHour) {
+    public static String getAfterHour(@NonNull String currentHour, int intAfterHour) {
         if (intAfterHour > 23 || intAfterHour < 0) {
             throw new InvalidParameterException();
         } else {

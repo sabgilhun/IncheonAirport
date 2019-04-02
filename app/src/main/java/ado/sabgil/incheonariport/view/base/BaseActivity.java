@@ -19,7 +19,7 @@ public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatA
 
         binding = DataBindingUtil.setContentView(this, getLayout());
 
-        // 상태바 색 설정
+        /* 상태바 색 설정 */
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         getWindow().setStatusBarColor(Color.WHITE);
     }
