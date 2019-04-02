@@ -5,6 +5,10 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
         <variable
             name="info"
             type="ado.sabgil.incheonariport.data.model.FlightInformation" />
@@ -64,7 +68,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:background="@drawable/shape_round_border_white_"
+            android:background="@drawable/shape_round_border_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tb_detail_info">
@@ -137,11 +141,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/shape_round_border_primary"
                 android:padding="4dp"
                 android:text="@{info.state}"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
+                android:visibility="@{TextUtils.isEmpty(info.state) ? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toTopOf="@id/div_2"
                 app:layout_constraintEnd_toEndOf="@id/tv_flight_id"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -432,7 +437,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/shape_round_border_primary"
             android:gravity="center"
             android:padding="4dp"
             android:text="@string/flight_register"
