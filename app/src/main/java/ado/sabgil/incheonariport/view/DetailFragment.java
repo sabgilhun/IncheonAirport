@@ -21,13 +21,14 @@ import androidx.fragment.app.FragmentManager;
 public class DetailFragment extends DialogFragment {
     private FragmentDetailInfoBinding binding;
     private static final String TAG = "DetailFragment";
+    private static final String FLIGHT_INFO_ARGUMENT_KEY = "flight_info";
 
     /* 정적 팩토리 메서드이기 때문에 public 사용 */
     @SuppressWarnings("WeakerAccess")
     public static DetailFragment newInstance(@NonNull FlightInformation information) {
         DetailFragment fragment = new DetailFragment();
         Bundle bundle = new Bundle();
-        bundle.putParcelable("flight_info", information);
+        bundle.putParcelable(FLIGHT_INFO_ARGUMENT_KEY, information);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -78,7 +79,7 @@ public class DetailFragment extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
 
         if (getArguments() != null) {
-            FlightInformation info = getArguments().getParcelable("flight_info");
+            FlightInformation info = getArguments().getParcelable(FLIGHT_INFO_ARGUMENT_KEY);
             binding.setInfo(info);
         }
 
