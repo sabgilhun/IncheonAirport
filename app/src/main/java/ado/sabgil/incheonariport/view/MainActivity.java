@@ -2,7 +2,6 @@ package ado.sabgil.incheonariport.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import ado.sabgil.incheonariport.R;
@@ -35,8 +34,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /* 프레그먼트 매니저 초기화 */
-        fragmentManager = getSupportFragmentManager();
+
+        /* 사용되는 프레그먼트들 초기화*/
+        initFragment();
 
         /* 바텀 네비게이션 초기화 */
         getBinding().bottomNavigation.setOnNavigationItemSelectedListener(this::switchItem);
@@ -48,55 +48,66 @@ public class MainActivity extends BaseActivity<ActivityMainBinding>
 
         switch (selectedAction) {
             case R.id.action_home:
-                if (homeFragment == null) {
-                    homeFragment = new HomeFragment();
-                    homeFragment.setRegisterListener(this);
-                    replaceFragment(homeFragment, true);
-                } else {
-                    replaceFragment(homeFragment, false);
-                }
+                replaceFragment(homeFragment);
                 return true;
 
             case R.id.action_map:
-                if (congestionFragment == null) {
-                    congestionFragment = new CongestionFragment();
-                    replaceFragment(congestionFragment, true);
-                } else {
-                    replaceFragment(congestionFragment, false);
-                }
+                replaceFragment(congestionFragment);
                 return true;
 
             case R.id.action_alarm:
-                if (myPlaneFragment == null) {
-                    myPlaneFragment = new MyPlaneFragment();
-                    replaceFragment(myPlaneFragment, true);
-                } else {
-                    replaceFragment(myPlaneFragment, false);
-                }
+                replaceFragment(myPlaneFragment);
                 return true;
 
             case R.id.action_settings:
-                if (settingFragment == null) {
-                    settingFragment = new SettingFragment();
-                    replaceFragment(settingFragment, true);
-                } else {
-                    replaceFragment(settingFragment, false);
-                }
+                replaceFragment(settingFragment);
                 return true;
         }
         return false;
     }
 
-    private void replaceFragment(Fragment fragment, boolean isAddFragment) {
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if (isAddFragment) {
-            fragmentTransaction
-                    .add(R.id.fl_page_container, fragment, fragment.getClass().getSimpleName());
-        }
+    private void initFragment() {
+        /* FragmentManager 초기화 */
+        fragmentManager = getSupportFragmentManager();
 
+        /* HomeFragment 초기화 */
+        homeFragment = new HomeFragment();
+        homeFragment.setRegisterListener(this);
+
+        /* CongestionFragment 초기화 */
+        congestionFragment = new CongestionFragment();
+
+        /* MyPlaneFragment 초기화 */
+        myPlaneFragment = new MyPlaneFragment();
+
+        /* SettingFragment 초기화 */
+        settingFragment = new SettingFragment();
+
+        /* 탭으로 사용될 프레그먼트 모두 등록 후 숨김*/
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction
+                .add(R.id.fl_page_container, homeFragment,
+                        homeFragment.getClass().getSimpleName())
+                .add(R.id.fl_page_container, congestionFragment,
+                        congestionFragment.getClass().getSimpleName())
+                .add(R.id.fl_page_container, myPlaneFragment,
+                        myPlaneFragment.getClass().getSimpleName())
+                .add(R.id.fl_page_container, settingFragment,
+                        settingFragment.getClass().getSimpleName())
+                .hide(homeFragment)
+                .hide(congestionFragment)
+                .hide(myPlaneFragment)
+                .hide(settingFragment)
+                .commit();
+    }
+
+    private void replaceFragment(@NonNull Fragment fragment) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (currentFragment != null) {
             fragmentTransaction
                     .hide(currentFragment).show(fragment);
+        } else {
+            fragmentTransaction.show(fragment);
         }
 
         fragmentTransaction.commit();
@@ -104,7 +115,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding>
     }
 
     @Override
-    public void onRegisterFlight(FlightInformation information) {
+    public void onRegisterFlight(@NonNull FlightInformation information) {
     }
 
     @Override

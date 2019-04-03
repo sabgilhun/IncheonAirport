@@ -38,11 +38,15 @@ public class CongestionFragment extends BaseFragment<FragmentCongestionBinding> 
         // view 초기화
         getBinding().ivRefresh.setOnClickListener(this::onClickRefresh);
         initChartViewPager();
+    }
 
-        // 초기 data 로드
-        loadNoticeData();
-        loadCongestionData();
-
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        if (!hidden && (lineChartData == null || pieChartData == null)) {
+            // 초기 data 로드
+            loadNoticeData();
+            loadCongestionData();
+        }
     }
 
     private void initChartViewPager() {

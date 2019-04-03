@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import java.util.List;
+
 import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.adapter.FlightInfoAdapter;
 import ado.sabgil.incheonariport.data.DataManager;
 import ado.sabgil.incheonariport.data.DataManagerImpl;
+import ado.sabgil.incheonariport.data.model.FlightInformation;
 import ado.sabgil.incheonariport.databinding.FragmentHomeBinding;
 import ado.sabgil.incheonariport.util.TimeUtils;
 import ado.sabgil.incheonariport.view.base.BaseFragment;
@@ -23,6 +26,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     private DataManager dataManager;
     private FragmentManager fragmentManager;
     private OnRegisterFlightListener onRegisterFlightListener;
+    private List<FlightInformation> flightInformations;
 
     protected int getLayout() {
         return R.layout.fragment_home;
@@ -48,9 +52,14 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
         getBinding().etSearch.setOnClickListener(this::onClickSearch);
         getBinding().ivRefresh.setOnClickListener(__ -> updateFlightData());
         initRecyclerView();
+    }
 
-        /* 초기 data 로드 */
-        updateFlightData();
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        if (!hidden && flightInformations == null) {
+            /* 초기 data 로드 */
+            updateFlightData();
+        }
     }
 
     private void initRecyclerView() {
@@ -81,7 +90,10 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
         getBinding().tvUpdateTime.setText(updateTime);
 
         dataManager.getFlightInfo(
-                response -> getBinding().setItems(response),
+                response -> {
+                    this.flightInformations = response;
+                    getBinding().setItems(flightInformations);
+                },
                 error -> Log.e("networking", error.getMessage()));
     }
 }
