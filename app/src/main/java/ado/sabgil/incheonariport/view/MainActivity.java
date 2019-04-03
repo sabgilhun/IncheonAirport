@@ -116,6 +116,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding>
 
     @Override
     public void onRegisterFlight(@NonNull FlightInformation information) {
+        myPlaneFragment.setMyFlightInformation(information);
     }
 
     @Override
@@ -125,6 +126,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding>
                 && resultCode == RESULT_OK
                 && data != null) {
             FlightInformation information = data.getParcelableExtra(FLIGHT_INFO_ARGUMENT_KEY);
+            myPlaneFragment.setMyFlightInformation(information);
         }
     }
 }

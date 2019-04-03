@@ -5,6 +5,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="info"
+            type="ado.sabgil.incheonariport.data.model.FlightInformation" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,31 +51,58 @@
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <include
             android:id="@+id/ly_plane_info_container"
+            layout="@layout/layout_detail_info"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/colorWhite"
-            app:layout_constraintBottom_toTopOf="@+id/ly_recommend_route_container"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:visibility="@{info == null ? View.GONE : View.VISIBLE}"
+            app:info="@{info}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tb_my_plane">
+            app:layout_constraintTop_toBottomOf="@id/tb_my_plane" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ly_recommend_route_container"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/colorWhite"
+            android:layout_margin="8dp"
+            android:background="@drawable/shape_round_border_white"
+            android:visibility="@{info == null ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ly_plane_info_container">
+            app:layout_constraintTop_toBottomOf="@id/ly_plane_info_container">
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ly_not_register_flight"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/shape_round_border_white"
+            android:visibility="@{info == null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_my_plane">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/not_register_flight"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

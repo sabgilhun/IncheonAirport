@@ -41,4 +41,6 @@
     <string name="departure_airport">인천</string>
     <string name="departure_airport_code">ICN</string>
     <string name="departure_terminal">(제 1여객터미널)</string>
+
+    <string name="not_register_flight">내 비행기로 등록된 비행기가 없습니다.</string>
 </resources>
