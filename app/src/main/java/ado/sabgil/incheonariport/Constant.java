@@ -3,8 +3,13 @@ package ado.sabgil.incheonariport;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import androidx.annotation.IntDef;
 import androidx.annotation.StringDef;
 
+import static ado.sabgil.incheonariport.Constant.BottomNavigationIndex.CONGESTION_FRAGMENT_INDEX;
+import static ado.sabgil.incheonariport.Constant.BottomNavigationIndex.HOME_FRAGMENT_INDEX;
+import static ado.sabgil.incheonariport.Constant.BottomNavigationIndex.MY_PLANE_FRAGMENT_INDEX;
+import static ado.sabgil.incheonariport.Constant.BottomNavigationIndex.SETTINGS_FRAGMENT_INDEX;
 import static ado.sabgil.incheonariport.Constant.OpenApiResponseCode.APPLICATION_ERROR;
 import static ado.sabgil.incheonariport.Constant.OpenApiResponseCode.DB_ERROR;
 import static ado.sabgil.incheonariport.Constant.OpenApiResponseCode.HTTP_ERROR;
@@ -28,5 +33,16 @@ public class Constant {
         String NO_DATA_ERROR = "03";
         String HTTP_ERROR = "04";
         String SERVICE_TIME_OUT_ERROR = "05";
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({HOME_FRAGMENT_INDEX, CONGESTION_FRAGMENT_INDEX,
+            MY_PLANE_FRAGMENT_INDEX, SETTINGS_FRAGMENT_INDEX})
+    public @interface BottomNavigationIndex {
+        int HOME_FRAGMENT_INDEX = 0;
+        int CONGESTION_FRAGMENT_INDEX = 1;
+        int MY_PLANE_FRAGMENT_INDEX = 2;
+        int SETTINGS_FRAGMENT_INDEX = 3;
+
     }
 }

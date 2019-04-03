@@ -2,7 +2,12 @@ package ado.sabgil.incheonariport.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 
 import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.data.model.FlightInformation;
@@ -14,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import static ado.sabgil.incheonariport.Constant.BottomNavigationIndex.MY_PLANE_FRAGMENT_INDEX;
 import static ado.sabgil.incheonariport.Constant.FLIGHT_INFO_ARGUMENT_KEY;
 import static ado.sabgil.incheonariport.Constant.SEARCH_REQUEST_CODE;
 
@@ -43,6 +49,28 @@ public class MainActivity extends BaseActivity<ActivityMainBinding>
         getBinding().bottomNavigation.setSelectedItemId(R.id.action_home);
     }
 
+    @Override
+    public void onRegisterFlight(@NonNull FlightInformation information) {
+        if (!information.equals(myPlaneFragment.getMyFlightInformation())) {
+            toggleBadge(MY_PLANE_FRAGMENT_INDEX, true);
+            myPlaneFragment.setMyFlightInformation(information);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SEARCH_REQUEST_CODE
+                && resultCode == RESULT_OK
+                && data != null) {
+            FlightInformation information = data.getParcelableExtra(FLIGHT_INFO_ARGUMENT_KEY);
+            if (!information.equals(myPlaneFragment.getMyFlightInformation())) {
+                toggleBadge(MY_PLANE_FRAGMENT_INDEX, true);
+                myPlaneFragment.setMyFlightInformation(information);
+            }
+        }
+    }
+
     private boolean switchItem(@NonNull MenuItem item) {
         final int selectedAction = item.getItemId();
 
@@ -56,6 +84,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding>
                 return true;
 
             case R.id.action_alarm:
+                toggleBadge(MY_PLANE_FRAGMENT_INDEX, false);
                 replaceFragment(myPlaneFragment);
                 return true;
 
@@ -114,19 +143,19 @@ public class MainActivity extends BaseActivity<ActivityMainBinding>
         currentFragment = fragment;
     }
 
-    @Override
-    public void onRegisterFlight(@NonNull FlightInformation information) {
-        myPlaneFragment.setMyFlightInformation(information);
-    }
+    private void toggleBadge(int index, boolean isSetting) {
+        BottomNavigationMenuView menuView =
+                (BottomNavigationMenuView) getBinding().bottomNavigation.getChildAt(0);
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == SEARCH_REQUEST_CODE
-                && resultCode == RESULT_OK
-                && data != null) {
-            FlightInformation information = data.getParcelableExtra(FLIGHT_INFO_ARGUMENT_KEY);
-            myPlaneFragment.setMyFlightInformation(information);
+        View v = menuView.getChildAt(index);
+        BottomNavigationItemView itemView = (BottomNavigationItemView) v;
+
+        View badge = itemView.findViewById(R.id.notification_badge);
+        if (isSetting && badge == null) {
+            LayoutInflater.from(this)
+                    .inflate(R.layout.layout_notification_badge, itemView, true);
+        } else if (!isSetting && badge != null) {
+            itemView.removeView(badge);
         }
     }
 }

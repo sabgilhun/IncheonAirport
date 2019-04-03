@@ -30,7 +30,12 @@ public class MyPlaneFragment extends BaseFragment<FragmentMyPlaneBinding> {
         }
     }
 
-    public void setMyFlightInformation(FlightInformation information) {
-        this.myFlightInformation = information;
+    public FlightInformation getMyFlightInformation() {
+        return myFlightInformation;
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    public void setMyFlightInformation(FlightInformation myFlightInformation) {
+        this.myFlightInformation = myFlightInformation;
     }
 }
