@@ -66,7 +66,7 @@ public class CongestionFragment extends BaseFragment<FragmentCongestionBinding> 
             public void onPageSelected(int position) {
                 ChartViewAdapter adapter = (ChartViewAdapter) chartViewPager.getAdapter();
 
-                if (adapter != null) {
+                if (adapter != null && lineChartData != null) {
                     adapter.updatePage(position);
                 }
             }

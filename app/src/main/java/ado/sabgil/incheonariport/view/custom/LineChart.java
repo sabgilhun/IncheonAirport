@@ -216,6 +216,10 @@ public class LineChart extends View {
     }
 
     public void animationPlay() {
+        if (chartValues == null) {
+            throw new IllegalStateException("Not initialize local value");
+        }
+        
         ObjectAnimator lineAnimator;
         lineAnimator = ObjectAnimator.ofInt(this, "line",
                 0, (chartValues.size() - 1) * 100 - 1);
