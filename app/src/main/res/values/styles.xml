@@ -17,6 +17,9 @@
         <item name="android:windowBackground">@color/colorWhite</item>
     </style>
 
+    <style name="FullScreenInputDialogStyle" parent="FullScreenDialogStyle">
+        <item name="android:windowSoftInputMode">stateVisible</item>
+    </style>
 
     <style name="text_style">
         <item name="android:textColor">@color/colorBlack</item>

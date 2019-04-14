@@ -6,14 +6,9 @@
 
     <data>
 
-
-        <import type="ado.sabgil.incheonariport.data.model.FlightInformation" />
-
-        <import type="java.util.List" />
-
         <variable
-            name="items"
-            type="List&lt;FlightInformation&gt;" />
+            name="vm"
+            type="ado.sabgil.incheonariport.view.home.HomeViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -116,6 +111,7 @@
                     android:layout_marginBottom="4dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:text='@{vm.updateTime != null ? @string/update_time(vm.updateTime) : ""}'
                     android:textColor="@color/colorGray" />
 
                 <ImageView
@@ -132,7 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:elevation="12dp"
-                app:adapter="@{items}"
+                app:adapter="@{vm.flightInformations}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

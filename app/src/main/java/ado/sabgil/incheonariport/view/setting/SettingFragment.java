@@ -1,4 +1,4 @@
-package ado.sabgil.incheonariport.view;
+package ado.sabgil.incheonariport.view.setting;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class SettingFragment extends BaseFragment<FragmentEmptyBinding> {
+    private SettingViewModel settingViewModel;
 
     protected int getLayout() {
         return R.layout.fragment_empty;
@@ -19,5 +20,6 @@ public class SettingFragment extends BaseFragment<FragmentEmptyBinding> {
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        settingViewModel = getViewModelInActivity(SettingViewModel.class);
     }
 }

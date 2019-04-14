@@ -4,14 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
-            name="cg"
-            type="ado.sabgil.incheonariport.data.model.Terminal1Congestion" />
-
-        <variable
-            name="nt"
-            type="ado.sabgil.incheonariport.data.model.Terminal1Notice" />
+            name="vm"
+            type="ado.sabgil.incheonariport.view.departure.DepartureViewModel" />
 
     </data>
 
@@ -74,7 +69,7 @@
                 android:layout_marginBottom="4dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text='@{cg != null ? @string/update_time(cg.updateTime) : ""}'
+                android:text='@{vm.congestion != null ? @string/update_time(vm.congestion.updateTime) : ""}'
                 android:textColor="@color/colorGray" />
 
             <ImageView
@@ -105,7 +100,7 @@
                 layout="@layout/layout_card_item"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:info="@{cg.gate2}" />
+                app:info="@{vm.congestion.gate2}" />
 
         </androidx.cardview.widget.CardView>
 
@@ -128,7 +123,7 @@
                 layout="@layout/layout_card_item"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:info="@{cg.gate3}" />
+                app:info="@{vm.congestion.gate3}" />
 
         </androidx.cardview.widget.CardView>
 
@@ -151,7 +146,7 @@
                 layout="@layout/layout_card_item"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:info="@{cg.gate4}" />
+                app:info="@{vm.congestion.gate4}" />
 
         </androidx.cardview.widget.CardView>
 
@@ -174,7 +169,7 @@
                 layout="@layout/layout_card_item"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:info="@{cg.gate5}" />
+                app:info="@{vm.congestion.gate5}" />
 
         </androidx.cardview.widget.CardView>
 
@@ -205,7 +200,7 @@
                 android:id="@+id/vp_chart"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:adapter="@{nt}"
+                app:adapter="@{vm.notice}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

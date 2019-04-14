@@ -8,8 +8,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="info"
-            type="ado.sabgil.incheonariport.data.model.FlightInformation" />
+            name="vm"
+            type="ado.sabgil.incheonariport.view.myflight.MyFlightViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -57,8 +57,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:visibility="@{info == null ? View.GONE : View.VISIBLE}"
-            app:info="@{info}"
+            android:visibility="@{vm.flightInformation == null ? View.GONE : View.VISIBLE}"
+            app:info="@{vm.flightInformation}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tb_my_plane" />
@@ -70,7 +70,7 @@
             android:layout_height="0dp"
             android:layout_margin="8dp"
             android:background="@drawable/shape_round_border_white"
-            android:visibility="@{info == null ? View.GONE : View.VISIBLE}"
+            android:visibility="@{vm.flightInformation == null ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -85,7 +85,7 @@
             android:layout_height="0dp"
             android:layout_margin="8dp"
             android:background="@drawable/shape_round_border_white"
-            android:visibility="@{info == null ? View.VISIBLE : View.GONE}"
+            android:visibility="@{vm.flightInformation == null ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
