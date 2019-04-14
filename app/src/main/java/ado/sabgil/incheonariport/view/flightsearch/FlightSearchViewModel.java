@@ -14,14 +14,19 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class FlightSearchViewModel extends ViewModel {
+
+    public enum Status {DEFAULT, NO_RESPONSE, SHORT_QUERY, SUCCESS}
+
     public static int SHORT_TEXT_CRITERION = 2;
 
     private final DataManager dataManager;
+
     private final MutableLiveData<List<FlightInformation>> flightInformations;
+
     private final MutableLiveData<Status> status;
+
     private String lastQuery;
 
-    public enum Status {DEFAULT, NO_RESPONSE, SHORT_QUERY, SUCCESS}
 
     FlightSearchViewModel() {
         dataManager = DataManagerImpl.getInstance();

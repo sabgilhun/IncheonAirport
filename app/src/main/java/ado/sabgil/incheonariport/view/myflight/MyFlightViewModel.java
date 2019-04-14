@@ -11,6 +11,7 @@ public class MyFlightViewModel extends ViewModel {
 
     private final MutableLiveData<Boolean> badgeFlagMyPlane;
 
+
     MyFlightViewModel() {
         flightInformation = new MutableLiveData<>();
         badgeFlagMyPlane = new MutableLiveData<>();

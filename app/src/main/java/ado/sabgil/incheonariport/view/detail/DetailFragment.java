@@ -44,20 +44,30 @@ public class DetailFragment extends BaseDialogFragment<FragmentDetailInfoBinding
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        /* ViewModel 초기화 */
+        setupViewModel();
+
+        /* View 초기화 */
+        setupBackButton();
+        setupFlightRegisterButton();
+    }
+
+    private void setupViewModel() {
         detailViewModel = getViewModelInFragment(DetailViewModel.class);
         getBinding().setVm(detailViewModel);
         myFlightViewModel = getViewModelInActivity(MyFlightViewModel.class);
 
-        /* 넘겨 받은 인자로 View 데이터바인딩 */
         if (getArguments() != null) {
             detailViewModel.setFlightInformation(
                     getArguments().getParcelable(FLIGHT_INFO_ARGUMENT_KEY));
         }
+    }
 
-        /* 백버튼 설정 */
+    private void setupBackButton() {
         getBinding().ivBackButton.setOnClickListener(__ -> dismiss());
+    }
 
-        /* 내 비행기 등록 버튼 리스너 설정 */
+    private void setupFlightRegisterButton() {
         getBinding().tvFlightRegister.setOnClickListener(__ -> {
             FlightInformation info = detailViewModel.getFlightInformation().getValue();
             myFlightViewModel.setFlightInformation(info);

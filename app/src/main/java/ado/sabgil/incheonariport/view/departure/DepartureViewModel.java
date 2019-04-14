@@ -11,9 +11,13 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class DepartureViewModel extends ViewModel {
+
     private DataManager dataManager;
+
     private final MutableLiveData<Terminal1Notice> notice;
+
     private final MutableLiveData<Terminal1Congestion> congestion;
+
 
     DepartureViewModel() {
         dataManager = DataManagerImpl.getInstance();
@@ -46,7 +50,7 @@ public class DepartureViewModel extends ViewModel {
     }
 
     public void initDepartureData() {
-        if((notice.getValue() == null || congestion.getValue() == null)) {
+        if ((notice.getValue() == null || congestion.getValue() == null)) {
             loadDepartureData();
         }
     }

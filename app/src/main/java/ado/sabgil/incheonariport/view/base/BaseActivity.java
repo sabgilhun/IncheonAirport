@@ -16,6 +16,7 @@ public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatA
 
     private B binding;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

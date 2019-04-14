@@ -10,7 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class MyFlightFragment extends BaseFragment<FragmentMyFlightBinding> {
+
     private MyFlightViewModel myFlightViewModel;
+
 
     protected int getLayout() {
         return R.layout.fragment_my_flight;

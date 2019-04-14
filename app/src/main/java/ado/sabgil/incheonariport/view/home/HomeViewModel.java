@@ -13,9 +13,13 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class HomeViewModel extends ViewModel {
+
     private final DataManager dataManager;
+
     private final MutableLiveData<List<FlightInformation>> flightInformations;
+
     private final MutableLiveData<String> updateTime;
+
 
     HomeViewModel() {
         dataManager = DataManagerImpl.getInstance();

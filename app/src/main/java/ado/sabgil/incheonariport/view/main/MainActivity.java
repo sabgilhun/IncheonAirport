@@ -32,10 +32,15 @@ import static ado.sabgil.incheonariport.Constant.BottomNavigationIndex.SETTINGS_
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     private MainViewModel mainViewModel;
+
     private MyFlightViewModel myFlightViewModel;
+
     private FragmentManager fragmentManager;
+
     private List<Fragment> bottomNavFragmentList;
+
     private Fragment currentFragment;
+
 
     protected int getLayout() {
         return R.layout.activity_main;

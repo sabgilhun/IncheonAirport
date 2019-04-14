@@ -17,6 +17,7 @@ public abstract class BaseFragment<B extends ViewDataBinding> extends Fragment {
 
     private B binding;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,

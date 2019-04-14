@@ -20,8 +20,11 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 
 public abstract class BaseDialogFragment<B extends ViewDataBinding> extends DialogFragment {
+
     private final String TAG = getClass().getSimpleName();
+
     private B binding;
+
 
     protected abstract int getLayout();
 

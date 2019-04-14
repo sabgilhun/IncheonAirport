@@ -14,7 +14,9 @@ import androidx.viewpager.widget.ViewPager;
 public class DepartureFragment extends BaseFragment<FragmentDepartureBinding> {
 
     private DepartureViewModel departureViewModel;
+
     private ViewPager chartViewPager;
+
 
     protected int getLayout() {
         return R.layout.fragment_departure;
@@ -25,12 +27,12 @@ public class DepartureFragment extends BaseFragment<FragmentDepartureBinding> {
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        departureViewModel = getViewModelInActivity(DepartureViewModel.class);
-        getBinding().setVm(departureViewModel);
+        /* ViewModel 초기화 */
+        setupViewModel();
 
-        // view 초기화
-        getBinding().ivRefresh.setOnClickListener(__ -> departureViewModel.loadDepartureData());
-        initChartViewPager();
+        /* View 초기화 */
+        setupRefreshButton();
+        setupChartViewPager();
     }
 
     @Override
@@ -40,7 +42,16 @@ public class DepartureFragment extends BaseFragment<FragmentDepartureBinding> {
         }
     }
 
-    private void initChartViewPager() {
+    private void setupViewModel() {
+        departureViewModel = getViewModelInActivity(DepartureViewModel.class);
+        getBinding().setVm(departureViewModel);
+    }
+
+    private void setupRefreshButton() {
+        getBinding().ivRefresh.setOnClickListener(__ -> departureViewModel.loadDepartureData());
+    }
+
+    private void setupChartViewPager() {
         chartViewPager = getBinding().vpChart;
 
         // off screen view 최대 갯수 3

@@ -1,25 +1,25 @@
 package ado.sabgil.incheonariport.view.home;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 
 import ado.sabgil.incheonariport.R;
 import ado.sabgil.incheonariport.adapter.FlightInfoAdapter;
 import ado.sabgil.incheonariport.databinding.FragmentHomeBinding;
-import ado.sabgil.incheonariport.util.SoftKeyboardUtils;
-import ado.sabgil.incheonariport.view.flightsearch.FlightSearchFragment;
 import ado.sabgil.incheonariport.view.base.BaseFragment;
 import ado.sabgil.incheonariport.view.detail.DetailFragment;
+import ado.sabgil.incheonariport.view.flightsearch.FlightSearchFragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
+
     private HomeViewModel homeViewModel;
+
     private FragmentManager fragmentManager;
+
 
     protected int getLayout() {
         return R.layout.fragment_home;

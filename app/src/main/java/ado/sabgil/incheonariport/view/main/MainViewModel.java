@@ -8,6 +8,7 @@ public class MainViewModel extends ViewModel {
 
     private final MutableLiveData<Integer> currentPagePosition;
 
+
     MainViewModel() {
         currentPagePosition = new MutableLiveData<>();
     }

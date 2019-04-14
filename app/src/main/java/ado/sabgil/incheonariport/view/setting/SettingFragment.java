@@ -10,7 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class SettingFragment extends BaseFragment<FragmentEmptyBinding> {
+
     private SettingViewModel settingViewModel;
+
 
     protected int getLayout() {
         return R.layout.fragment_empty;

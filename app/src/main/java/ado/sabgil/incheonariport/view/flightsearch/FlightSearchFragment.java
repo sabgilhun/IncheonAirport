@@ -21,11 +21,13 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class FlightSearchFragment extends BaseDialogFragment<FragmentFlightSearchBinding> {
+
     private FlightSearchViewModel flightSearchViewModel;
+
     private Timer debounceTimer;
+
     private AppCompatActivity rootActivity;
 
-    public static int DEBOUNCE_TIMER_DURATION = 300;
 
     @Override
     protected int getLayout() {
@@ -53,14 +55,50 @@ public class FlightSearchFragment extends BaseDialogFragment<FragmentFlightSearc
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        /* ViewModel 초기화 */
+        setupViewModel();
+
+        /* status observe */
+        flightSearchViewModel.getStatus().observe(this, this::switchView);
+
+        /* View 초기화 */
+        setupBackButton();
+        setupTextClearButton();
+        setupSearchEditText();
+        setupFlightInfoRecyclerView();
+    }
+
+    private void setupViewModel() {
         flightSearchViewModel = getViewModelInFragment(FlightSearchViewModel.class);
         getBinding().setVm(flightSearchViewModel);
+    }
 
-        flightSearchViewModel.getStatus().observe(this, this::switchView);
+    private void setupBackButton() {
         getBinding().ivBackButton.setOnClickListener(__ -> dismiss());
+    }
+
+    private void setupTextClearButton() {
         getBinding().ivClear.setOnClickListener(__ -> getBinding().etSearch.setText(null));
+    }
+
+    private void setupSearchEditText() {
         getBinding().etSearch.addTextChangedListener(textWatcher);
-        initRecyclerView();
+    }
+
+    private void setupFlightInfoRecyclerView() {
+        RecyclerView recyclerView = getBinding().rvSearchedItem;
+        FlightInfoAdapter adapter = new FlightInfoAdapter();
+
+        adapter.setOnItemClickListener((v, position) -> {
+            /* 아이템 선택 시 키보드 숨김 */
+            SoftKeyboardUtils.hideKeyboard(rootActivity, getBinding().etSearch);
+
+            DetailFragment detailFragment = DetailFragment.newInstance(adapter.getItem(position));
+            detailFragment.ifNotAddedShow(rootActivity.getSupportFragmentManager());
+        });
+
+        recyclerView.setAdapter(adapter);
     }
 
     private void switchView(FlightSearchViewModel.Status status) {
@@ -90,23 +128,9 @@ public class FlightSearchFragment extends BaseDialogFragment<FragmentFlightSearc
         }
     }
 
-    private void initRecyclerView() {
-        RecyclerView recyclerView = getBinding().rvSearchedItem;
-        FlightInfoAdapter adapter = new FlightInfoAdapter();
-
-        adapter.setOnItemClickListener((v, position) -> {
-            /* 아이템 선택 시 키보드 숨김 */
-            SoftKeyboardUtils.hideKeyboard(rootActivity, getBinding().etSearch);
-
-            /* 상세 정보 다이얼로그 표시 및 버튼 리스너 설정 */
-            DetailFragment detailFragment = DetailFragment.newInstance(adapter.getItem(position));
-            detailFragment.ifNotAddedShow(rootActivity.getSupportFragmentManager());
-        });
-
-        recyclerView.setAdapter(adapter);
-    }
-
     private TextWatcher textWatcher = new TextWatcher() {
+        private int DEBOUNCE_TIMER_DURATION = 300;
+
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         }
